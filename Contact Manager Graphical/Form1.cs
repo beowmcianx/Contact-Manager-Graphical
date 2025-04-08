@@ -38,6 +38,7 @@ namespace Contact_Manager_Graphical
                 AllContacts();
             }
         }
+        //Contact details in the second listBox
         private void listBoxContacts_SelectedIndexChanged(object sender, EventArgs e)
         {
             listBox2.Items.Clear();
