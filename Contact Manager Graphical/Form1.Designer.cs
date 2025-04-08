@@ -160,6 +160,7 @@
             exportContactsToTxtToolStripMenuItem.Name = "exportContactsToTxtToolStripMenuItem";
             exportContactsToTxtToolStripMenuItem.Size = new Size(257, 30);
             exportContactsToTxtToolStripMenuItem.Text = "Export contacts to .txt";
+            exportContactsToTxtToolStripMenuItem.Click += exportContactsToTxtToolStripMenuItem_Click;
             // 
             // Form1
             // 
