@@ -11,6 +11,7 @@ namespace Contact_Manager_Graphical
         {
             InitializeComponent();
         }
+        //All contacts
         public void AllContacts()
         {
             using (var context = new ContactmanagerContext())
@@ -28,6 +29,7 @@ namespace Contact_Manager_Graphical
                     }
                 }
             }
+            
         }
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -38,6 +40,38 @@ namespace Contact_Manager_Graphical
                 AllContacts();
             }
         }
+
+        //Memory
+        public void MemorySystem()
+        {
+            Directory.CreateDirectory("export");
+            string filePath = "export/export.txt";
+            var content = "";
+
+            using (var context = new ContactmanagerContext())
+            {
+                var people = context.People
+                    .Include(p => p.Contacts)
+                    .ToList();
+
+                foreach (var person in people)
+                {
+                    string fullName = $"{person.FirstName} {person.SecondName}";
+                    foreach (var contact in person.Contacts)
+                    {
+                        content += $"{fullName} | Phone: {contact.PhoneNum}\n";
+                    }
+                }
+            }
+            File.WriteAllText(filePath, content);
+        }
+
+        private void exportContactsToTxtToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MemorySystem();
+            MessageBox.Show("Successfully saved all contacts to txt. file");
+        }
+
         //Contact details in the second listBox
         private void listBoxContacts_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -129,8 +163,8 @@ namespace Contact_Manager_Graphical
         {
             Close();
         }
-    
-    private void tabPage1_Click(object sender, EventArgs e)
+
+        private void tabPage1_Click(object sender, EventArgs e)
         {
 
         }
@@ -147,5 +181,6 @@ namespace Contact_Manager_Graphical
 
         }
 
+        
     }
 }

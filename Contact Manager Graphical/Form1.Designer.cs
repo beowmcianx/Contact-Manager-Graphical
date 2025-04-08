@@ -47,9 +47,9 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 15F);
-            label3.Location = new Point(363, 169);
+            label3.Location = new Point(415, 225);
             label3.Name = "label3";
-            label3.Size = new Size(123, 28);
+            label3.Size = new Size(156, 35);
             label3.TabIndex = 15;
             label3.Text = "Contact Info:";
             // 
@@ -57,9 +57,9 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 15F);
-            label2.Location = new Point(36, 169);
+            label2.Location = new Point(41, 225);
             label2.Name = "label2";
-            label2.Size = new Size(120, 28);
+            label2.Size = new Size(151, 35);
             label2.TabIndex = 14;
             label2.Text = "All Contacts:";
             // 
@@ -67,18 +67,20 @@
             // 
             listBox2.Font = new Font("Segoe UI", 15F);
             listBox2.FormattingEnabled = true;
-            listBox2.ItemHeight = 28;
-            listBox2.Location = new Point(363, 200);
+            listBox2.ItemHeight = 35;
+            listBox2.Location = new Point(415, 267);
+            listBox2.Margin = new Padding(3, 4, 3, 4);
             listBox2.Name = "listBox2";
-            listBox2.Size = new Size(393, 172);
+            listBox2.Size = new Size(449, 214);
             listBox2.TabIndex = 13;
             // 
             // button2
             // 
             button2.Font = new Font("Segoe UI", 15F);
-            button2.Location = new Point(497, 96);
+            button2.Location = new Point(568, 128);
+            button2.Margin = new Padding(3, 4, 3, 4);
             button2.Name = "button2";
-            button2.Size = new Size(156, 38);
+            button2.Size = new Size(195, 51);
             button2.TabIndex = 12;
             button2.Text = "ALL CONTACTS";
             button2.UseVisualStyleBackColor = true;
@@ -88,18 +90,19 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 15F);
-            label1.Location = new Point(36, 65);
+            label1.Location = new Point(41, 87);
             label1.Name = "label1";
-            label1.Size = new Size(266, 28);
+            label1.Size = new Size(341, 35);
             label1.TabIndex = 11;
             label1.Text = "Search By Name OR Number:";
             // 
             // button1
             // 
             button1.Font = new Font("Segoe UI", 15F);
-            button1.Location = new Point(362, 96);
+            button1.Location = new Point(414, 128);
+            button1.Margin = new Padding(3, 4, 3, 4);
             button1.Name = "button1";
-            button1.Size = new Size(93, 38);
+            button1.Size = new Size(120, 51);
             button1.TabIndex = 10;
             button1.Text = "SEARCH";
             button1.UseVisualStyleBackColor = true;
@@ -108,19 +111,21 @@
             // textBox1
             // 
             textBox1.Font = new Font("Segoe UI", 15F);
-            textBox1.Location = new Point(36, 96);
+            textBox1.Location = new Point(41, 128);
+            textBox1.Margin = new Padding(3, 4, 3, 4);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(288, 34);
+            textBox1.Size = new Size(341, 41);
             textBox1.TabIndex = 9;
             // 
             // listBox1
             // 
             listBox1.Font = new Font("Segoe UI", 15F);
             listBox1.FormattingEnabled = true;
-            listBox1.ItemHeight = 28;
-            listBox1.Location = new Point(36, 200);
+            listBox1.ItemHeight = 35;
+            listBox1.Location = new Point(41, 267);
+            listBox1.Margin = new Padding(3, 4, 3, 4);
             listBox1.Name = "listBox1";
-            listBox1.Size = new Size(288, 284);
+            listBox1.Size = new Size(341, 354);
             listBox1.TabIndex = 8;
             listBox1.SelectedIndexChanged += listBoxContacts_SelectedIndexChanged;
             // 
@@ -128,10 +133,12 @@
             // 
             menuStrip1.BackColor = SystemColors.AppWorkspace;
             menuStrip1.Font = new Font("Segoe UI", 15F);
+            menuStrip1.ImageScalingSize = new Size(20, 20);
             menuStrip1.Items.AddRange(new ToolStripItem[] { editToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(792, 36);
+            menuStrip1.Padding = new Padding(7, 3, 0, 3);
+            menuStrip1.Size = new Size(944, 45);
             menuStrip1.TabIndex = 16;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -140,7 +147,7 @@
             editToolStripMenuItem.BackColor = Color.LightGray;
             editToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { exitescToolStripMenuItem, exportContactsToTxtToolStripMenuItem });
             editToolStripMenuItem.Name = "editToolStripMenuItem";
-            editToolStripMenuItem.Size = new Size(54, 32);
+            editToolStripMenuItem.Size = new Size(66, 39);
             editToolStripMenuItem.Text = "File";
             editToolStripMenuItem.Click += editToolStripMenuItem_Click;
             // 
@@ -149,7 +156,7 @@
             exitescToolStripMenuItem.BackColor = Color.LightGray;
             exitescToolStripMenuItem.Font = new Font("Segoe UI", 13F);
             exitescToolStripMenuItem.Name = "exitescToolStripMenuItem";
-            exitescToolStripMenuItem.Size = new Size(257, 30);
+            exitescToolStripMenuItem.Size = new Size(310, 34);
             exitescToolStripMenuItem.Text = "Exit (esc)";
             exitescToolStripMenuItem.Click += exitescToolStripMenuItem_Click;
             // 
@@ -158,14 +165,15 @@
             exportContactsToTxtToolStripMenuItem.BackColor = Color.LightGray;
             exportContactsToTxtToolStripMenuItem.Font = new Font("Segoe UI", 13F);
             exportContactsToTxtToolStripMenuItem.Name = "exportContactsToTxtToolStripMenuItem";
-            exportContactsToTxtToolStripMenuItem.Size = new Size(257, 30);
+            exportContactsToTxtToolStripMenuItem.Size = new Size(310, 34);
             exportContactsToTxtToolStripMenuItem.Text = "Export contacts to .txt";
+            exportContactsToTxtToolStripMenuItem.Click += exportContactsToTxtToolStripMenuItem_Click;
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(792, 539);
+            ClientSize = new Size(944, 653);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(listBox2);
@@ -176,6 +184,7 @@
             Controls.Add(listBox1);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
+            Margin = new Padding(3, 4, 3, 4);
             Name = "Form1";
             Text = "Form1";
             Load += Form1_Load;
