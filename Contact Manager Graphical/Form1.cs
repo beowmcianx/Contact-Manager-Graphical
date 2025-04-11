@@ -11,7 +11,6 @@ namespace Contact_Manager_Graphical
         {
             InitializeComponent();
         }
-        //All contacts
         public void AllContacts()
         {
             using (var context = new ContactmanagerContext())
@@ -25,7 +24,7 @@ namespace Contact_Manager_Graphical
                     string fullName = $"{person.FirstName} {person.SecondName}";
                     foreach (var contact in person.Contacts)
                     {
-                        listBox1.Items.Add($"{fullName} | Phone: {contact.PhoneNum}");
+                        listBox1.Items.Add($"{fullName}");
                     }
                 }
             }
@@ -135,7 +134,7 @@ namespace Contact_Manager_Graphical
                         string fullName = $"{person.FirstName} {person.SecondName}";
                         foreach (var contact in person.Contacts)
                         {
-                            listBox1.Items.Add($"{fullName} | Phone: {contact.PhoneNum}");
+                            listBox1.Items.Add($"{fullName}");
                         }
                     }
                 }
