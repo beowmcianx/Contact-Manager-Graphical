@@ -2,6 +2,7 @@ using Contact_Manager_Graphical.Models;
 using Microsoft.EntityFrameworkCore;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 
 namespace Contact_Manager_Graphical
 {
@@ -11,7 +12,7 @@ namespace Contact_Manager_Graphical
         {
             InitializeComponent();
         }
-        public void AllContacts()
+        public void AllContacts(ListBox list )
         {
             using (var context = new ContactmanagerContext())
             {
@@ -24,11 +25,11 @@ namespace Contact_Manager_Graphical
                     string fullName = $"{person.FirstName} {person.SecondName}";
                     foreach (var contact in person.Contacts)
                     {
-                        listBox1.Items.Add($"{fullName}");
+                        list.Items.Add($"{fullName}");
                     }
                 }
             }
-            
+
         }
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -36,7 +37,7 @@ namespace Contact_Manager_Graphical
 
             using (var context = new ContactmanagerContext())
             {
-                AllContacts();
+                AllContacts(listBox1);
             }
         }
 
@@ -125,7 +126,7 @@ namespace Contact_Manager_Graphical
                     .Include(p => p.Contacts)
                     .ToList();
 
-                    AllContacts();
+                    AllContacts(listBox1);
                 }
                 else
                 {
@@ -148,7 +149,7 @@ namespace Contact_Manager_Graphical
             listBox2.Items.Clear();
             using (var context = new ContactmanagerContext())
             {
-                AllContacts();
+                AllContacts(listBox1);
             }
         }
         private void Form1_KeyDown(object sender, KeyEventArgs e)
@@ -180,6 +181,23 @@ namespace Contact_Manager_Graphical
 
         }
 
-        
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+            using (var context = new ContactmanagerContext())
+            {
+                string[] contactname = listBox1.SelectedItem.ToString().Split(' ');
+                Person person = context.People.FirstOrDefault(p => p.FirstName == contactname[0] && p.SecondName == contactname[1]);
+
+                var people = context.People.Remove(person);
+                context.SaveChanges();
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            var form2 = new Form2();
+            form2.ShowDialog();
+        }
     }
+
 }

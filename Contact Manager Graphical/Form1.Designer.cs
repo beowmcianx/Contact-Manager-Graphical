@@ -40,6 +40,8 @@
             editToolStripMenuItem = new ToolStripMenuItem();
             exitescToolStripMenuItem = new ToolStripMenuItem();
             exportContactsToTxtToolStripMenuItem = new ToolStripMenuItem();
+            button3 = new Button();
+            button4 = new Button();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -169,11 +171,32 @@
             exportContactsToTxtToolStripMenuItem.Text = "Export contacts to .txt";
             exportContactsToTxtToolStripMenuItem.Click += exportContactsToTxtToolStripMenuItem_Click;
             // 
+            // button3
+            // 
+            button3.Location = new Point(536, 533);
+            button3.Name = "button3";
+            button3.Size = new Size(94, 29);
+            button3.TabIndex = 17;
+            button3.Text = "button3";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
+            // 
+            // button4
+            // 
+            button4.Location = new Point(414, 533);
+            button4.Name = "button4";
+            button4.Size = new Size(94, 29);
+            button4.TabIndex = 18;
+            button4.Text = "button4";
+            button4.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(944, 653);
+            Controls.Add(button4);
+            Controls.Add(button3);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(listBox2);
@@ -209,5 +232,7 @@
         private ToolStripMenuItem editToolStripMenuItem;
         private ToolStripMenuItem exitescToolStripMenuItem;
         private ToolStripMenuItem exportContactsToTxtToolStripMenuItem;
+        private Button button3;
+        private Button button4;
     }
 }
