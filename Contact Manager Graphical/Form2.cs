@@ -32,6 +32,7 @@ namespace Contact_Manager_Graphical
             {
                 var people = context.People
                     .Include(p => p.Contacts)
+                    .ThenInclude(c => c.Tags)
                     .ToList();
 
                 foreach (var person in people)
@@ -48,7 +49,6 @@ namespace Contact_Manager_Graphical
 
         private void buttonCreate_Click(object sender, EventArgs e)
         {
-          
             using (var context = new ContactmanagerContext())
             {
                 Person newPerson = new Person()
@@ -56,21 +56,24 @@ namespace Contact_Manager_Graphical
                     FirstName = textBoxFirstName.Text,
                     SecondName = textBoxSecondName.Text,
                     Address = textBoxAddress.Text
-
                 };
+
+                var tags = textBoxTag.Text
+                    .Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+                    .Select(tagName => new Tag { Name = tagName.Trim() })
+                    .ToList();
+
                 Contact newContact = new Contact()
                 {
                     PhoneNum = long.Parse(textBoxPhoneNum.Text),
                     Email = textBoxEmail.Text,
                     CreationDate = DateOnly.Parse(textBoxDate.Text),
-                    //Tags = textBoxTag.Text
+                    Tags = tags,
                 };
                 context.People.Add(newPerson);
                 context.Contacts.Add(newContact);
                 context.SaveChanges();
             }
-
-            
         }
 
         private void buttonUpdate_Click(object sender, EventArgs e)
@@ -94,7 +97,11 @@ namespace Contact_Manager_Graphical
 
            AllContacts(listBox1);
         }
-
+        private void Form2_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+                this.Close();
+        }
         private void label7_Click(object sender, EventArgs e)
         {
 

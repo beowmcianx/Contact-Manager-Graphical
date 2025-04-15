@@ -18,6 +18,7 @@ namespace Contact_Manager_Graphical
             {
                 var people = context.People
                     .Include(p => p.Contacts)
+                    .ThenInclude(c => c.Tags)
                     .ToList();
 
                 foreach (var person in people)
@@ -96,13 +97,15 @@ namespace Contact_Manager_Graphical
                         listBox2.Items.Add($"Email: {contact.Email}");
                         listBox2.Items.Add($"Address: {person.Address}");
                         listBox2.Items.Add($"Birth date: {person.BirthDate}");
+                        foreach(var tag in contact.Tags)
+                            listBox2.Items.Add($"Tag: {tag.Name}");
                         listBox2.Items.Add("---------------------------------------------------");
                         listBox2.Items.Add($"Contact Created: {contact.CreationDate}");
                     }
                 }
             }
         }
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonSearch_Click(object sender, EventArgs e)
         {
             if (listBox1.SelectedItem != null)
             {
@@ -116,9 +119,10 @@ namespace Contact_Manager_Graphical
             {
                 var filteredPeople = context.People
                     .Include(p => p.Contacts)
+                    .ThenInclude(c => c.Tags)
                     .Where(p => (p.FirstName + " " + p.SecondName).ToLower().Contains(searchTerm) ||
-                                p.Contacts.Any(c => c.PhoneNum.ToString().Contains(searchTerm)))
-                    .ToList();
+                           p.Contacts.Any(c => c.PhoneNum.ToString().Contains(searchTerm) ||
+                                               c.Tags.Any(t => t.Name.ToLower().Contains(searchTerm)))).ToList();
 
                 if (searchTerm == string.Empty)
                 {
@@ -142,7 +146,7 @@ namespace Contact_Manager_Graphical
 
             }
         }
-        private void button2_Click(object sender, EventArgs e)
+        private void buttonAllContacts_Click(object sender, EventArgs e)
         {
             textBox1.Text = string.Empty;
             listBox1.Items.Clear();
@@ -155,9 +159,7 @@ namespace Contact_Manager_Graphical
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
-            {
-                this.Close();
-            }
+                this.Close();        
         }
         private void exitescToolStripMenuItem_Click(object sender, EventArgs e)
         {

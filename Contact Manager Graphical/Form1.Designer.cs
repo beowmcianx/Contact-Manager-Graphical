@@ -31,9 +31,9 @@
             label3 = new Label();
             label2 = new Label();
             listBox2 = new ListBox();
-            button2 = new Button();
+            buttonAllContacts = new Button();
             label1 = new Label();
-            button1 = new Button();
+            buttonSearch = new Button();
             textBox1 = new TextBox();
             listBox1 = new ListBox();
             menuStrip1 = new MenuStrip();
@@ -42,6 +42,9 @@
             exportContactsToTxtToolStripMenuItem = new ToolStripMenuItem();
             button3 = new Button();
             button4 = new Button();
+            tagsToolStripMenuItem = new ToolStripMenuItem();
+            createATagToolStripMenuItem = new ToolStripMenuItem();
+            updateTagToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -73,20 +76,20 @@
             listBox2.Location = new Point(415, 267);
             listBox2.Margin = new Padding(3, 4, 3, 4);
             listBox2.Name = "listBox2";
-            listBox2.Size = new Size(449, 214);
+            listBox2.Size = new Size(449, 284);
             listBox2.TabIndex = 13;
             // 
-            // button2
+            // buttonAllContacts
             // 
-            button2.Font = new Font("Segoe UI", 15F);
-            button2.Location = new Point(568, 128);
-            button2.Margin = new Padding(3, 4, 3, 4);
-            button2.Name = "button2";
-            button2.Size = new Size(195, 51);
-            button2.TabIndex = 12;
-            button2.Text = "ALL CONTACTS";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
+            buttonAllContacts.Font = new Font("Segoe UI", 15F);
+            buttonAllContacts.Location = new Point(540, 128);
+            buttonAllContacts.Margin = new Padding(3, 4, 3, 4);
+            buttonAllContacts.Name = "buttonAllContacts";
+            buttonAllContacts.Size = new Size(195, 41);
+            buttonAllContacts.TabIndex = 12;
+            buttonAllContacts.Text = "ALL CONTACTS";
+            buttonAllContacts.UseVisualStyleBackColor = true;
+            buttonAllContacts.Click += buttonAllContacts_Click;
             // 
             // label1
             // 
@@ -98,17 +101,17 @@
             label1.TabIndex = 11;
             label1.Text = "Search By Name OR Number:";
             // 
-            // button1
+            // buttonSearch
             // 
-            button1.Font = new Font("Segoe UI", 15F);
-            button1.Location = new Point(414, 128);
-            button1.Margin = new Padding(3, 4, 3, 4);
-            button1.Name = "button1";
-            button1.Size = new Size(120, 51);
-            button1.TabIndex = 10;
-            button1.Text = "SEARCH";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            buttonSearch.Font = new Font("Segoe UI", 15F);
+            buttonSearch.Location = new Point(414, 128);
+            buttonSearch.Margin = new Padding(3, 4, 3, 4);
+            buttonSearch.Name = "buttonSearch";
+            buttonSearch.Size = new Size(120, 41);
+            buttonSearch.TabIndex = 10;
+            buttonSearch.Text = "SEARCH";
+            buttonSearch.UseVisualStyleBackColor = true;
+            buttonSearch.Click += buttonSearch_Click;
             // 
             // textBox1
             // 
@@ -136,7 +139,7 @@
             menuStrip1.BackColor = SystemColors.AppWorkspace;
             menuStrip1.Font = new Font("Segoe UI", 15F);
             menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { editToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { editToolStripMenuItem, tagsToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Padding = new Padding(7, 3, 0, 3);
@@ -173,22 +176,43 @@
             // 
             // button3
             // 
-            button3.Location = new Point(536, 533);
+            button3.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            button3.Location = new Point(664, 580);
             button3.Name = "button3";
-            button3.Size = new Size(94, 29);
+            button3.Size = new Size(226, 41);
             button3.TabIndex = 17;
-            button3.Text = "button3";
+            button3.Text = "UPDATE CONTACT";
             button3.UseVisualStyleBackColor = true;
             button3.Click += button3_Click;
             // 
             // button4
             // 
-            button4.Location = new Point(414, 533);
+            button4.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            button4.Location = new Point(415, 580);
             button4.Name = "button4";
-            button4.Size = new Size(94, 29);
+            button4.Size = new Size(243, 41);
             button4.TabIndex = 18;
-            button4.Text = "button4";
+            button4.Text = "CREATE A CONTACT";
             button4.UseVisualStyleBackColor = true;
+            // 
+            // tagsToolStripMenuItem
+            // 
+            tagsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { createATagToolStripMenuItem, updateTagToolStripMenuItem });
+            tagsToolStripMenuItem.Name = "tagsToolStripMenuItem";
+            tagsToolStripMenuItem.Size = new Size(78, 39);
+            tagsToolStripMenuItem.Text = "Tags";
+            // 
+            // createATagToolStripMenuItem
+            // 
+            createATagToolStripMenuItem.Name = "createATagToolStripMenuItem";
+            createATagToolStripMenuItem.Size = new Size(270, 40);
+            createATagToolStripMenuItem.Text = "Create new tag";
+            // 
+            // updateTagToolStripMenuItem
+            // 
+            updateTagToolStripMenuItem.Name = "updateTagToolStripMenuItem";
+            updateTagToolStripMenuItem.Size = new Size(270, 40);
+            updateTagToolStripMenuItem.Text = "Update tags";
             // 
             // Form1
             // 
@@ -200,16 +224,16 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(listBox2);
-            Controls.Add(button2);
+            Controls.Add(buttonAllContacts);
             Controls.Add(label1);
-            Controls.Add(button1);
+            Controls.Add(buttonSearch);
             Controls.Add(textBox1);
             Controls.Add(listBox1);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
             Margin = new Padding(3, 4, 3, 4);
             Name = "Form1";
-            Text = "Form1";
+            Text = "Contact Manager";
             Load += Form1_Load;
             KeyDown += Form1_KeyDown;
             menuStrip1.ResumeLayout(false);
@@ -223,9 +247,9 @@
         private Label label3;
         private Label label2;
         private ListBox listBox2;
-        private Button button2;
+        private Button buttonAllContacts;
         private Label label1;
-        private Button button1;
+        private Button buttonSearch;
         private TextBox textBox1;
         private ListBox listBox1;
         private MenuStrip menuStrip1;
@@ -234,5 +258,8 @@
         private ToolStripMenuItem exportContactsToTxtToolStripMenuItem;
         private Button button3;
         private Button button4;
+        private ToolStripMenuItem tagsToolStripMenuItem;
+        private ToolStripMenuItem createATagToolStripMenuItem;
+        private ToolStripMenuItem updateTagToolStripMenuItem;
     }
 }

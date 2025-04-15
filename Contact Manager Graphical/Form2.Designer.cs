@@ -49,28 +49,28 @@
             // 
             // buttonCreate
             // 
-            buttonCreate.Location = new Point(498, 397);
+            buttonCreate.Location = new Point(540, 397);
             buttonCreate.Name = "buttonCreate";
             buttonCreate.Size = new Size(94, 29);
             buttonCreate.TabIndex = 0;
-            buttonCreate.Text = "button1";
+            buttonCreate.Text = "Create";
             buttonCreate.UseVisualStyleBackColor = true;
             buttonCreate.Click += button1_Click;
             // 
             // buttonUpdate
             // 
-            buttonUpdate.Location = new Point(648, 397);
+            buttonUpdate.Location = new Point(694, 397);
             buttonUpdate.Name = "buttonUpdate";
             buttonUpdate.Size = new Size(94, 29);
             buttonUpdate.TabIndex = 1;
-            buttonUpdate.Text = "button2";
+            buttonUpdate.Text = "Update";
             buttonUpdate.UseVisualStyleBackColor = true;
             buttonUpdate.Click += button2_Click;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(12, 9);
+            label1.Location = new Point(12, 16);
             label1.Name = "label1";
             label1.Size = new Size(76, 20);
             label1.TabIndex = 2;
@@ -88,7 +88,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(12, 138);
+            label3.Location = new Point(12, 122);
             label3.Name = "label3";
             label3.Size = new Size(62, 20);
             label3.TabIndex = 4;
@@ -97,7 +97,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(12, 198);
+            label4.Location = new Point(12, 175);
             label4.Name = "label4";
             label4.Size = new Size(82, 20);
             label4.TabIndex = 5;
@@ -106,7 +106,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(12, 262);
+            label5.Location = new Point(12, 228);
             label5.Name = "label5";
             label5.Size = new Size(46, 20);
             label5.TabIndex = 6;
@@ -115,7 +115,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(13, 325);
+            label6.Location = new Point(12, 281);
             label6.Name = "label6";
             label6.Size = new Size(97, 20);
             label6.TabIndex = 7;
@@ -124,7 +124,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(13, 378);
+            label7.Location = new Point(12, 334);
             label7.Name = "label7";
             label7.Size = new Size(32, 20);
             label7.TabIndex = 8;
@@ -135,58 +135,58 @@
             // 
             textBoxFirstName.Location = new Point(12, 39);
             textBoxFirstName.Name = "textBoxFirstName";
-            textBoxFirstName.Size = new Size(125, 27);
+            textBoxFirstName.Size = new Size(150, 27);
             textBoxFirstName.TabIndex = 9;
             // 
             // textBoxSecondName
             // 
-            textBoxSecondName.Location = new Point(12, 108);
+            textBoxSecondName.Location = new Point(12, 92);
             textBoxSecondName.Name = "textBoxSecondName";
-            textBoxSecondName.Size = new Size(125, 27);
+            textBoxSecondName.Size = new Size(150, 27);
             textBoxSecondName.TabIndex = 10;
             // 
             // textBoxAddress
             // 
-            textBoxAddress.Location = new Point(12, 161);
+            textBoxAddress.Location = new Point(12, 145);
             textBoxAddress.Name = "textBoxAddress";
-            textBoxAddress.Size = new Size(125, 27);
+            textBoxAddress.Size = new Size(150, 27);
             textBoxAddress.TabIndex = 11;
             // 
             // textBoxPhoneNum
             // 
-            textBoxPhoneNum.Location = new Point(12, 221);
+            textBoxPhoneNum.Location = new Point(12, 198);
             textBoxPhoneNum.Name = "textBoxPhoneNum";
-            textBoxPhoneNum.Size = new Size(125, 27);
+            textBoxPhoneNum.Size = new Size(150, 27);
             textBoxPhoneNum.TabIndex = 12;
             // 
             // textBoxEmail
             // 
-            textBoxEmail.Location = new Point(12, 285);
+            textBoxEmail.Location = new Point(12, 251);
             textBoxEmail.Name = "textBoxEmail";
-            textBoxEmail.Size = new Size(125, 27);
+            textBoxEmail.Size = new Size(150, 27);
             textBoxEmail.TabIndex = 13;
             // 
             // textBoxTag
             // 
-            textBoxTag.Location = new Point(12, 411);
+            textBoxTag.Location = new Point(12, 357);
             textBoxTag.Name = "textBoxTag";
-            textBoxTag.Size = new Size(125, 27);
+            textBoxTag.Size = new Size(150, 27);
             textBoxTag.TabIndex = 15;
             textBoxTag.TextChanged += textBoxTag_TextChanged;
             // 
             // textBoxDate
             // 
-            textBoxDate.Location = new Point(13, 348);
+            textBoxDate.Location = new Point(12, 304);
             textBoxDate.Name = "textBoxDate";
-            textBoxDate.Size = new Size(125, 27);
+            textBoxDate.Size = new Size(150, 27);
             textBoxDate.TabIndex = 16;
             // 
             // listBox1
             // 
             listBox1.FormattingEnabled = true;
-            listBox1.Location = new Point(335, 69);
+            listBox1.Location = new Point(540, 12);
             listBox1.Name = "listBox1";
-            listBox1.Size = new Size(248, 184);
+            listBox1.Size = new Size(248, 364);
             listBox1.TabIndex = 17;
             // 
             // Form2
@@ -212,7 +212,8 @@
             Controls.Add(buttonUpdate);
             Controls.Add(buttonCreate);
             Name = "Form2";
-            Text = "Form2";
+            Text = "Update Contact";
+            KeyDown += Form2_KeyDown;
             ResumeLayout(false);
             PerformLayout();
         }
