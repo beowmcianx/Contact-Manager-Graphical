@@ -44,7 +44,11 @@
             createATagToolStripMenuItem = new ToolStripMenuItem();
             updateTagToolStripMenuItem = new ToolStripMenuItem();
             button3 = new Button();
+<<<<<<< HEAD
             buttonDelete = new Button();
+=======
+            button4 = new Button();
+>>>>>>> b75679d796e1cda18e5d61f187fed7328476087a
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -127,7 +131,7 @@
             listBox1.Font = new Font("Segoe UI", 15F);
             listBox1.FormattingEnabled = true;
             listBox1.ItemHeight = 35;
-            listBox1.Location = new Point(41, 267);
+            listBox1.Location = new Point(41, 264);
             listBox1.Margin = new Padding(3, 4, 3, 4);
             listBox1.Name = "listBox1";
             listBox1.Size = new Size(341, 354);
@@ -186,6 +190,10 @@
             createATagToolStripMenuItem.Name = "createATagToolStripMenuItem";
             createATagToolStripMenuItem.Size = new Size(270, 40);
             createATagToolStripMenuItem.Text = "Create new tag";
+<<<<<<< HEAD
+=======
+            createATagToolStripMenuItem.Click += createATagToolStripMenuItem_Click;
+>>>>>>> b75679d796e1cda18e5d61f187fed7328476087a
             // 
             // updateTagToolStripMenuItem
             // 
@@ -204,6 +212,7 @@
             button3.UseVisualStyleBackColor = true;
             button3.Click += button3_Click;
             // 
+<<<<<<< HEAD
             // buttonDelete
             // 
             buttonDelete.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point, 204);
@@ -214,6 +223,17 @@
             buttonDelete.Text = "DELETE CONTACT";
             buttonDelete.UseVisualStyleBackColor = true;
             buttonDelete.Click += buttonDelete_Click;
+=======
+            // button4
+            // 
+            button4.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            button4.Location = new Point(415, 580);
+            button4.Name = "button4";
+            button4.Size = new Size(243, 41);
+            button4.TabIndex = 18;
+            button4.Text = "CREATE A CONTACT";
+            button4.UseVisualStyleBackColor = true;
+>>>>>>> b75679d796e1cda18e5d61f187fed7328476087a
             // 
             // Form1
             // 

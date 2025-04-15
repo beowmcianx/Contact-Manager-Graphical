@@ -87,6 +87,7 @@ namespace Contact_Manager_Graphical
 
                 var person = context.People
                     .Include(p => p.Contacts)
+                    .ThenInclude(c => c.Tags)
                     .FirstOrDefault(p => p.FirstName == firstName && p.SecondName == secondName);
 
                 if (person != null)
@@ -207,9 +208,16 @@ namespace Contact_Manager_Graphical
             form2.ShowDialog();
         }
 
+<<<<<<< HEAD
         private void button4_Click(object sender, EventArgs e)
         {
 
+=======
+        private void createATagToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form3 = new Form3();
+            form3.ShowDialog();
+>>>>>>> b75679d796e1cda18e5d61f187fed7328476087a
         }
     }
 
