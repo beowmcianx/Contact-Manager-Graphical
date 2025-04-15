@@ -40,11 +40,11 @@
             editToolStripMenuItem = new ToolStripMenuItem();
             exitescToolStripMenuItem = new ToolStripMenuItem();
             exportContactsToTxtToolStripMenuItem = new ToolStripMenuItem();
-            button3 = new Button();
-            button4 = new Button();
             tagsToolStripMenuItem = new ToolStripMenuItem();
             createATagToolStripMenuItem = new ToolStripMenuItem();
             updateTagToolStripMenuItem = new ToolStripMenuItem();
+            button3 = new Button();
+            buttonDelete = new Button();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -174,27 +174,6 @@
             exportContactsToTxtToolStripMenuItem.Text = "Export contacts to .txt";
             exportContactsToTxtToolStripMenuItem.Click += exportContactsToTxtToolStripMenuItem_Click;
             // 
-            // button3
-            // 
-            button3.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            button3.Location = new Point(664, 580);
-            button3.Name = "button3";
-            button3.Size = new Size(226, 41);
-            button3.TabIndex = 17;
-            button3.Text = "UPDATE CONTACT";
-            button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click;
-            // 
-            // button4
-            // 
-            button4.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            button4.Location = new Point(415, 580);
-            button4.Name = "button4";
-            button4.Size = new Size(243, 41);
-            button4.TabIndex = 18;
-            button4.Text = "CREATE A CONTACT";
-            button4.UseVisualStyleBackColor = true;
-            // 
             // tagsToolStripMenuItem
             // 
             tagsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { createATagToolStripMenuItem, updateTagToolStripMenuItem });
@@ -214,12 +193,34 @@
             updateTagToolStripMenuItem.Size = new Size(270, 40);
             updateTagToolStripMenuItem.Text = "Update tags";
             // 
+            // button3
+            // 
+            button3.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            button3.Location = new Point(664, 580);
+            button3.Name = "button3";
+            button3.Size = new Size(226, 41);
+            button3.TabIndex = 17;
+            button3.Text = "UPDATE CONTACT";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
+            // 
+            // buttonDelete
+            // 
+            buttonDelete.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            buttonDelete.Location = new Point(415, 580);
+            buttonDelete.Name = "buttonDelete";
+            buttonDelete.Size = new Size(243, 41);
+            buttonDelete.TabIndex = 18;
+            buttonDelete.Text = "DELETE CONTACT";
+            buttonDelete.UseVisualStyleBackColor = true;
+            buttonDelete.Click += buttonDelete_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(944, 653);
-            Controls.Add(button4);
+            Controls.Add(buttonDelete);
             Controls.Add(button3);
             Controls.Add(label3);
             Controls.Add(label2);
@@ -257,7 +258,7 @@
         private ToolStripMenuItem exitescToolStripMenuItem;
         private ToolStripMenuItem exportContactsToTxtToolStripMenuItem;
         private Button button3;
-        private Button button4;
+        private Button buttonDelete;
         private ToolStripMenuItem tagsToolStripMenuItem;
         private ToolStripMenuItem createATagToolStripMenuItem;
         private ToolStripMenuItem updateTagToolStripMenuItem;

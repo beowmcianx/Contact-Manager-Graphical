@@ -55,7 +55,7 @@
             buttonCreate.TabIndex = 0;
             buttonCreate.Text = "Create";
             buttonCreate.UseVisualStyleBackColor = true;
-            buttonCreate.Click += button1_Click;
+            buttonCreate.Click += buttonCreate_Click;
             // 
             // buttonUpdate
             // 
@@ -65,7 +65,7 @@
             buttonUpdate.TabIndex = 1;
             buttonUpdate.Text = "Update";
             buttonUpdate.UseVisualStyleBackColor = true;
-            buttonUpdate.Click += button2_Click;
+            buttonUpdate.Click += buttonUpdate_Click;
             // 
             // label1
             // 

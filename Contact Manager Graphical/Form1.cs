@@ -12,7 +12,7 @@ namespace Contact_Manager_Graphical
         {
             InitializeComponent();
         }
-        public void AllContacts(ListBox list )
+        public void AllContacts(ListBox list)
         {
             using (var context = new ContactmanagerContext())
             {
@@ -97,7 +97,7 @@ namespace Contact_Manager_Graphical
                         listBox2.Items.Add($"Email: {contact.Email}");
                         listBox2.Items.Add($"Address: {person.Address}");
                         listBox2.Items.Add($"Birth date: {person.BirthDate}");
-                        foreach(var tag in contact.Tags)
+                        foreach (var tag in contact.Tags)
                             listBox2.Items.Add($"Tag: {tag.Name}");
                         listBox2.Items.Add("---------------------------------------------------");
                         listBox2.Items.Add($"Contact Created: {contact.CreationDate}");
@@ -159,7 +159,7 @@ namespace Contact_Manager_Graphical
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
-                this.Close();        
+                this.Close();
         }
         private void exitescToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -189,8 +189,14 @@ namespace Contact_Manager_Graphical
             {
                 string[] contactname = listBox1.SelectedItem.ToString().Split(' ');
                 Person person = context.People.FirstOrDefault(p => p.FirstName == contactname[0] && p.SecondName == contactname[1]);
-
-                var people = context.People.Remove(person);
+                List<Contact> listContacts = context.Contacts.Where(c => person.PersonId == c.PersonId).Include(c => c.Tags).ToList();
+                /*foreach (var contact in listContacts)
+                {
+                   var listContactTags = context.Contacts.Include(c=>c.Tags).ToList();
+                }*/
+                context.RemoveRange(listContacts);
+                context.SaveChanges();
+                context.People.Remove(person);
                 context.SaveChanges();
             }
         }
@@ -199,6 +205,11 @@ namespace Contact_Manager_Graphical
         {
             var form2 = new Form2();
             form2.ShowDialog();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
         }
     }
 

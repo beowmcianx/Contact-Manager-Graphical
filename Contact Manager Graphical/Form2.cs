@@ -21,11 +21,6 @@ namespace Contact_Manager_Graphical
             AllContacts(listBox1);
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         public void AllContacts(ListBox list)
         {
             using (var context = new ContactmanagerContext())
@@ -95,7 +90,7 @@ namespace Contact_Manager_Graphical
                 }
             }
 
-           AllContacts(listBox1);
+         
         }
         private void Form2_KeyDown(object sender, KeyEventArgs e)
         {
@@ -103,11 +98,6 @@ namespace Contact_Manager_Graphical
                 this.Close();
         }
         private void label7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
         {
 
         }
