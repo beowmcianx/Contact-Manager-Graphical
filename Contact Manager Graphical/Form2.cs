@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -57,19 +58,14 @@ namespace Contact_Manager_Graphical
                     SecondName = textBoxSecondName.Text,
                     Address = textBoxAddress.Text
                 };
-
-                var tags = textBoxTag.Text
-                    .Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
-                    .Select(tagName => new Tag { Name = tagName.Trim() })
-                    .ToList();
-
+                Tag newTag = new Tag() { Name = textBoxTag.Text };
                 Contact newContact = new Contact()
                 {
                     PhoneNum = long.Parse(textBoxPhoneNum.Text),
                     Email = textBoxEmail.Text,
-                    CreationDate = DateOnly.Parse(textBoxDate.Text),
-                    Tags = tags,
+                    CreationDate = DateOnly.Parse(textBoxDate.Text)
                 };
+                newContact.Tags.Add(newTag);
                 context.People.Add(newPerson);
                 context.Contacts.Add(newContact);
                 context.SaveChanges();

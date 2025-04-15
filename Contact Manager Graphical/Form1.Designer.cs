@@ -40,11 +40,11 @@
             editToolStripMenuItem = new ToolStripMenuItem();
             exitescToolStripMenuItem = new ToolStripMenuItem();
             exportContactsToTxtToolStripMenuItem = new ToolStripMenuItem();
-            button3 = new Button();
-            button4 = new Button();
             tagsToolStripMenuItem = new ToolStripMenuItem();
             createATagToolStripMenuItem = new ToolStripMenuItem();
             updateTagToolStripMenuItem = new ToolStripMenuItem();
+            button3 = new Button();
+            button4 = new Button();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -127,7 +127,7 @@
             listBox1.Font = new Font("Segoe UI", 15F);
             listBox1.FormattingEnabled = true;
             listBox1.ItemHeight = 35;
-            listBox1.Location = new Point(41, 267);
+            listBox1.Location = new Point(41, 264);
             listBox1.Margin = new Padding(3, 4, 3, 4);
             listBox1.Name = "listBox1";
             listBox1.Size = new Size(341, 354);
@@ -174,6 +174,26 @@
             exportContactsToTxtToolStripMenuItem.Text = "Export contacts to .txt";
             exportContactsToTxtToolStripMenuItem.Click += exportContactsToTxtToolStripMenuItem_Click;
             // 
+            // tagsToolStripMenuItem
+            // 
+            tagsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { createATagToolStripMenuItem, updateTagToolStripMenuItem });
+            tagsToolStripMenuItem.Name = "tagsToolStripMenuItem";
+            tagsToolStripMenuItem.Size = new Size(78, 39);
+            tagsToolStripMenuItem.Text = "Tags";
+            // 
+            // createATagToolStripMenuItem
+            // 
+            createATagToolStripMenuItem.Name = "createATagToolStripMenuItem";
+            createATagToolStripMenuItem.Size = new Size(270, 40);
+            createATagToolStripMenuItem.Text = "Create new tag";
+            createATagToolStripMenuItem.Click += createATagToolStripMenuItem_Click;
+            // 
+            // updateTagToolStripMenuItem
+            // 
+            updateTagToolStripMenuItem.Name = "updateTagToolStripMenuItem";
+            updateTagToolStripMenuItem.Size = new Size(270, 40);
+            updateTagToolStripMenuItem.Text = "Update tags";
+            // 
             // button3
             // 
             button3.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point, 204);
@@ -194,25 +214,6 @@
             button4.TabIndex = 18;
             button4.Text = "CREATE A CONTACT";
             button4.UseVisualStyleBackColor = true;
-            // 
-            // tagsToolStripMenuItem
-            // 
-            tagsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { createATagToolStripMenuItem, updateTagToolStripMenuItem });
-            tagsToolStripMenuItem.Name = "tagsToolStripMenuItem";
-            tagsToolStripMenuItem.Size = new Size(78, 39);
-            tagsToolStripMenuItem.Text = "Tags";
-            // 
-            // createATagToolStripMenuItem
-            // 
-            createATagToolStripMenuItem.Name = "createATagToolStripMenuItem";
-            createATagToolStripMenuItem.Size = new Size(270, 40);
-            createATagToolStripMenuItem.Text = "Create new tag";
-            // 
-            // updateTagToolStripMenuItem
-            // 
-            updateTagToolStripMenuItem.Name = "updateTagToolStripMenuItem";
-            updateTagToolStripMenuItem.Size = new Size(270, 40);
-            updateTagToolStripMenuItem.Text = "Update tags";
             // 
             // Form1
             // 
