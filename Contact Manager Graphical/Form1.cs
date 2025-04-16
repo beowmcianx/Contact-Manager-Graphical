@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
+using System.Collections.Generic;
 
 namespace Contact_Manager_Graphical
 {
@@ -24,23 +25,18 @@ namespace Contact_Manager_Graphical
                 foreach (var person in people)
                 {
                     string fullName = $"{person.FirstName} {person.SecondName}";
-                    foreach (var contact in person.Contacts)
-                    {
-                        list.Items.Add($"{fullName}");
-                    }
+                    list.Items.Add(fullName);
                 }
             }
-
         }
+
         private void Form1_Load(object sender, EventArgs e)
         {
             this.KeyPreview = true;
-
-            using (var context = new ContactmanagerContext())
-            {
-                AllContacts(listBox1);
-            }
+            listBox1.Items.Clear();
+            AllContacts(listBox1);
         }
+
 
         //Memory
         public void MemorySystem()
@@ -98,8 +94,10 @@ namespace Contact_Manager_Graphical
                         listBox2.Items.Add($"Email: {contact.Email}");
                         listBox2.Items.Add($"Address: {person.Address}");
                         listBox2.Items.Add($"Birth date: {person.BirthDate}");
-                        foreach (var tag in contact.Tags)
-                            listBox2.Items.Add($"Tag: {tag.Name}");
+
+                        var tagNames = string.Join(", ", contact.Tags.Select(t => t.Name));
+                        listBox2.Items.Add($"Tags: {tagNames}");
+
                         listBox2.Items.Add("---------------------------------------------------");
                         listBox2.Items.Add($"Contact Created: {contact.CreationDate}");
                     }
@@ -166,7 +164,23 @@ namespace Contact_Manager_Graphical
         {
             Close();
         }
+        private void button3_Click(object sender, EventArgs e)
+        {
+            var form2 = new Form2();
+            form2.ShowDialog();
+        }
 
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void createATagToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+                var form3 = new Form3();
+                form3.ShowDialog();
+
+        }
         private void tabPage1_Click(object sender, EventArgs e)
         {
 
@@ -202,23 +216,7 @@ namespace Contact_Manager_Graphical
             }
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            var form2 = new Form2();
-            form2.ShowDialog();
-        }
-
-<<<<<<< HEAD
-        private void button4_Click(object sender, EventArgs e)
-        {
-
-=======
-        private void createATagToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var form3 = new Form3();
-            form3.ShowDialog();
->>>>>>> b75679d796e1cda18e5d61f187fed7328476087a
-        }
+        
     }
 
 }

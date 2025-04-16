@@ -19,8 +19,10 @@ namespace Contact_Manager_Graphical
         public Form2()
         {
             InitializeComponent();
+            this.KeyPreview = true;
             AllContacts(listBox1);
         }
+
 
         public void AllContacts(ListBox list)
         {
@@ -42,7 +44,48 @@ namespace Contact_Manager_Graphical
             }
 
         }
+        //Memory
+        public void MemorySystem()
+        {
+            Directory.CreateDirectory("export");
+            string filePath = "export/export.txt";
+            var content = "";
 
+            using (var context = new ContactmanagerContext())
+            {
+                var people = context.People
+                    .Include(p => p.Contacts)
+                    .ToList();
+
+                foreach (var person in people)
+                {
+                    string fullName = $"{person.FirstName} {person.SecondName}";
+                    foreach (var contact in person.Contacts)
+                    {
+                        content += $"{fullName} | Phone: {contact.PhoneNum}\n";
+                    }
+                }
+            }
+            File.WriteAllText(filePath, content);
+        }
+
+        private void exportContactsToTxtToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MemorySystem();
+            MessageBox.Show("Successfully saved all contacts to txt. file");
+        }
+        private void Form2_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape) this.Close();
+        }
+        private void Form_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+        private void exitescToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
         private void buttonCreate_Click(object sender, EventArgs e)
         {
             using (var context = new ContactmanagerContext())
@@ -88,11 +131,7 @@ namespace Contact_Manager_Graphical
 
          
         }
-        private void Form2_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Escape)
-                this.Close();
-        }
+        
         private void label7_Click(object sender, EventArgs e)
         {
 
