@@ -18,6 +18,7 @@ namespace Contact_Manager_Graphical
         {
             InitializeComponent();
             AllContacts(listBox1);
+            AllTags(listBox2);
         }
 
         public void AllContacts(ListBox list)
@@ -45,27 +46,52 @@ namespace Contact_Manager_Graphical
         {
             using (var context = new ContactmanagerContext())
             {
-                var people = context.People
-                    .Include(p => p.Contacts)
-                    .ThenInclude(c => c.Tags)
-                    .ToList();
+                var tags = context.Tags.ToList();
+                list.Items.Clear();
 
-                foreach (var person in people)
-                {
-
-                }
+                foreach (var tag in tags)
+                {list.Items.Add(tag.Name);}
             }
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e, Contact contact)
         {
-            Tag newTag = new Tag() { Name = textBoxTag.Text };
-            contact.Tags.Add(newTag);
+            
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btn_CreateTag_Click(object sender, EventArgs e)
         {
+            using (var context = new ContactmanagerContext())
+            {
+                var contact = context.Contacts
+                    .Include(c => c.Tags)
+                    .FirstOrDefault();
 
+                if (contact == null)
+                {
+                    MessageBox.Show("No contact found to associate the tag with.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                string tagName = textBoxTag.Text.Trim();
+                if (string.IsNullOrEmpty(tagName))
+                {
+                    MessageBox.Show("Tag name cannot be empty.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                var existingTag = context.Tags.FirstOrDefault(t => t.Name == tagName);
+                if (existingTag != null)
+                {
+                    MessageBox.Show("This tag already exists.", "Duplicate Tag", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                Tag newTag = new Tag() { Name = tagName };
+                contact.Tags.Add(newTag);
+                context.SaveChanges();
+
+                listBox2.Items.Add(newTag.Name);
+                textBoxTag.Clear();
+            }
         }
     }
 }

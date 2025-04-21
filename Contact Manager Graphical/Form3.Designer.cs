@@ -32,7 +32,7 @@ namespace Contact_Manager_Graphical
             label1 = new Label();
             textBoxTag = new TextBox();
             listBox1 = new ListBox();
-            button1 = new Button();
+            btn_CreateTag = new Button();
             listBox2 = new ListBox();
             SuspendLayout();
             // 
@@ -64,25 +64,24 @@ namespace Contact_Manager_Graphical
             listBox1.Name = "listBox1";
             listBox1.Size = new Size(341, 424);
             listBox1.TabIndex = 9;
-            listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
             // 
-            // button1
+            // btn_CreateTag
             // 
-            button1.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            button1.Location = new Point(12, 381);
-            button1.Name = "button1";
-            button1.Size = new Size(157, 57);
-            button1.TabIndex = 10;
-            button1.Text = "CREATE TAG";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            btn_CreateTag.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            btn_CreateTag.Location = new Point(12, 380);
+            btn_CreateTag.Name = "btn_CreateTag";
+            btn_CreateTag.Size = new Size(157, 57);
+            btn_CreateTag.TabIndex = 10;
+            btn_CreateTag.Text = "CREATE TAG";
+            btn_CreateTag.UseVisualStyleBackColor = true;
+            btn_CreateTag.Click += btn_CreateTag_Click;
             // 
             // listBox2
             // 
             listBox2.FormattingEnabled = true;
-            listBox2.Location = new Point(12, 159);
+            listBox2.Location = new Point(12, 94);
             listBox2.Name = "listBox2";
-            listBox2.Size = new Size(150, 104);
+            listBox2.Size = new Size(157, 264);
             listBox2.TabIndex = 11;
             // 
             // Form3
@@ -91,19 +90,14 @@ namespace Contact_Manager_Graphical
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(522, 450);
             Controls.Add(listBox2);
-            Controls.Add(button1);
+            Controls.Add(btn_CreateTag);
             Controls.Add(listBox1);
             Controls.Add(textBoxTag);
             Controls.Add(label1);
             Name = "Form3";
-            Text = "Tags";
+            Text = "Add Tag";
             ResumeLayout(false);
             PerformLayout();
-        }
-
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
         }
 
         #endregion
@@ -111,7 +105,7 @@ namespace Contact_Manager_Graphical
         private Label label1;
         private TextBox textBoxTag;
         private ListBox listBox1;
-        private Button button1;
+        private Button btn_CreateTag;
         private ListBox listBox2;
     }
 }
