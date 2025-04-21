@@ -150,6 +150,7 @@ namespace Contact_Manager_Graphical
                 {
                     textBoxFirstName.Text = person.FirstName;
                     textBoxSecondName.Text = person.SecondName;
+                    textBoxAddress.Text = person.Address;
 
                     var contact = person.Contacts.FirstOrDefault();
                     if (contact != null)
