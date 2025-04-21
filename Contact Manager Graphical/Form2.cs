@@ -101,10 +101,10 @@ namespace Contact_Manager_Graphical
                 {
                     PhoneNum = long.Parse(textBoxPhoneNum.Text),
                     Email = textBoxEmail.Text,
-                    CreationDate = DateOnly.Parse(textBoxDate.Text)
+                    CreationDate = DateOnly.Parse(textBoxDate.Text),
+                     Person = newPerson
                 };
                 newContact.Tags.Add(newTag);
-                context.People.Add(newPerson);
                 context.Contacts.Add(newContact);
                 context.SaveChanges();
             }
