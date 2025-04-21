@@ -17,6 +17,7 @@ namespace Contact_Manager_Graphical
         {
             using (var context = new ContactmanagerContext())
             {
+                listBox1.Items.Clear();
                 var people = context.People
                     .Include(p => p.Contacts)
                     .ThenInclude(c => c.Tags)
@@ -200,23 +201,33 @@ namespace Contact_Manager_Graphical
 
         private void buttonDelete_Click(object sender, EventArgs e)
         {
-            using (var context = new ContactmanagerContext())
+            using var context = new ContactmanagerContext();
+
+
+            string[] contactname = listBox1.SelectedItem.ToString().Split(' ');
+            var person = context.People.FirstOrDefault(p => p.FirstName == contactname[0]&& p.SecondName == contactname[1]);
+            if (person == null) return;
+
+            var contacts = context.Contacts
+                 .Where(c => c.PersonId == person.PersonId)
+                 .Include(c => c.Tags)
+                 .ToList();
+
+            foreach (var contact in contacts)
             {
-                string[] contactname = listBox1.SelectedItem.ToString().Split(' ');
-                Person person = context.People.FirstOrDefault(p => p.FirstName == contactname[0] && p.SecondName == contactname[1]);
-                List<Contact> listContacts = context.Contacts.Where(c => person.PersonId == c.PersonId).Include(c => c.Tags).ToList();
-                /*foreach (var contact in listContacts)
-                {
-                   var listContactTags = context.Contacts.Include(c=>c.Tags).ToList();
-                }*/
-                context.RemoveRange(listContacts);
-                context.SaveChanges();
-                context.People.Remove(person);
-                context.SaveChanges();
+                contact.Tags.Clear();
             }
+            context.SaveChanges();
+
+            context.Contacts.RemoveRange(contacts);
+            context.SaveChanges();
+            context.People.Remove(person);
+            context.SaveChanges();
+
+           AllContacts(listBox1);  
         }
 
-        
+
     }
 
 }
