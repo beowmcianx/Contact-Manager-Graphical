@@ -26,6 +26,7 @@ namespace Contact_Manager_Graphical
 
         public void AllContacts(ListBox list)
         {
+            listBox1.Items.Clear();
             using (var context = new ContactmanagerContext())
             {
                 var people = context.People
@@ -131,7 +132,40 @@ namespace Contact_Manager_Graphical
 
          
         }
-        
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listBox1.SelectedItem == null) return;
+
+            string[] contactName = listBox1.SelectedItem.ToString().Split(' ');
+            string firstName = contactName[0];
+            string secondName = contactName.Length > 1 ? contactName[1] : "";
+
+            using (var context = new ContactmanagerContext())
+            {
+                var person = context.People
+                     .Include(p => p.Contacts)
+                    .FirstOrDefault(p => p.FirstName == firstName && p.SecondName == secondName);
+
+                if (person != null)
+                {
+                    textBoxFirstName.Text = person.FirstName;
+                    textBoxSecondName.Text = person.SecondName;
+
+                    var contact = person.Contacts.FirstOrDefault();
+                    if (contact != null)
+                    {
+                        textBoxPhoneNum.Text = contact.PhoneNum.ToString();
+                        textBoxEmail.Text = contact.Email;
+                        textBoxDate.Text = contact.CreationDate.ToString("yyyy-MM-dd");
+
+                       
+                    }
+                }
+            }
+        }
+
+
+
         private void label7_Click(object sender, EventArgs e)
         {
 
