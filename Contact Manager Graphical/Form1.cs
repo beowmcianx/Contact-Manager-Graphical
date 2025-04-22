@@ -201,30 +201,39 @@ namespace Contact_Manager_Graphical
 
         private void buttonDelete_Click(object sender, EventArgs e)
         {
-            using var context = new ContactmanagerContext();
-
-
-            string[] contactname = listBox1.SelectedItem.ToString().Split(' ');
-            var person = context.People.FirstOrDefault(p => p.FirstName == contactname[0]&& p.SecondName == contactname[1]);
-            if (person == null) return;
-
-            var contacts = context.Contacts
-                 .Where(c => c.PersonId == person.PersonId)
-                 .Include(c => c.Tags)
-                 .ToList();
-
-            foreach (var contact in contacts)
+            string current = listBox1.SelectedIndex.ToString();
+            int index = listBox1.FindString(current);
+            if (index == -1)
             {
-                contact.Tags.Clear();
+                MessageBox.Show("Select an item to delete!");
+
             }
-            context.SaveChanges();
+            return;
+           
+              using var context = new ContactmanagerContext();
 
-            context.Contacts.RemoveRange(contacts);
-            context.SaveChanges();
-            context.People.Remove(person);
-            context.SaveChanges();
 
-           AllContacts(listBox1);  
+                string[] contactname = listBox1.SelectedItem.ToString().Split(' ');
+                var person = context.People.FirstOrDefault(p => p.FirstName == contactname[0] && p.SecondName == contactname[1]);
+                if (person == null) return;
+
+                var contacts = context.Contacts
+                     .Where(c => c.PersonId == person.PersonId)
+                     .Include(c => c.Tags)
+                     .ToList();
+
+                foreach (var contact in contacts)
+                {
+                    contact.Tags.Clear();
+                }
+                context.SaveChanges();
+
+                context.Contacts.RemoveRange(contacts);
+                context.SaveChanges();
+                context.People.Remove(person);
+                context.SaveChanges();
+
+                AllContacts(listBox1);  
         }
 
 
