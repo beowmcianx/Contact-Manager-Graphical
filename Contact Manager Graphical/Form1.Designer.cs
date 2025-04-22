@@ -35,6 +35,7 @@
             button3 = new Button();
             buttonDelete = new Button();
             button4 = new Button();
+            deleteTagToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -166,7 +167,7 @@
             // 
             // tagsToolStripMenuItem
             // 
-            tagsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { createATagToolStripMenuItem, updateTagToolStripMenuItem });
+            tagsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { createATagToolStripMenuItem, updateTagToolStripMenuItem, deleteTagToolStripMenuItem });
             tagsToolStripMenuItem.Name = "tagsToolStripMenuItem";
             tagsToolStripMenuItem.Size = new Size(78, 39);
             tagsToolStripMenuItem.Text = "Tags";
@@ -212,12 +213,17 @@
             button4.Font = new Font("Segoe UI", 15F);
             button4.Location = new Point(415, 629);
             button4.Name = "button4";
-            button4.Size = new Size(243, 41);
-            button4.Size = new Size(416, 42);
+            button4.Size = new Size(475, 42);
             button4.TabIndex = 19;
             button4.Text = "CREATE A CONTACT";
             button4.UseVisualStyleBackColor = true;
             button4.Click += button4_Click;
+            // 
+            // deleteTagToolStripMenuItem
+            // 
+            deleteTagToolStripMenuItem.Name = "deleteTagToolStripMenuItem";
+            deleteTagToolStripMenuItem.Size = new Size(270, 40);
+            deleteTagToolStripMenuItem.Text = "Delete tag";
             // 
             // Form1
             // 
@@ -267,5 +273,6 @@
         private Button button3;
         private Button buttonDelete;
         private Button button4;
+        private ToolStripMenuItem deleteTagToolStripMenuItem;
     }
 }

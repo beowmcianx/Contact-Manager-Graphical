@@ -33,7 +33,6 @@ namespace Contact_Manager_Graphical
             textBoxTag = new TextBox();
             listBox1 = new ListBox();
             btn_CreateTag = new Button();
-            listBox2 = new ListBox();
             SuspendLayout();
             // 
             // label1
@@ -76,20 +75,11 @@ namespace Contact_Manager_Graphical
             btn_CreateTag.UseVisualStyleBackColor = true;
             btn_CreateTag.Click += btn_CreateTag_Click;
             // 
-            // listBox2
-            // 
-            listBox2.FormattingEnabled = true;
-            listBox2.Location = new Point(12, 94);
-            listBox2.Name = "listBox2";
-            listBox2.Size = new Size(157, 264);
-            listBox2.TabIndex = 11;
-            // 
             // Form3
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(522, 450);
-            Controls.Add(listBox2);
             Controls.Add(btn_CreateTag);
             Controls.Add(listBox1);
             Controls.Add(textBoxTag);
@@ -106,6 +96,5 @@ namespace Contact_Manager_Graphical
         private TextBox textBoxTag;
         private ListBox listBox1;
         private Button btn_CreateTag;
-        private ListBox listBox2;
     }
 }

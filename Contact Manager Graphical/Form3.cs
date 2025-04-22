@@ -18,7 +18,6 @@ namespace Contact_Manager_Graphical
         {
             InitializeComponent();
             AllContacts(listBox1);
-            AllTags(listBox2);
         }
 
         public void AllContacts(ListBox list)
@@ -40,18 +39,6 @@ namespace Contact_Manager_Graphical
                 }
             }
 
-        }
-
-        public void AllTags(ListBox list)
-        {
-            using (var context = new ContactmanagerContext())
-            {
-                var tags = context.Tags.ToList();
-                list.Items.Clear();
-
-                foreach (var tag in tags)
-                {list.Items.Add(tag.Name);}
-            }
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e, Contact contact)
@@ -88,8 +75,6 @@ namespace Contact_Manager_Graphical
                 Tag newTag = new Tag() { Name = tagName };
                 contact.Tags.Add(newTag);
                 context.SaveChanges();
-
-                listBox2.Items.Add(newTag.Name);
                 textBoxTag.Clear();
             }
         }
