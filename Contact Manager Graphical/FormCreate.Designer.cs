@@ -35,8 +35,8 @@
             label5 = new Label();
             label6 = new Label();
             textBoxFirstName = new TextBox();
-            textBoxSeconName = new TextBox();
-            Address = new TextBox();
+            textBoxSecondName = new TextBox();
+            textBoxAddress = new TextBox();
             textBoxPhoneNum = new TextBox();
             textBoxEmail = new TextBox();
             textBoxTag = new TextBox();
@@ -106,19 +106,19 @@
             textBoxFirstName.Size = new Size(125, 27);
             textBoxFirstName.TabIndex = 6;
             // 
-            // textBoxSeconName
+            // textBoxSecondName
             // 
-            textBoxSeconName.Location = new Point(24, 116);
-            textBoxSeconName.Name = "textBoxSeconName";
-            textBoxSeconName.Size = new Size(125, 27);
-            textBoxSeconName.TabIndex = 7;
+            textBoxSecondName.Location = new Point(24, 116);
+            textBoxSecondName.Name = "textBoxSecondName";
+            textBoxSecondName.Size = new Size(125, 27);
+            textBoxSecondName.TabIndex = 7;
             // 
-            // Address
+            // textBoxAddress
             // 
-            Address.Location = new Point(24, 166);
-            Address.Name = "Address";
-            Address.Size = new Size(125, 27);
-            Address.TabIndex = 8;
+            textBoxAddress.Location = new Point(24, 166);
+            textBoxAddress.Name = "textBoxAddress";
+            textBoxAddress.Size = new Size(125, 27);
+            textBoxAddress.TabIndex = 8;
             // 
             // textBoxPhoneNum
             // 
@@ -179,8 +179,8 @@
             Controls.Add(textBoxTag);
             Controls.Add(textBoxEmail);
             Controls.Add(textBoxPhoneNum);
-            Controls.Add(Address);
-            Controls.Add(textBoxSeconName);
+            Controls.Add(textBoxAddress);
+            Controls.Add(textBoxSecondName);
             Controls.Add(textBoxFirstName);
             Controls.Add(label6);
             Controls.Add(label5);
@@ -203,8 +203,8 @@
         private Label label5;
         private Label label6;
         private TextBox textBoxFirstName;
-        private TextBox textBoxSeconName;
-        private TextBox Address;
+        private TextBox textBoxSecondName;
+        private TextBox textBoxAddress;
         private TextBox textBoxPhoneNum;
         private TextBox textBoxEmail;
         private TextBox textBoxTag;

@@ -87,28 +87,7 @@ namespace Contact_Manager_Graphical
         {
             Close();
         }
-        private void buttonCreate_Click(object sender, EventArgs e)
-        {
-            using (var context = new ContactmanagerContext())
-            {
-                Person newPerson = new Person()
-                {
-                    FirstName = textBoxFirstName.Text,
-                    SecondName = textBoxSecondName.Text,
-                    Address = textBoxAddress.Text
-                };
-                Tag newTag = new Tag() { Name = textBoxTag.Text };
-                Contact newContact = new Contact()
-                {
-                    PhoneNum = long.Parse(textBoxPhoneNum.Text),
-                    Email = textBoxEmail.Text,
-                     Person = newPerson
-                };
-                newContact.Tags.Add(newTag);
-                context.Contacts.Add(newContact);
-                context.SaveChanges();
-            }
-        }
+      
 
         private void buttonUpdate_Click(object sender, EventArgs e)
         {
