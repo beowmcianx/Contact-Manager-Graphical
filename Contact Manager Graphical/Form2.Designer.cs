@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            buttonCreate = new Button();
             buttonUpdate = new Button();
             label1 = new Label();
             label2 = new Label();
@@ -55,25 +54,13 @@
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
-            // buttonCreate
-            // 
-            buttonCreate.Font = new Font("Segoe UI", 15F);
-            buttonCreate.Location = new Point(387, 563);
-            buttonCreate.Margin = new Padding(5, 4, 5, 4);
-            buttonCreate.Name = "buttonCreate";
-            buttonCreate.Size = new Size(129, 41);
-            buttonCreate.TabIndex = 0;
-            buttonCreate.Text = "Create";
-            buttonCreate.UseVisualStyleBackColor = true;
-            buttonCreate.Click += buttonCreate_Click;
-            // 
             // buttonUpdate
             // 
             buttonUpdate.Font = new Font("Segoe UI", 15F);
-            buttonUpdate.Location = new Point(599, 563);
+            buttonUpdate.Location = new Point(589, 563);
             buttonUpdate.Margin = new Padding(5, 4, 5, 4);
             buttonUpdate.Name = "buttonUpdate";
-            buttonUpdate.Size = new Size(129, 41);
+            buttonUpdate.Size = new Size(139, 56);
             buttonUpdate.TabIndex = 1;
             buttonUpdate.Text = "Update";
             buttonUpdate.UseVisualStyleBackColor = true;
@@ -86,7 +73,7 @@
             label1.Location = new Point(24, 85);
             label1.Margin = new Padding(5, 0, 5, 0);
             label1.Name = "label1";
-            label1.Size = new Size(101, 28);
+            label1.Size = new Size(128, 35);
             label1.TabIndex = 2;
             label1.Text = "FirstName";
             // 
@@ -97,7 +84,7 @@
             label2.Location = new Point(24, 160);
             label2.Margin = new Padding(5, 0, 5, 0);
             label2.Name = "label2";
-            label2.Size = new Size(129, 28);
+            label2.Size = new Size(164, 35);
             label2.TabIndex = 3;
             label2.Text = "SecondName";
             // 
@@ -108,7 +95,7 @@
             label3.Location = new Point(24, 234);
             label3.Margin = new Padding(5, 0, 5, 0);
             label3.Name = "label3";
-            label3.Size = new Size(82, 28);
+            label3.Size = new Size(105, 35);
             label3.TabIndex = 4;
             label3.Text = "Address";
             // 
@@ -119,7 +106,7 @@
             label4.Location = new Point(24, 307);
             label4.Margin = new Padding(5, 0, 5, 0);
             label4.Name = "label4";
-            label4.Size = new Size(110, 28);
+            label4.Size = new Size(140, 35);
             label4.TabIndex = 5;
             label4.Text = "PhoneNum";
             // 
@@ -130,7 +117,7 @@
             label5.Location = new Point(24, 382);
             label5.Margin = new Padding(5, 0, 5, 0);
             label5.Name = "label5";
-            label5.Size = new Size(59, 28);
+            label5.Size = new Size(75, 35);
             label5.TabIndex = 6;
             label5.Text = "Email";
             // 
@@ -141,7 +128,7 @@
             label6.Location = new Point(24, 456);
             label6.Margin = new Padding(5, 0, 5, 0);
             label6.Name = "label6";
-            label6.Size = new Size(127, 28);
+            label6.Size = new Size(160, 35);
             label6.TabIndex = 7;
             label6.Text = "CreationDate";
             // 
@@ -152,17 +139,16 @@
             label7.Location = new Point(24, 529);
             label7.Margin = new Padding(5, 0, 5, 0);
             label7.Name = "label7";
-            label7.Size = new Size(42, 28);
+            label7.Size = new Size(53, 35);
             label7.TabIndex = 8;
             label7.Text = "Tag";
-            label7.Click += label7_Click;
             // 
             // textBoxFirstName
             // 
             textBoxFirstName.Location = new Point(24, 117);
             textBoxFirstName.Margin = new Padding(5, 4, 5, 4);
             textBoxFirstName.Name = "textBoxFirstName";
-            textBoxFirstName.Size = new Size(205, 34);
+            textBoxFirstName.Size = new Size(205, 41);
             textBoxFirstName.TabIndex = 9;
             // 
             // textBoxSecondName
@@ -170,7 +156,7 @@
             textBoxSecondName.Location = new Point(24, 191);
             textBoxSecondName.Margin = new Padding(5, 4, 5, 4);
             textBoxSecondName.Name = "textBoxSecondName";
-            textBoxSecondName.Size = new Size(205, 34);
+            textBoxSecondName.Size = new Size(205, 41);
             textBoxSecondName.TabIndex = 10;
             // 
             // textBoxAddress
@@ -178,7 +164,7 @@
             textBoxAddress.Location = new Point(24, 266);
             textBoxAddress.Margin = new Padding(5, 4, 5, 4);
             textBoxAddress.Name = "textBoxAddress";
-            textBoxAddress.Size = new Size(205, 34);
+            textBoxAddress.Size = new Size(205, 41);
             textBoxAddress.TabIndex = 11;
             // 
             // textBoxPhoneNum
@@ -186,7 +172,7 @@
             textBoxPhoneNum.Location = new Point(24, 339);
             textBoxPhoneNum.Margin = new Padding(5, 4, 5, 4);
             textBoxPhoneNum.Name = "textBoxPhoneNum";
-            textBoxPhoneNum.Size = new Size(205, 34);
+            textBoxPhoneNum.Size = new Size(205, 41);
             textBoxPhoneNum.TabIndex = 12;
             // 
             // textBoxEmail
@@ -194,7 +180,7 @@
             textBoxEmail.Location = new Point(24, 413);
             textBoxEmail.Margin = new Padding(5, 4, 5, 4);
             textBoxEmail.Name = "textBoxEmail";
-            textBoxEmail.Size = new Size(205, 34);
+            textBoxEmail.Size = new Size(205, 41);
             textBoxEmail.TabIndex = 13;
             // 
             // textBoxTag
@@ -202,24 +188,23 @@
             textBoxTag.Location = new Point(24, 563);
             textBoxTag.Margin = new Padding(5, 4, 5, 4);
             textBoxTag.Name = "textBoxTag";
-            textBoxTag.Size = new Size(205, 34);
+            textBoxTag.Size = new Size(205, 41);
             textBoxTag.TabIndex = 15;
-            textBoxTag.TextChanged += textBoxTag_TextChanged;
             // 
             // textBoxDate
             // 
             textBoxDate.Location = new Point(24, 488);
             textBoxDate.Margin = new Padding(5, 4, 5, 4);
             textBoxDate.Name = "textBoxDate";
-            textBoxDate.Size = new Size(205, 34);
+            textBoxDate.Size = new Size(205, 41);
             textBoxDate.TabIndex = 16;
             // 
             // listBox1
             // 
             listBox1.Font = new Font("Segoe UI", 15F);
             listBox1.FormattingEnabled = true;
-            listBox1.ItemHeight = 28;
-            listBox1.Location = new Point(373, 117);
+            listBox1.ItemHeight = 35;
+            listBox1.Location = new Point(373, 105);
             listBox1.Margin = new Padding(5, 4, 5, 4);
             listBox1.Name = "listBox1";
             listBox1.Size = new Size(355, 424);
@@ -235,7 +220,7 @@
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Padding = new Padding(9, 4, 0, 4);
-            menuStrip1.Size = new Size(801, 40);
+            menuStrip1.Size = new Size(801, 47);
             menuStrip1.TabIndex = 18;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -244,7 +229,7 @@
             editToolStripMenuItem.BackColor = Color.LightGray;
             editToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { exitescToolStripMenuItem, exportContactsToTxtToolStripMenuItem });
             editToolStripMenuItem.Name = "editToolStripMenuItem";
-            editToolStripMenuItem.Size = new Size(54, 32);
+            editToolStripMenuItem.Size = new Size(66, 39);
             editToolStripMenuItem.Text = "File";
             // 
             // exitescToolStripMenuItem
@@ -252,7 +237,7 @@
             exitescToolStripMenuItem.BackColor = Color.LightGray;
             exitescToolStripMenuItem.Font = new Font("Segoe UI", 13F);
             exitescToolStripMenuItem.Name = "exitescToolStripMenuItem";
-            exitescToolStripMenuItem.Size = new Size(257, 30);
+            exitescToolStripMenuItem.Size = new Size(310, 34);
             exitescToolStripMenuItem.Text = "Exit (esc)";
             exitescToolStripMenuItem.Click += exitescToolStripMenuItem_Click;
             // 
@@ -261,7 +246,7 @@
             exportContactsToTxtToolStripMenuItem.BackColor = Color.LightGray;
             exportContactsToTxtToolStripMenuItem.Font = new Font("Segoe UI", 13F);
             exportContactsToTxtToolStripMenuItem.Name = "exportContactsToTxtToolStripMenuItem";
-            exportContactsToTxtToolStripMenuItem.Size = new Size(257, 30);
+            exportContactsToTxtToolStripMenuItem.Size = new Size(310, 34);
             exportContactsToTxtToolStripMenuItem.Text = "Export contacts to .txt";
             exportContactsToTxtToolStripMenuItem.Click += exportContactsToTxtToolStripMenuItem_Click;
             // 
@@ -269,24 +254,24 @@
             // 
             tagsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { createATagToolStripMenuItem, updateTagToolStripMenuItem });
             tagsToolStripMenuItem.Name = "tagsToolStripMenuItem";
-            tagsToolStripMenuItem.Size = new Size(62, 32);
+            tagsToolStripMenuItem.Size = new Size(78, 39);
             tagsToolStripMenuItem.Text = "Tags";
             // 
             // createATagToolStripMenuItem
             // 
             createATagToolStripMenuItem.Name = "createATagToolStripMenuItem";
-            createATagToolStripMenuItem.Size = new Size(214, 32);
+            createATagToolStripMenuItem.Size = new Size(270, 40);
             createATagToolStripMenuItem.Text = "Create new tag";
             // 
             // updateTagToolStripMenuItem
             // 
             updateTagToolStripMenuItem.Name = "updateTagToolStripMenuItem";
-            updateTagToolStripMenuItem.Size = new Size(214, 32);
+            updateTagToolStripMenuItem.Size = new Size(270, 40);
             updateTagToolStripMenuItem.Text = "Update tags";
             // 
             // Form2
             // 
-            AutoScaleDimensions = new SizeF(11F, 28F);
+            AutoScaleDimensions = new SizeF(14F, 35F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(801, 657);
             Controls.Add(menuStrip1);
@@ -306,7 +291,6 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(buttonUpdate);
-            Controls.Add(buttonCreate);
             Font = new Font("Segoe UI", 15F);
             Margin = new Padding(5, 4, 5, 4);
             Name = "Form2";
@@ -319,8 +303,6 @@
         }
 
         #endregion
-
-        private Button buttonCreate;
         private Button buttonUpdate;
         private Label label1;
         private Label label2;
