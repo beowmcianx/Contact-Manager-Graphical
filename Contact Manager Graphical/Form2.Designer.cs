@@ -155,7 +155,6 @@
             label7.Size = new Size(42, 28);
             label7.TabIndex = 8;
             label7.Text = "Tag";
-            label7.Click += label7_Click;
             // 
             // textBoxFirstName
             // 
@@ -204,7 +203,6 @@
             textBoxTag.Name = "textBoxTag";
             textBoxTag.Size = new Size(205, 34);
             textBoxTag.TabIndex = 15;
-            textBoxTag.TextChanged += textBoxTag_TextChanged;
             // 
             // textBoxDate
             // 

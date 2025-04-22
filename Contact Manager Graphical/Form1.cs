@@ -121,8 +121,8 @@ namespace Contact_Manager_Graphical
                     .Include(p => p.Contacts)
                     .ThenInclude(c => c.Tags)
                     .Where(p => (p.FirstName + " " + p.SecondName).ToLower().Contains(searchTerm) ||
-                           p.Contacts.Any(c => c.PhoneNum.ToString().Contains(searchTerm) ||
-                                               c.Tags.Any(t => t.Name.ToLower().Contains(searchTerm)))).ToList();
+                        p.Contacts.Any(c => c.PhoneNum.ToString().Contains(searchTerm) ||
+                        c.Tags.Any(t => t.Name.ToLower().Contains(searchTerm)))).ToList();
 
                 if (searchTerm == string.Empty)
                 {
@@ -178,8 +178,8 @@ namespace Contact_Manager_Graphical
 
         private void createATagToolStripMenuItem_Click(object sender, EventArgs e)
         {
-                var form3 = new Form3();
-                form3.ShowDialog();
+            var form3 = new Form3();
+            form3.ShowDialog();
 
         }
         private void tabPage1_Click(object sender, EventArgs e)
@@ -236,6 +236,11 @@ namespace Contact_Manager_Graphical
                 AllContacts(listBox1);  
         }
 
+        private void updateTagToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form4 = new Form4();
+            form4.ShowDialog();
+        }
 
     }
 
