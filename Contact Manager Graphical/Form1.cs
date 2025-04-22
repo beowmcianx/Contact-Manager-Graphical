@@ -227,19 +227,12 @@ namespace Contact_Manager_Graphical
            AllContacts(listBox1);  
         }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
         private void updateTagToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form4 = new Form4();
             form4.ShowDialog();
         }
-=======
 
->>>>>>> 91dac21627087f9fb6ebfe5c8ab5f66f78497942
-=======
-
->>>>>>> 91dac21627087f9fb6ebfe5c8ab5f66f78497942
     }
 
 }
