@@ -102,7 +102,6 @@ namespace Contact_Manager_Graphical
                 {
                     PhoneNum = long.Parse(textBoxPhoneNum.Text),
                     Email = textBoxEmail.Text,
-                    CreationDate = DateOnly.Parse(textBoxDate.Text),
                      Person = newPerson
                 };
                 newContact.Tags.Add(newTag);
@@ -158,7 +157,6 @@ namespace Contact_Manager_Graphical
                     {
                         textBoxPhoneNum.Text = contact.PhoneNum.ToString();
                         textBoxEmail.Text = contact.Email;
-                        textBoxDate.Text = contact.CreationDate.ToString("yyyy-MM-dd");
                        /* string tags = "";
                         foreach (var tag in contact.Tags)
                         {
