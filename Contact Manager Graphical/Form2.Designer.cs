@@ -58,7 +58,7 @@
             // buttonCreate
             // 
             buttonCreate.Font = new Font("Segoe UI", 15F);
-            buttonCreate.Location = new Point(373, 563);
+            buttonCreate.Location = new Point(387, 563);
             buttonCreate.Margin = new Padding(5, 4, 5, 4);
             buttonCreate.Name = "buttonCreate";
             buttonCreate.Size = new Size(129, 41);
@@ -222,6 +222,7 @@
             listBox1.Name = "listBox1";
             listBox1.Size = new Size(355, 424);
             listBox1.TabIndex = 17;
+            listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
             // 
             // menuStrip1
             // 

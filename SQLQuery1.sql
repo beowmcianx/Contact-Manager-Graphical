@@ -1,8 +1,4 @@
-CREATE DATABASE ContactManager
-USE ContactManager
-DROP DATABASE ContactManager
-
-CREATE TABLE Person(
+﻿CREATE TABLE Person(
 		person_id INT IDENTITY(1,1) PRIMARY KEY NOT NULL ,
 		first_name NVARCHAR(50) NOT NULL,
 		second_name NVARCHAR(50) NULL,

@@ -212,7 +212,14 @@
             button4.Font = new Font("Segoe UI", 15F);
             button4.Location = new Point(415, 629);
             button4.Name = "button4";
+<<<<<<< HEAD
+<<<<<<< HEAD
             button4.Size = new Size(243, 41);
+=======
+>>>>>>> 91dac21627087f9fb6ebfe5c8ab5f66f78497942
+=======
+>>>>>>> 91dac21627087f9fb6ebfe5c8ab5f66f78497942
+            button4.Size = new Size(416, 42);
             button4.TabIndex = 19;
             button4.Text = "CREATE A CONTACT";
             button4.UseVisualStyleBackColor = true;
