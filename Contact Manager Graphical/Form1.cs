@@ -74,7 +74,11 @@ namespace Contact_Manager_Graphical
         private void listBoxContacts_SelectedIndexChanged(object sender, EventArgs e)
         {
             listBox2.Items.Clear();
+            if (listBox1.SelectedItem == null)
+                return;
+
             var selectedContact = listBox1.SelectedItem.ToString();
+
 
             using (var context = new ContactmanagerContext())
             {
@@ -203,7 +207,7 @@ namespace Contact_Manager_Graphical
         {
             string current = listBox1.SelectedIndex.ToString();
             int index = listBox1.FindString(current);
-            if (index == -1)
+            if (index !> 0)
             {
                 MessageBox.Show("Select an item to delete!");
 

@@ -54,9 +54,7 @@ namespace Contact_Manager_Graphical
                 {
                     PhoneNum = long.Parse(textBoxPhoneNum.Text),
                     Email = textBoxEmail.Text,
-                    Person = newPerson,
-                    CreationDate = ReadOnlySpan.Parse(DateTime.Now)
-                    
+                    Person = newPerson
                 };
                 newContact.Tags.Add(newTag);
                 context.Contacts.Add(newContact);
