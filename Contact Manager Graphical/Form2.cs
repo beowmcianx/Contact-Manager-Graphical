@@ -144,6 +144,7 @@ namespace Contact_Manager_Graphical
             {
                 var person = context.People
                      .Include(p => p.Contacts)
+                     .ThenInclude(c =>c.Tags)
                     .FirstOrDefault(p => p.FirstName == firstName && p.SecondName == secondName);
 
                 if (person != null)
@@ -158,7 +159,12 @@ namespace Contact_Manager_Graphical
                         textBoxPhoneNum.Text = contact.PhoneNum.ToString();
                         textBoxEmail.Text = contact.Email;
                         textBoxDate.Text = contact.CreationDate.ToString("yyyy-MM-dd");
-
+                       /* string tags = "";
+                        foreach (var tag in contact.Tags)
+                        {
+                            tags += tag.Name + " ,";
+                        }*/
+                        textBoxTag.Text = string.Join(", ", contact.Tags);
                        
                     }
                 }

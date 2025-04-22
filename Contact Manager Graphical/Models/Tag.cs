@@ -10,4 +10,8 @@ public partial class Tag
     public string Name { get; set; } = null!;
 
     public virtual ICollection<Contact> Contacts { get; set; } = new List<Contact>();
+    public override string ToString()
+    {
+        return this.Name;
+    }
 }
