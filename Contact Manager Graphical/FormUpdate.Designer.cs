@@ -1,6 +1,6 @@
 ﻿namespace Contact_Manager_Graphical
 {
-    partial class Form2
+    partial class FormUpdate
     {
         /// <summary>
         /// Required designer variable.

@@ -14,9 +14,9 @@ using System.Windows.Forms.VisualStyles;
 
 namespace Contact_Manager_Graphical
 {
-    public partial class Form2 : Form
+    public partial class FormUpdate : Form
     {
-        public Form2()
+        public FormUpdate()
         {
             InitializeComponent();
             this.KeyPreview = true;
@@ -91,7 +91,7 @@ namespace Contact_Manager_Graphical
 
         private void buttonUpdate_Click(object sender, EventArgs e)
         {
-            Form1 form1 = new Form1();
+            FormMain form1 = new FormMain();
             using (var context = new ContactmanagerContext())
             {
                 string[] contactname = listBox1.SelectedItem.ToString().Split(' ');

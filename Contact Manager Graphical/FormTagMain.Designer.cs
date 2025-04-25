@@ -1,7 +1,7 @@
 ﻿
 namespace Contact_Manager_Graphical
 {
-    partial class Form3
+    partial class FormTagMain
     {
         /// <summary>
         /// Required designer variable.
@@ -33,6 +33,10 @@ namespace Contact_Manager_Graphical
             textBoxTag = new TextBox();
             listBox1 = new ListBox();
             btn_CreateTag = new Button();
+            listBox2 = new ListBox();
+            label2 = new Label();
+            btn_UpdateTag = new Button();
+            btn_DeleteTag = new Button();
             SuspendLayout();
             // 
             // label1
@@ -50,7 +54,7 @@ namespace Contact_Manager_Graphical
             textBoxTag.Font = new Font("Segoe UI", 15F);
             textBoxTag.Location = new Point(12, 47);
             textBoxTag.Name = "textBoxTag";
-            textBoxTag.Size = new Size(157, 41);
+            textBoxTag.Size = new Size(294, 41);
             textBoxTag.TabIndex = 1;
             // 
             // listBox1
@@ -58,7 +62,7 @@ namespace Contact_Manager_Graphical
             listBox1.Font = new Font("Segoe UI", 15F);
             listBox1.FormattingEnabled = true;
             listBox1.ItemHeight = 35;
-            listBox1.Location = new Point(175, 13);
+            listBox1.Location = new Point(312, 9);
             listBox1.Margin = new Padding(3, 4, 3, 4);
             listBox1.Name = "listBox1";
             listBox1.Size = new Size(341, 424);
@@ -67,25 +71,71 @@ namespace Contact_Manager_Graphical
             // btn_CreateTag
             // 
             btn_CreateTag.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            btn_CreateTag.Location = new Point(12, 380);
+            btn_CreateTag.Location = new Point(12, 453);
             btn_CreateTag.Name = "btn_CreateTag";
-            btn_CreateTag.Size = new Size(157, 57);
+            btn_CreateTag.Size = new Size(200, 57);
             btn_CreateTag.TabIndex = 10;
             btn_CreateTag.Text = "CREATE TAG";
             btn_CreateTag.UseVisualStyleBackColor = true;
             btn_CreateTag.Click += btn_CreateTag_Click;
             // 
-            // Form3
+            // listBox2
+            // 
+            listBox2.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            listBox2.FormattingEnabled = true;
+            listBox2.ItemHeight = 35;
+            listBox2.Location = new Point(12, 149);
+            listBox2.Name = "listBox2";
+            listBox2.Size = new Size(294, 284);
+            listBox2.TabIndex = 11;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label2.Location = new Point(12, 111);
+            label2.Name = "label2";
+            label2.Size = new Size(102, 35);
+            label2.TabIndex = 12;
+            label2.Text = "All tags:";
+            // 
+            // btn_UpdateTag
+            // 
+            btn_UpdateTag.Font = new Font("Segoe UI", 15F);
+            btn_UpdateTag.Location = new Point(230, 453);
+            btn_UpdateTag.Name = "btn_UpdateTag";
+            btn_UpdateTag.Size = new Size(200, 57);
+            btn_UpdateTag.TabIndex = 13;
+            btn_UpdateTag.Text = "UPDATE TAG";
+            btn_UpdateTag.UseVisualStyleBackColor = true;
+            btn_UpdateTag.Click += this.btn_UpdateTag_Click;
+            // 
+            // btn_DeleteTag
+            // 
+            btn_DeleteTag.Font = new Font("Segoe UI", 15F);
+            btn_DeleteTag.Location = new Point(453, 453);
+            btn_DeleteTag.Name = "btn_DeleteTag";
+            btn_DeleteTag.Size = new Size(200, 57);
+            btn_DeleteTag.TabIndex = 14;
+            btn_DeleteTag.Text = "DELETE TAG";
+            btn_DeleteTag.UseVisualStyleBackColor = true;
+            btn_DeleteTag.Click += this.btn_DeleteTag_Click;
+            // 
+            // FormTagMain
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(522, 450);
+            ClientSize = new Size(665, 522);
+            Controls.Add(btn_DeleteTag);
+            Controls.Add(btn_UpdateTag);
+            Controls.Add(label2);
+            Controls.Add(listBox2);
             Controls.Add(btn_CreateTag);
             Controls.Add(listBox1);
             Controls.Add(textBoxTag);
             Controls.Add(label1);
-            Name = "Form3";
-            Text = "Add Tag";
+            Name = "FormTagMain";
+            Text = "Modify Tag";
             ResumeLayout(false);
             PerformLayout();
         }
@@ -96,5 +146,9 @@ namespace Contact_Manager_Graphical
         private TextBox textBoxTag;
         private ListBox listBox1;
         private Button btn_CreateTag;
+        private ListBox listBox2;
+        private Label label2;
+        private Button btn_UpdateTag;
+        private Button btn_DeleteTag;
     }
 }

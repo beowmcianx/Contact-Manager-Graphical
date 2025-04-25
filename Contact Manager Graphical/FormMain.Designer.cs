@@ -1,6 +1,6 @@
 ﻿namespace Contact_Manager_Graphical
 {
-    partial class Form1
+    partial class FormMain
     {
         private System.ComponentModel.IContainer components = null;
 
@@ -30,12 +30,9 @@
             exitescToolStripMenuItem = new ToolStripMenuItem();
             exportContactsToTxtToolStripMenuItem = new ToolStripMenuItem();
             tagsToolStripMenuItem = new ToolStripMenuItem();
-            createATagToolStripMenuItem = new ToolStripMenuItem();
-            updateTagToolStripMenuItem = new ToolStripMenuItem();
             button3 = new Button();
             buttonDelete = new Button();
             button4 = new Button();
-            deleteTagToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -167,24 +164,10 @@
             // 
             // tagsToolStripMenuItem
             // 
-            tagsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { createATagToolStripMenuItem, updateTagToolStripMenuItem, deleteTagToolStripMenuItem });
             tagsToolStripMenuItem.Name = "tagsToolStripMenuItem";
             tagsToolStripMenuItem.Size = new Size(78, 39);
             tagsToolStripMenuItem.Text = "Tags";
-            // 
-            // createATagToolStripMenuItem
-            // 
-            createATagToolStripMenuItem.Name = "createATagToolStripMenuItem";
-            createATagToolStripMenuItem.Size = new Size(270, 40);
-            createATagToolStripMenuItem.Text = "Create new tag";
-            createATagToolStripMenuItem.Click += createATagToolStripMenuItem_Click;
-            // 
-            // updateTagToolStripMenuItem
-            // 
-            updateTagToolStripMenuItem.Name = "updateTagToolStripMenuItem";
-            updateTagToolStripMenuItem.Size = new Size(270, 40);
-            updateTagToolStripMenuItem.Text = "Update tags";
-            updateTagToolStripMenuItem.Click += updateTagToolStripMenuItem_Click;
+            tagsToolStripMenuItem.Click += tagsToolStripMenuItem_Click;
             // 
             // button3
             // 
@@ -219,13 +202,7 @@
             button4.UseVisualStyleBackColor = true;
             button4.Click += button4_Click;
             // 
-            // deleteTagToolStripMenuItem
-            // 
-            deleteTagToolStripMenuItem.Name = "deleteTagToolStripMenuItem";
-            deleteTagToolStripMenuItem.Size = new Size(270, 40);
-            deleteTagToolStripMenuItem.Text = "Delete tag";
-            // 
-            // Form1
+            // FormMain
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -243,7 +220,7 @@
             Controls.Add(listBox1);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
-            Name = "Form1";
+            Name = "FormMain";
             Text = "Contact Manager";
             Load += Form1_Load;
             KeyDown += Form1_KeyDown;
@@ -268,11 +245,8 @@
         private ToolStripMenuItem exitescToolStripMenuItem;
         private ToolStripMenuItem exportContactsToTxtToolStripMenuItem;
         private ToolStripMenuItem tagsToolStripMenuItem;
-        private ToolStripMenuItem createATagToolStripMenuItem;
-        private ToolStripMenuItem updateTagToolStripMenuItem;
         private Button button3;
         private Button buttonDelete;
         private Button button4;
-        private ToolStripMenuItem deleteTagToolStripMenuItem;
     }
 }

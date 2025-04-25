@@ -7,9 +7,9 @@ using System.Collections.Generic;
 
 namespace Contact_Manager_Graphical
 {
-    public partial class Form1 : Form
+    public partial class FormMain : Form
     {
-        public Form1()
+        public FormMain()
         {
             InitializeComponent();
         }
@@ -171,7 +171,7 @@ namespace Contact_Manager_Graphical
         }
         private void button3_Click(object sender, EventArgs e)
         {
-            var form2 = new Form2();
+            var form2 = new FormUpdate();
             form2.ShowDialog();
         }
 
@@ -182,7 +182,7 @@ namespace Contact_Manager_Graphical
 
         private void createATagToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form3 = new Form3();
+            var form3 = new FormTagMain();
             form3.ShowDialog();
 
         }
@@ -207,45 +207,44 @@ namespace Contact_Manager_Graphical
         {
             string current = listBox1.SelectedIndex.ToString();
             int index = listBox1.FindString(current);
-            if (index !> 0)
+            if (index! > 0)
             {
                 MessageBox.Show("Select an item to delete!");
 
             }
             return;
-           
-              using var context = new ContactmanagerContext();
+
+            using var context = new ContactmanagerContext();
 
 
-                string[] contactname = listBox1.SelectedItem.ToString().Split(' ');
-                var person = context.People.FirstOrDefault(p => p.FirstName == contactname[0] && p.SecondName == contactname[1]);
-                if (person == null) return;
+            string[] contactname = listBox1.SelectedItem.ToString().Split(' ');
+            var person = context.People.FirstOrDefault(p => p.FirstName == contactname[0] && p.SecondName == contactname[1]);
+            if (person == null) return;
 
-                var contacts = context.Contacts
-                     .Where(c => c.PersonId == person.PersonId)
-                     .Include(c => c.Tags)
-                     .ToList();
+            var contacts = context.Contacts
+                 .Where(c => c.PersonId == person.PersonId)
+                 .Include(c => c.Tags)
+                 .ToList();
 
-                foreach (var contact in contacts)
-                {
-                    contact.Tags.Clear();
-                }
-                context.SaveChanges();
+            foreach (var contact in contacts)
+            {
+                contact.Tags.Clear();
+            }
+            context.SaveChanges();
 
-                context.Contacts.RemoveRange(contacts);
-                context.SaveChanges();
-                context.People.Remove(person);
-                context.SaveChanges();
+            context.Contacts.RemoveRange(contacts);
+            context.SaveChanges();
+            context.People.Remove(person);
+            context.SaveChanges();
 
-                AllContacts(listBox1);  
+            AllContacts(listBox1);
         }
 
-        private void updateTagToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tagsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form4 = new Form4();
-            form4.ShowDialog();
+            var formTagMain=new FormTagMain();
+            formTagMain.ShowDialog();
         }
-
     }
 
 }
