@@ -47,97 +47,103 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(24, 33);
+            label1.Location = new Point(21, 25);
             label1.Name = "label1";
-            label1.Size = new Size(76, 20);
+            label1.Size = new Size(61, 15);
             label1.TabIndex = 0;
             label1.Text = "FirstName";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(24, 96);
+            label2.Location = new Point(21, 72);
             label2.Name = "label2";
-            label2.Size = new Size(98, 20);
+            label2.Size = new Size(78, 15);
             label2.TabIndex = 1;
             label2.Text = "SecondName";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(24, 116);
+            label3.Location = new Point(21, 87);
             label3.Name = "label3";
-            label3.Size = new Size(50, 20);
+            label3.Size = new Size(38, 15);
             label3.TabIndex = 2;
             label3.Text = "label3";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(24, 206);
+            label4.Location = new Point(21, 154);
             label4.Name = "label4";
-            label4.Size = new Size(108, 20);
+            label4.Size = new Size(88, 15);
             label4.TabIndex = 3;
             label4.Text = "Phone Number";
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(24, 266);
+            label5.Location = new Point(21, 200);
             label5.Name = "label5";
-            label5.Size = new Size(46, 20);
+            label5.Size = new Size(36, 15);
             label5.TabIndex = 4;
             label5.Text = "Email";
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(28, 328);
+            label6.Location = new Point(24, 246);
             label6.Name = "label6";
-            label6.Size = new Size(32, 20);
+            label6.Size = new Size(25, 15);
             label6.TabIndex = 5;
             label6.Text = "Tag";
             // 
             // textBoxFirstName
             // 
-            textBoxFirstName.Location = new Point(24, 56);
+            textBoxFirstName.Location = new Point(21, 42);
+            textBoxFirstName.Margin = new Padding(3, 2, 3, 2);
             textBoxFirstName.Name = "textBoxFirstName";
-            textBoxFirstName.Size = new Size(125, 27);
+            textBoxFirstName.Size = new Size(110, 23);
             textBoxFirstName.TabIndex = 6;
             // 
             // textBoxSecondName
             // 
-            textBoxSecondName.Location = new Point(24, 116);
+            textBoxSecondName.Location = new Point(21, 87);
+            textBoxSecondName.Margin = new Padding(3, 2, 3, 2);
             textBoxSecondName.Name = "textBoxSecondName";
-            textBoxSecondName.Size = new Size(125, 27);
+            textBoxSecondName.Size = new Size(110, 23);
             textBoxSecondName.TabIndex = 7;
             // 
             // textBoxAddress
             // 
-            textBoxAddress.Location = new Point(24, 166);
+            textBoxAddress.Location = new Point(21, 124);
+            textBoxAddress.Margin = new Padding(3, 2, 3, 2);
             textBoxAddress.Name = "textBoxAddress";
-            textBoxAddress.Size = new Size(125, 27);
+            textBoxAddress.Size = new Size(110, 23);
             textBoxAddress.TabIndex = 8;
             // 
             // textBoxPhoneNum
             // 
-            textBoxPhoneNum.Location = new Point(24, 229);
+            textBoxPhoneNum.Location = new Point(21, 172);
+            textBoxPhoneNum.Margin = new Padding(3, 2, 3, 2);
             textBoxPhoneNum.Name = "textBoxPhoneNum";
-            textBoxPhoneNum.Size = new Size(125, 27);
+            textBoxPhoneNum.Size = new Size(110, 23);
             textBoxPhoneNum.TabIndex = 9;
             // 
             // textBoxEmail
             // 
-            textBoxEmail.Location = new Point(24, 289);
+            textBoxEmail.Location = new Point(21, 217);
+            textBoxEmail.Margin = new Padding(3, 2, 3, 2);
             textBoxEmail.Name = "textBoxEmail";
-            textBoxEmail.Size = new Size(125, 27);
+            textBoxEmail.Size = new Size(110, 23);
             textBoxEmail.TabIndex = 10;
             // 
             // ButtonCreateContact
             // 
-            ButtonCreateContact.Location = new Point(305, 377);
+            ButtonCreateContact.Location = new Point(267, 283);
+            ButtonCreateContact.Margin = new Padding(3, 2, 3, 2);
             ButtonCreateContact.Name = "ButtonCreateContact";
-            ButtonCreateContact.Size = new Size(265, 47);
+            ButtonCreateContact.Size = new Size(232, 35);
             ButtonCreateContact.TabIndex = 13;
             ButtonCreateContact.Text = "CREATE CONTACT";
             ButtonCreateContact.UseVisualStyleBackColor = true;
@@ -146,27 +152,30 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(28, 157);
+            label7.Location = new Point(24, 118);
             label7.Name = "label7";
-            label7.Size = new Size(62, 20);
+            label7.Size = new Size(49, 15);
             label7.TabIndex = 14;
             label7.Text = "Address";
             // 
             // listBoxtag
             // 
             listBoxtag.FormattingEnabled = true;
-            listBoxtag.Location = new Point(24, 351);
+            listBoxtag.ItemHeight = 15;
+            listBoxtag.Location = new Point(21, 263);
+            listBoxtag.Margin = new Padding(3, 2, 3, 2);
             listBoxtag.Name = "listBoxtag";
             listBoxtag.SelectionMode = SelectionMode.MultiExtended;
-            listBoxtag.Size = new Size(150, 84);
+            listBoxtag.Size = new Size(132, 64);
             listBoxtag.TabIndex = 17;
+            listBoxtag.SelectedIndexChanged += listBoxtag_SelectedIndexChanged;
             // 
             // FormCreate
             // 
             AllowDrop = true;
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(668, 450);
+            ClientSize = new Size(584, 338);
             Controls.Add(listBoxtag);
             Controls.Add(label7);
             Controls.Add(ButtonCreateContact);
@@ -181,6 +190,7 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "FormCreate";
             Text = "FormCreate";
             Load += FormCreate_Load;

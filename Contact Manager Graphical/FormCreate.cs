@@ -18,7 +18,7 @@ namespace Contact_Manager_Graphical
         public FormCreate()
         {
             InitializeComponent();
-          
+
         }
         public void AllContacts(ListBox list)
         {
@@ -44,7 +44,7 @@ namespace Contact_Manager_Graphical
 
         public void LoadTags(ListBox list)
         {
-           
+
             using (var context = new ContactmanagerContext())
             {
                 var Tag = context.Tags.ToList();
@@ -68,16 +68,17 @@ namespace Contact_Manager_Graphical
                     SecondName = textBoxSecondName.Text,
                     Address = textBoxAddress.Text
                 };
-                Tag newTag = new Tag() { Name = listBoxtag.Text };
+                var selectedTagName = listBoxtag.Text;
+                var existingTag = context.Tags.FirstOrDefault(t => t.Name == selectedTagName);
                 Contact newContact = new Contact()
                 {
                     PhoneNum = long.Parse(textBoxPhoneNum.Text),
                     Email = textBoxEmail.Text,
                     Person = newPerson,
                     CreationDate = DateOnly.FromDateTime(DateTime.Now)
-                    
+
                 };
-                newContact.Tags.Add(newTag);
+                newContact.Tags.Add(existingTag);
                 context.Contacts.Add(newContact);
                 context.SaveChanges();
             }
@@ -88,6 +89,11 @@ namespace Contact_Manager_Graphical
         {
 
             LoadTags(listBoxtag);
+        }
+
+        private void listBoxtag_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
