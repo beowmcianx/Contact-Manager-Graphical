@@ -1,14 +1,6 @@
 ﻿using Contact_Manager_Graphical.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+using System.Linq.Expressions;
 
 namespace Contact_Manager_Graphical
 {
@@ -17,30 +9,9 @@ namespace Contact_Manager_Graphical
         public FormTagMain()
         {
             InitializeComponent();
-            AllContacts(listBox1);
             AllTags(listBox2);
         }
 
-        public void AllContacts(ListBox list)
-        {
-            using (var context = new ContactmanagerContext())
-            {
-                var people = context.People
-                    .Include(p => p.Contacts)
-                    .ThenInclude(c => c.Tags)
-                    .ToList();
-
-                foreach (var person in people)
-                {
-                    string fullName = $"{person.FirstName} {person.SecondName}";
-                    foreach (var contact in person.Contacts)
-                    {
-                        list.Items.Add($"{fullName}");
-                    }
-                }
-            }
-
-        }
         public void AllTags(ListBox list)
         {
             using (var context = new ContactmanagerContext())
@@ -62,9 +33,7 @@ namespace Contact_Manager_Graphical
         {
             using (var context = new ContactmanagerContext())
             {
-                var contact = context.Contacts
-                    .Include(c => c.Tags)
-                    .FirstOrDefault();
+
 
                 string tagName = textBoxTag.Text.Trim();
                 if (string.IsNullOrEmpty(tagName))
@@ -80,9 +49,11 @@ namespace Contact_Manager_Graphical
                 }
 
                 Tag newTag = new Tag() { Name = tagName };
-                contact.Tags.Add(newTag);
+                context.Tags.Add(newTag);
                 context.SaveChanges();
                 textBoxTag.Clear();
+                listBox2.Items.Clear();
+                AllTags(listBox2);
             }
         }
 
@@ -108,28 +79,38 @@ namespace Contact_Manager_Graphical
                 tag.Name = newTagName;
                 context.SaveChanges();
                 textBoxTag.Clear();
+                listBox2.Items.Clear();
+                AllTags(listBox2);
             }
         }
 
         private void btn_DeleteTag_Click(object sender, EventArgs e)
         {
-        }
-          /*  if (listBox2.SelectedItem == null)
+            if (listBox2.SelectedItem == null)
             {
                 MessageBox.Show("Please select a tag to delete.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            using (var context = new ContactmanagerContext())
+            try
             {
-                var contact = context.Contacts
-                    .Include(c => c.Tags)
-                    .FirstOrDefault();
-                foreach (var tag in context.Tags)
+                using (var context = new ContactmanagerContext())
                 {
-                    context.Tags.
-               
-        }*/
-      }
-         
+                    var selectedTagName = listBox2.SelectedItem.ToString();
+                    var tagToDelete = context.Tags.FirstOrDefault(t => t.Name == selectedTagName);
+
+                    if (tagToDelete != null)
+                    {
+                        context.Tags.Remove(tagToDelete);
+                        context.SaveChanges();
+                        listBox2.Items.Clear();
+                        AllTags(listBox2);
+                    }
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Tag should not be connected to a contact. Please remove the contact before deleting this tag.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
     }
 }
