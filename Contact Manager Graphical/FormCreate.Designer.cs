@@ -39,10 +39,10 @@
             textBoxAddress = new TextBox();
             textBoxPhoneNum = new TextBox();
             textBoxEmail = new TextBox();
-            textBoxTag = new TextBox();
             listBox1 = new ListBox();
             ButtonCreateContact = new Button();
             label7 = new Label();
+            listBoxtag = new ListBox();
             SuspendLayout();
             // 
             // label1
@@ -134,13 +134,6 @@
             textBoxEmail.Size = new Size(125, 27);
             textBoxEmail.TabIndex = 10;
             // 
-            // textBoxTag
-            // 
-            textBoxTag.Location = new Point(24, 360);
-            textBoxTag.Name = "textBoxTag";
-            textBoxTag.Size = new Size(125, 27);
-            textBoxTag.TabIndex = 11;
-            // 
             // listBox1
             // 
             listBox1.FormattingEnabled = true;
@@ -168,15 +161,25 @@
             label7.TabIndex = 14;
             label7.Text = "Address";
             // 
+            // listBoxtag
+            // 
+            listBoxtag.FormattingEnabled = true;
+            listBoxtag.Location = new Point(24, 351);
+            listBoxtag.Name = "listBoxtag";
+            listBoxtag.SelectionMode = SelectionMode.MultiExtended;
+            listBoxtag.Size = new Size(150, 84);
+            listBoxtag.TabIndex = 17;
+            // 
             // FormCreate
             // 
+            AllowDrop = true;
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(668, 450);
+            Controls.Add(listBoxtag);
             Controls.Add(label7);
             Controls.Add(ButtonCreateContact);
             Controls.Add(listBox1);
-            Controls.Add(textBoxTag);
             Controls.Add(textBoxEmail);
             Controls.Add(textBoxPhoneNum);
             Controls.Add(textBoxAddress);
@@ -207,9 +210,9 @@
         private TextBox textBoxAddress;
         private TextBox textBoxPhoneNum;
         private TextBox textBoxEmail;
-        private TextBox textBoxTag;
         private ListBox listBox1;
         private Button ButtonCreateContact;
         private Label label7;
+        private ListBox listBoxtag;
     }
 }

@@ -40,6 +40,28 @@ namespace Contact_Manager_Graphical
             }
 
         }
+
+        public void LoadTags(ListBox list)
+        {
+            listBox1.Items.Clear();
+            using (var context = new ContactmanagerContext())
+            {
+                var people = context.People
+                    .Include(p => p.Contacts)
+                    .ThenInclude(c => c.Tags)
+                    .ToList();
+
+                foreach (var person in people)
+                {
+                    string fullName = $"{person.FirstName} {person.SecondName}";
+                    foreach (var contact in person.Contacts)
+                    {
+                        list.Items.Add($"{fullName}");
+                    }
+                }
+            }
+
+        }
         private void ButtonCreateContact_Click(object sender, EventArgs e)
         {
            
@@ -51,7 +73,7 @@ namespace Contact_Manager_Graphical
                     SecondName = textBoxSecondName.Text,
                     Address = textBoxAddress.Text
                 };
-                Tag newTag = new Tag() { Name = textBoxTag.Text };
+                Tag newTag = new Tag() { Name = listBoxtag.Text };
                 Contact newContact = new Contact()
                 {
                     PhoneNum = long.Parse(textBoxPhoneNum.Text),
@@ -66,5 +88,6 @@ namespace Contact_Manager_Graphical
             }
             this.DialogResult = DialogResult.OK;
         }
+
     }
 }
