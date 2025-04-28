@@ -127,9 +127,6 @@ namespace Contact_Manager_Graphical
                 {
                     context.Tags.
                 }
-                context.Tags.Remove(listBox2.SelectedItem);
-                context.SaveChanges();
-            }*/
         }
     }
 }
