@@ -39,7 +39,6 @@
             textBoxAddress = new TextBox();
             textBoxPhoneNum = new TextBox();
             textBoxEmail = new TextBox();
-            listBox1 = new ListBox();
             ButtonCreateContact = new Button();
             label7 = new Label();
             listBoxtag = new ListBox();
@@ -134,14 +133,6 @@
             textBoxEmail.Size = new Size(125, 27);
             textBoxEmail.TabIndex = 10;
             // 
-            // listBox1
-            // 
-            listBox1.FormattingEnabled = true;
-            listBox1.Location = new Point(305, 12);
-            listBox1.Name = "listBox1";
-            listBox1.Size = new Size(265, 324);
-            listBox1.TabIndex = 12;
-            // 
             // ButtonCreateContact
             // 
             ButtonCreateContact.Location = new Point(305, 377);
@@ -179,7 +170,6 @@
             Controls.Add(listBoxtag);
             Controls.Add(label7);
             Controls.Add(ButtonCreateContact);
-            Controls.Add(listBox1);
             Controls.Add(textBoxEmail);
             Controls.Add(textBoxPhoneNum);
             Controls.Add(textBoxAddress);
@@ -193,6 +183,7 @@
             Controls.Add(label1);
             Name = "FormCreate";
             Text = "FormCreate";
+            Load += FormCreate_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -210,7 +201,6 @@
         private TextBox textBoxAddress;
         private TextBox textBoxPhoneNum;
         private TextBox textBoxEmail;
-        private ListBox listBox1;
         private Button ButtonCreateContact;
         private Label label7;
         private ListBox listBoxtag;

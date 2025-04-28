@@ -112,8 +112,9 @@ namespace Contact_Manager_Graphical
         }
 
         private void btn_DeleteTag_Click(object sender, EventArgs e)
-        {/*
-            if (listBox2.SelectedItem == null)
+        {
+        }
+          /*  if (listBox2.SelectedItem == null)
             {
                 MessageBox.Show("Please select a tag to delete.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -123,10 +124,12 @@ namespace Contact_Manager_Graphical
                 var contact = context.Contacts
                     .Include(c => c.Tags)
                     .FirstOrDefault();
-                foreach(var tag in context.Tags)
+                foreach (var tag in context.Tags)
                 {
                     context.Tags.
-                }
-        }
+               
+        }*/
+      }
+         
     }
 }

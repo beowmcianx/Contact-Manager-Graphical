@@ -18,10 +18,11 @@ namespace Contact_Manager_Graphical
         public FormCreate()
         {
             InitializeComponent();
+          
         }
         public void AllContacts(ListBox list)
         {
-            listBox1.Items.Clear();
+
             using (var context = new ContactmanagerContext())
             {
                 var people = context.People
@@ -43,28 +44,22 @@ namespace Contact_Manager_Graphical
 
         public void LoadTags(ListBox list)
         {
-            listBox1.Items.Clear();
+           
             using (var context = new ContactmanagerContext())
             {
-                var people = context.People
-                    .Include(p => p.Contacts)
-                    .ThenInclude(c => c.Tags)
-                    .ToList();
-
-                foreach (var person in people)
+                var Tag = context.Tags.ToList();
+                list.Items.Clear();
+                foreach (var tags in Tag)
                 {
-                    string fullName = $"{person.FirstName} {person.SecondName}";
-                    foreach (var contact in person.Contacts)
-                    {
-                        list.Items.Add($"{fullName}");
-                    }
+
+                    list.Items.Add(tags.Name);
                 }
             }
 
         }
         private void ButtonCreateContact_Click(object sender, EventArgs e)
         {
-           
+
             using (var context = new ContactmanagerContext())
             {
                 Person newPerson = new Person()
@@ -80,7 +75,7 @@ namespace Contact_Manager_Graphical
                     Email = textBoxEmail.Text,
                     Person = newPerson,
                     CreationDate = DateOnly.FromDateTime(DateTime.Now)
-
+                    
                 };
                 newContact.Tags.Add(newTag);
                 context.Contacts.Add(newContact);
@@ -89,5 +84,10 @@ namespace Contact_Manager_Graphical
             this.DialogResult = DialogResult.OK;
         }
 
+        private void FormCreate_Load(object sender, EventArgs e)
+        {
+
+            LoadTags(listBoxtag);
+        }
     }
 }
