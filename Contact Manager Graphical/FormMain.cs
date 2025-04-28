@@ -177,7 +177,11 @@ namespace Contact_Manager_Graphical
 
         private void button4_Click(object sender, EventArgs e)
         {
-
+            var formCreate = new FormCreate();
+            if (formCreate.ShowDialog() == DialogResult.OK)
+            {
+                AllContacts(listBox1);
+            }
         }
 
         private void createATagToolStripMenuItem_Click(object sender, EventArgs e)
@@ -210,12 +214,10 @@ namespace Contact_Manager_Graphical
             if (index! > 0)
             {
                 MessageBox.Show("Select an item to delete!");
-
+                return;
             }
-            return;
 
             using var context = new ContactmanagerContext();
-
 
             string[] contactname = listBox1.SelectedItem.ToString().Split(' ');
             var person = context.People.FirstOrDefault(p => p.FirstName == contactname[0] && p.SecondName == contactname[1]);
@@ -238,6 +240,7 @@ namespace Contact_Manager_Graphical
             context.SaveChanges();
 
             AllContacts(listBox1);
+            listBox2.Items.Clear();
         }
 
         private void tagsToolStripMenuItem_Click(object sender, EventArgs e)

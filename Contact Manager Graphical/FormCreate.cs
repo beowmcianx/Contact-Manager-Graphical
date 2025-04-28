@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Contact_Manager_Graphical
 {
@@ -41,6 +42,7 @@ namespace Contact_Manager_Graphical
         }
         private void ButtonCreateContact_Click(object sender, EventArgs e)
         {
+           
             using (var context = new ContactmanagerContext())
             {
                 Person newPerson = new Person()
@@ -54,12 +56,15 @@ namespace Contact_Manager_Graphical
                 {
                     PhoneNum = long.Parse(textBoxPhoneNum.Text),
                     Email = textBoxEmail.Text,
-                    Person = newPerson
+                    Person = newPerson,
+                    CreationDate = DateOnly.FromDateTime(DateTime.Now)
+
                 };
                 newContact.Tags.Add(newTag);
                 context.Contacts.Add(newContact);
                 context.SaveChanges();
             }
+            this.DialogResult = DialogResult.OK;
         }
     }
 }
