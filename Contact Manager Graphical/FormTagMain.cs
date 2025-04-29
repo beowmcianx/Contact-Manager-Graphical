@@ -12,6 +12,31 @@ namespace Contact_Manager_Graphical
             AllTags(listBox2);
         }
 
+        public void AllTagContacts(ListBox list, ListBox list2)
+        {
+            list.Items.Clear();
+            if (list2.SelectedItem == null)
+                return;
+            var selectedTagName = list2.SelectedItem.ToString();
+            using (var context = new ContactmanagerContext())
+            {
+
+                var selectedTag = context.Contacts
+                    .Include(t => t.Person) 
+                    .Include(t => t.Tags)
+                    .Where(c => c.Tags.Any(t => t.Name == selectedTagName)).ToList();
+
+
+                if (selectedTag != null)
+                {
+                    foreach (var contact in selectedTag)
+                    {
+                        string fullName = $"{contact.Person.FirstName} {contact.Person.SecondName}";
+                        list.Items.Add(fullName);
+                    }
+                }
+            }
+        }
         public void AllTags(ListBox list)
         {
             using (var context = new ContactmanagerContext())
@@ -111,6 +136,36 @@ namespace Contact_Manager_Graphical
             {
                 MessageBox.Show("Tag should not be connected to a contact. Please remove the contact before deleting this tag.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void btn_DetatchContacts_Click(object sender, EventArgs e)
+        {
+            if (listBox2.SelectedItem == null)
+            {
+                MessageBox.Show("Please select a tag to delete.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            using (var context = new ContactmanagerContext())
+            {
+                var selectedTagName = listBox2.SelectedItem.ToString();
+                var selectedTag = context.Contacts
+                    .Include(t => t.Person)
+                    .Include(t => t.Tags)
+                    .Where(c => c.Tags.Any(t => t.Name == selectedTagName)).ToList();
+                foreach (var contact in selectedTag)
+                {
+                    contact.Tags.Clear();
+                }
+                context.SaveChanges();
+                listBox2.Items.Clear();
+                listBox1.Items.Clear();
+                AllTags(listBox2);
+            }
+        }
+
+        private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            AllTagContacts(listBox1, listBox2);
         }
     }
 }

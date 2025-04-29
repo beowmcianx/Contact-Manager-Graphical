@@ -36,6 +36,8 @@ namespace Contact_Manager_Graphical
             label2 = new Label();
             btn_UpdateTag = new Button();
             btn_DeleteTag = new Button();
+            listBox1 = new ListBox();
+            btn_DetatchContacts = new Button();
             SuspendLayout();
             // 
             // label1
@@ -59,9 +61,9 @@ namespace Contact_Manager_Graphical
             // btn_CreateTag
             // 
             btn_CreateTag.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            btn_CreateTag.Location = new Point(312, 12);
+            btn_CreateTag.Location = new Point(12, 438);
             btn_CreateTag.Name = "btn_CreateTag";
-            btn_CreateTag.Size = new Size(118, 86);
+            btn_CreateTag.Size = new Size(130, 80);
             btn_CreateTag.TabIndex = 10;
             btn_CreateTag.Text = "CREATE TAG";
             btn_CreateTag.UseVisualStyleBackColor = true;
@@ -72,10 +74,11 @@ namespace Contact_Manager_Graphical
             listBox2.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point, 204);
             listBox2.FormattingEnabled = true;
             listBox2.ItemHeight = 35;
-            listBox2.Location = new Point(12, 149);
+            listBox2.Location = new Point(12, 152);
             listBox2.Name = "listBox2";
             listBox2.Size = new Size(294, 284);
             listBox2.TabIndex = 11;
+            listBox2.SelectedIndexChanged += listBox2_SelectedIndexChanged;
             // 
             // label2
             // 
@@ -90,9 +93,9 @@ namespace Contact_Manager_Graphical
             // btn_UpdateTag
             // 
             btn_UpdateTag.Font = new Font("Segoe UI", 15F);
-            btn_UpdateTag.Location = new Point(312, 175);
+            btn_UpdateTag.Location = new Point(148, 438);
             btn_UpdateTag.Name = "btn_UpdateTag";
-            btn_UpdateTag.Size = new Size(118, 86);
+            btn_UpdateTag.Size = new Size(146, 80);
             btn_UpdateTag.TabIndex = 13;
             btn_UpdateTag.Text = "UPDATE TAG";
             btn_UpdateTag.UseVisualStyleBackColor = true;
@@ -101,19 +104,42 @@ namespace Contact_Manager_Graphical
             // btn_DeleteTag
             // 
             btn_DeleteTag.Font = new Font("Segoe UI", 15F);
-            btn_DeleteTag.Location = new Point(312, 337);
+            btn_DeleteTag.Location = new Point(486, 438);
             btn_DeleteTag.Name = "btn_DeleteTag";
-            btn_DeleteTag.Size = new Size(118, 96);
+            btn_DeleteTag.Size = new Size(130, 80);
             btn_DeleteTag.TabIndex = 14;
             btn_DeleteTag.Text = "DELETE TAG";
             btn_DeleteTag.UseVisualStyleBackColor = true;
             btn_DeleteTag.Click += btn_DeleteTag_Click;
             // 
+            // listBox1
+            // 
+            listBox1.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            listBox1.FormattingEnabled = true;
+            listBox1.ItemHeight = 35;
+            listBox1.Location = new Point(312, 47);
+            listBox1.Name = "listBox1";
+            listBox1.Size = new Size(304, 389);
+            listBox1.TabIndex = 15;
+            // 
+            // btn_DetatchContacts
+            // 
+            btn_DetatchContacts.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            btn_DetatchContacts.Location = new Point(300, 438);
+            btn_DetatchContacts.Name = "btn_DetatchContacts";
+            btn_DetatchContacts.Size = new Size(180, 80);
+            btn_DetatchContacts.TabIndex = 16;
+            btn_DetatchContacts.Text = "DETATCH CONTACTS";
+            btn_DetatchContacts.UseVisualStyleBackColor = true;
+            btn_DetatchContacts.Click += btn_DetatchContacts_Click;
+            // 
             // FormTagMain
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(440, 445);
+            ClientSize = new Size(628, 530);
+            Controls.Add(btn_DetatchContacts);
+            Controls.Add(listBox1);
             Controls.Add(btn_DeleteTag);
             Controls.Add(btn_UpdateTag);
             Controls.Add(label2);
@@ -136,5 +162,7 @@ namespace Contact_Manager_Graphical
         private Label label2;
         private Button btn_UpdateTag;
         private Button btn_DeleteTag;
+        private ListBox listBox1;
+        private Button btn_DetatchContacts;
     }
 }
