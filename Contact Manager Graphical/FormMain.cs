@@ -209,6 +209,11 @@ namespace Contact_Manager_Graphical
 
         private void buttonDelete_Click(object sender, EventArgs e)
         {
+            if (listBox1.SelectedItems.Count <= 0)
+            {
+                MessageBox.Show("Select an item to delete!");
+                return;
+            }
             string current = listBox1.SelectedIndex.ToString();
             int index = listBox1.FindString(current);
             if (index! > 0)

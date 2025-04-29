@@ -95,17 +95,20 @@ namespace Contact_Manager_Graphical
             using (var context = new ContactmanagerContext())
             {
                 string[] contactname = listBox1.SelectedItem.ToString().Split(' ');
-                Person person = context.People.FirstOrDefault(p => p.FirstName == contactname[0] && p.SecondName == contactname[1]);
+                Person person = context.People.Include(c => c.Contacts).FirstOrDefault(p => p.FirstName == contactname[0] && p.SecondName == contactname[1]);
+                    
 
                 if (person != null)
                 {
                     person.FirstName = textBoxFirstName.Text;
                     person.SecondName = textBoxSecondName.Text;
                     person.Address = textBoxAddress.Text;
-
+                    person.Contacts.FirstOrDefault().PhoneNum = long.Parse(textBoxPhoneNum.Text);
+                    person.Contacts.FirstOrDefault().Email = textBoxEmail.Text;
 
                     context.SaveChanges();
                 }
+
             }
 
          
@@ -136,12 +139,8 @@ namespace Contact_Manager_Graphical
                     {
                         textBoxPhoneNum.Text = contact.PhoneNum.ToString();
                         textBoxEmail.Text = contact.Email;
-                       /* string tags = "";
-                        foreach (var tag in contact.Tags)
-                        {
-                            tags += tag.Name + " ,";
-                        }*/
-                        textBoxTag.Text = string.Join(", ", contact.Tags);
+               
+                        
                        
                     }
                 }
