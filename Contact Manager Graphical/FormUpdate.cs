@@ -87,7 +87,7 @@ namespace Contact_Manager_Graphical
         {
             Close();
         }
-      
+
 
         private void buttonUpdate_Click(object sender, EventArgs e)
         {
@@ -96,7 +96,7 @@ namespace Contact_Manager_Graphical
             {
                 string[] contactname = listBox1.SelectedItem.ToString().Split(' ');
                 Person person = context.People.Include(c => c.Contacts).FirstOrDefault(p => p.FirstName == contactname[0] && p.SecondName == contactname[1]);
-                    
+
 
                 if (person != null)
                 {
@@ -105,13 +105,11 @@ namespace Contact_Manager_Graphical
                     person.Address = textBoxAddress.Text;
                     person.Contacts.FirstOrDefault().PhoneNum = long.Parse(textBoxPhoneNum.Text);
                     person.Contacts.FirstOrDefault().Email = textBoxEmail.Text;
-
+                    person.BirthDate = textBoxBirthDate.Text != "" ? DateOnly.Parse(textBoxBirthDate.Text) : null;
                     context.SaveChanges();
                 }
-
+                this.DialogResult = DialogResult.OK;
             }
-
-         
         }
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -125,7 +123,7 @@ namespace Contact_Manager_Graphical
             {
                 var person = context.People
                      .Include(p => p.Contacts)
-                     .ThenInclude(c =>c.Tags)
+                     .ThenInclude(c => c.Tags)
                     .FirstOrDefault(p => p.FirstName == firstName && p.SecondName == secondName);
 
                 if (person != null)
@@ -133,30 +131,16 @@ namespace Contact_Manager_Graphical
                     textBoxFirstName.Text = person.FirstName;
                     textBoxSecondName.Text = person.SecondName;
                     textBoxAddress.Text = person.Address;
+                    textBoxBirthDate.Text = person.BirthDate?.ToString() ?? "";
 
                     var contact = person.Contacts.FirstOrDefault();
                     if (contact != null)
                     {
                         textBoxPhoneNum.Text = contact.PhoneNum.ToString();
                         textBoxEmail.Text = contact.Email;
-               
-                        
-                       
                     }
                 }
             }
-        }
-
-
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBoxTag_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

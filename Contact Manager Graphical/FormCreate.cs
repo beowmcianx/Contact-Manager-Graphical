@@ -59,37 +59,45 @@ namespace Contact_Manager_Graphical
         }
         private void ButtonCreateContact_Click(object sender, EventArgs e)
         {
-
-            using (var context = new ContactmanagerContext())
+            try
             {
-                Person newPerson = new Person()
+                using (var context = new ContactmanagerContext())
                 {
-                    FirstName = textBoxFirstName.Text,
-                    SecondName = textBoxSecondName.Text,
-                    Address = textBoxAddress.Text
-                };
-                var selectedTagName = listBoxtag.Text;
-                var existingTag = context.Tags.FirstOrDefault(t => t.Name == selectedTagName);
-                Contact newContact = new Contact()
-                {
-                    PhoneNum = long.Parse(textBoxPhoneNum.Text),
-                    Email = textBoxEmail.Text,
-                    Person = newPerson,
-                    CreationDate = DateOnly.FromDateTime(DateTime.Now)
 
-                };
-                newContact.Tags.Add(existingTag);
-                context.Contacts.Add(newContact);
-                context.SaveChanges();
+                    Person newPerson = new Person()
+                    {
+                        FirstName = textBoxFirstName.Text,
+                        SecondName = textBoxSecondName.Text,
+                        Address = textBoxAddress.Text,
+                        BirthDate = textBoxBirthDate.Text != "" ? DateOnly.Parse(textBoxBirthDate.Text) : null
+                    };
+                    context.People.Add(newPerson);
+                    var selectedTagName = listBoxtag.SelectedItem.ToString();
+                    var existingTag = context.Tags.FirstOrDefault(t => t.Name == selectedTagName);
+                    Contact newContact = new Contact()
+                    {
+                        PhoneNum = long.Parse(textBoxPhoneNum.Text),
+                        Email = textBoxEmail.Text,
+                        Person = newPerson,
+                        CreationDate = DateOnly.FromDateTime(DateTime.Now)
+                    };
+
+                    newContact.Tags.Add(existingTag);
+                    context.Contacts.Add(newContact);
+                    context.SaveChanges();
+                }
+
+            }
+            catch (NullReferenceException ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
             this.DialogResult = DialogResult.OK;
         }
 
         private void FormCreate_Load(object sender, EventArgs e)
-        {
-
-            LoadTags(listBoxtag);
-        }
+        { LoadTags(listBoxtag); }
 
         private void listBoxtag_SelectedIndexChanged(object sender, EventArgs e)
         {

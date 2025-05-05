@@ -49,16 +49,18 @@
             createATagToolStripMenuItem = new ToolStripMenuItem();
             updateTagToolStripMenuItem = new ToolStripMenuItem();
             label7 = new Label();
+            label6 = new Label();
+            textBoxBirthDate = new TextBox();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // buttonUpdate
             // 
             buttonUpdate.Font = new Font("Segoe UI", 15F);
-            buttonUpdate.Location = new Point(570, 495);
+            buttonUpdate.Location = new Point(229, 553);
             buttonUpdate.Margin = new Padding(5, 4, 5, 4);
             buttonUpdate.Name = "buttonUpdate";
-            buttonUpdate.Size = new Size(139, 56);
+            buttonUpdate.Size = new Size(381, 53);
             buttonUpdate.TabIndex = 1;
             buttonUpdate.Text = "Update";
             buttonUpdate.UseVisualStyleBackColor = true;
@@ -68,7 +70,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 15F);
-            label1.Location = new Point(24, 85);
+            label1.Location = new Point(14, 47);
             label1.Margin = new Padding(5, 0, 5, 0);
             label1.Name = "label1";
             label1.Size = new Size(128, 35);
@@ -79,7 +81,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 15F);
-            label2.Location = new Point(24, 160);
+            label2.Location = new Point(14, 131);
             label2.Margin = new Padding(5, 0, 5, 0);
             label2.Name = "label2";
             label2.Size = new Size(164, 35);
@@ -90,7 +92,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 15F);
-            label3.Location = new Point(24, 234);
+            label3.Location = new Point(14, 213);
             label3.Margin = new Padding(5, 0, 5, 0);
             label3.Name = "label3";
             label3.Size = new Size(105, 35);
@@ -101,7 +103,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 15F);
-            label4.Location = new Point(24, 307);
+            label4.Location = new Point(14, 286);
             label4.Margin = new Padding(5, 0, 5, 0);
             label4.Name = "label4";
             label4.Size = new Size(140, 35);
@@ -112,7 +114,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 15F);
-            label5.Location = new Point(24, 382);
+            label5.Location = new Point(14, 360);
             label5.Margin = new Padding(5, 0, 5, 0);
             label5.Name = "label5";
             label5.Size = new Size(75, 35);
@@ -121,7 +123,7 @@
             // 
             // textBoxFirstName
             // 
-            textBoxFirstName.Location = new Point(24, 117);
+            textBoxFirstName.Location = new Point(14, 86);
             textBoxFirstName.Margin = new Padding(5, 4, 5, 4);
             textBoxFirstName.Name = "textBoxFirstName";
             textBoxFirstName.Size = new Size(205, 41);
@@ -129,7 +131,7 @@
             // 
             // textBoxSecondName
             // 
-            textBoxSecondName.Location = new Point(24, 191);
+            textBoxSecondName.Location = new Point(14, 170);
             textBoxSecondName.Margin = new Padding(5, 4, 5, 4);
             textBoxSecondName.Name = "textBoxSecondName";
             textBoxSecondName.Size = new Size(205, 41);
@@ -137,7 +139,7 @@
             // 
             // textBoxAddress
             // 
-            textBoxAddress.Location = new Point(24, 266);
+            textBoxAddress.Location = new Point(14, 248);
             textBoxAddress.Margin = new Padding(5, 4, 5, 4);
             textBoxAddress.Name = "textBoxAddress";
             textBoxAddress.Size = new Size(205, 41);
@@ -145,7 +147,7 @@
             // 
             // textBoxPhoneNum
             // 
-            textBoxPhoneNum.Location = new Point(24, 339);
+            textBoxPhoneNum.Location = new Point(14, 323);
             textBoxPhoneNum.Margin = new Padding(5, 4, 5, 4);
             textBoxPhoneNum.Name = "textBoxPhoneNum";
             textBoxPhoneNum.Size = new Size(205, 41);
@@ -153,7 +155,7 @@
             // 
             // textBoxEmail
             // 
-            textBoxEmail.Location = new Point(24, 413);
+            textBoxEmail.Location = new Point(14, 399);
             textBoxEmail.Margin = new Padding(5, 4, 5, 4);
             textBoxEmail.Name = "textBoxEmail";
             textBoxEmail.Size = new Size(205, 41);
@@ -161,7 +163,7 @@
             // 
             // textBoxTag
             // 
-            textBoxTag.Location = new Point(24, 495);
+            textBoxTag.Location = new Point(14, 565);
             textBoxTag.Margin = new Padding(5, 4, 5, 4);
             textBoxTag.Name = "textBoxTag";
             textBoxTag.Size = new Size(205, 41);
@@ -172,10 +174,10 @@
             listBox1.Font = new Font("Segoe UI", 15F);
             listBox1.FormattingEnabled = true;
             listBox1.ItemHeight = 35;
-            listBox1.Location = new Point(328, 117);
+            listBox1.Location = new Point(229, 51);
             listBox1.Margin = new Padding(5, 4, 5, 4);
             listBox1.Name = "listBox1";
-            listBox1.Size = new Size(381, 354);
+            listBox1.Size = new Size(381, 494);
             listBox1.TabIndex = 17;
             listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
             // 
@@ -188,7 +190,7 @@
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Padding = new Padding(9, 4, 0, 4);
-            menuStrip1.Size = new Size(741, 47);
+            menuStrip1.Size = new Size(635, 47);
             menuStrip1.TabIndex = 18;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -241,18 +243,36 @@
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 15F);
-            label7.Location = new Point(24, 461);
+            label7.Location = new Point(14, 526);
             label7.Margin = new Padding(5, 0, 5, 0);
             label7.Name = "label7";
             label7.Size = new Size(53, 35);
             label7.TabIndex = 8;
             label7.Text = "Tag";
             // 
-            // Form2
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(14, 444);
+            label6.Name = "label6";
+            label6.Size = new Size(159, 35);
+            label6.TabIndex = 19;
+            label6.Text = "Date Of Birth";
+            // 
+            // textBoxBirthDate
+            // 
+            textBoxBirthDate.Location = new Point(14, 482);
+            textBoxBirthDate.Name = "textBoxBirthDate";
+            textBoxBirthDate.Size = new Size(205, 41);
+            textBoxBirthDate.TabIndex = 20;
+            // 
+            // FormUpdate
             // 
             AutoScaleDimensions = new SizeF(14F, 35F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(741, 572);
+            ClientSize = new Size(635, 616);
+            Controls.Add(textBoxBirthDate);
+            Controls.Add(label6);
             Controls.Add(menuStrip1);
             Controls.Add(listBox1);
             Controls.Add(textBoxTag);
@@ -270,7 +290,7 @@
             Controls.Add(buttonUpdate);
             Font = new Font("Segoe UI", 15F);
             Margin = new Padding(5, 4, 5, 4);
-            Name = "Form2";
+            Name = "FormUpdate";
             Text = "Update Contact";
             KeyDown += Form_KeyDown;
             menuStrip1.ResumeLayout(false);
@@ -301,5 +321,7 @@
         private ToolStripMenuItem createATagToolStripMenuItem;
         private ToolStripMenuItem updateTagToolStripMenuItem;
         private Label label7;
+        private Label label6;
+        private TextBox textBoxBirthDate;
     }
 }

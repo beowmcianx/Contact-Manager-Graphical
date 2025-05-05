@@ -70,7 +70,7 @@
             // buttonAllContacts
             // 
             buttonAllContacts.Font = new Font("Segoe UI", 15F);
-            buttonAllContacts.Location = new Point(539, 128);
+            buttonAllContacts.Location = new Point(558, 128);
             buttonAllContacts.Margin = new Padding(3, 4, 3, 4);
             buttonAllContacts.Name = "buttonAllContacts";
             buttonAllContacts.Size = new Size(195, 41);
@@ -85,14 +85,14 @@
             label1.Font = new Font("Segoe UI", 15F);
             label1.Location = new Point(41, 87);
             label1.Name = "label1";
-            label1.Size = new Size(341, 35);
+            label1.Size = new Size(385, 35);
             label1.TabIndex = 11;
-            label1.Text = "Search By Name OR Number:";
+            label1.Text = "Search By Name, Number Or Tag:";
             // 
             // buttonSearch
             // 
             buttonSearch.Font = new Font("Segoe UI", 15F);
-            buttonSearch.Location = new Point(414, 128);
+            buttonSearch.Location = new Point(432, 128);
             buttonSearch.Margin = new Padding(3, 4, 3, 4);
             buttonSearch.Name = "buttonSearch";
             buttonSearch.Size = new Size(120, 41);
@@ -107,7 +107,7 @@
             textBox1.Location = new Point(41, 128);
             textBox1.Margin = new Padding(3, 4, 3, 4);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(341, 41);
+            textBox1.Size = new Size(385, 41);
             textBox1.TabIndex = 9;
             // 
             // listBox1
@@ -118,7 +118,7 @@
             listBox1.Location = new Point(41, 264);
             listBox1.Margin = new Padding(3, 4, 3, 4);
             listBox1.Name = "listBox1";
-            listBox1.Size = new Size(341, 319);
+            listBox1.Size = new Size(341, 389);
             listBox1.TabIndex = 8;
             listBox1.SelectedIndexChanged += listBoxContacts_SelectedIndexChanged;
             // 
@@ -131,7 +131,7 @@
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Padding = new Padding(7, 3, 0, 3);
-            menuStrip1.Size = new Size(944, 45);
+            menuStrip1.Size = new Size(896, 45);
             menuStrip1.TabIndex = 16;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -172,7 +172,7 @@
             // button3
             // 
             button3.Font = new Font("Segoe UI", 15F);
-            button3.Location = new Point(664, 580);
+            button3.Location = new Point(638, 564);
             button3.Name = "button3";
             button3.Size = new Size(226, 41);
             button3.TabIndex = 17;
@@ -183,9 +183,9 @@
             // buttonDelete
             // 
             buttonDelete.Font = new Font("Segoe UI", 15F);
-            buttonDelete.Location = new Point(415, 580);
+            buttonDelete.Location = new Point(415, 564);
             buttonDelete.Name = "buttonDelete";
-            buttonDelete.Size = new Size(243, 41);
+            buttonDelete.Size = new Size(221, 41);
             buttonDelete.TabIndex = 18;
             buttonDelete.Text = "DELETE CONTACT";
             buttonDelete.UseVisualStyleBackColor = true;
@@ -194,9 +194,9 @@
             // button4
             // 
             button4.Font = new Font("Segoe UI", 15F);
-            button4.Location = new Point(415, 629);
+            button4.Location = new Point(415, 611);
             button4.Name = "button4";
-            button4.Size = new Size(475, 42);
+            button4.Size = new Size(449, 42);
             button4.TabIndex = 19;
             button4.Text = "CREATE A CONTACT";
             button4.UseVisualStyleBackColor = true;
@@ -206,7 +206,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(944, 700);
+            ClientSize = new Size(896, 700);
             Controls.Add(button4);
             Controls.Add(buttonDelete);
             Controls.Add(button3);
