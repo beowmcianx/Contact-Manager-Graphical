@@ -63,6 +63,20 @@ namespace Contact_Manager_Graphical
             {
                 using (var context = new ContactmanagerContext())
                 {
+                    if (listBoxtag.SelectedItem == null)
+                    {
+                        MessageBox.Show($"Fill all necessary boxes!", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        return;
+                    }
+
+                    var selectedTagName = listBoxtag.SelectedItem.ToString();
+                    var existingTag = context.Tags.FirstOrDefault(t => t.Name == selectedTagName);
+
+                    if (existingTag == null)
+                    {
+                        MessageBox.Show("The selected tag doesn't exist in the database.", "Invalid Tag", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        return;
+                    }
 
                     Person newPerson = new Person()
                     {
@@ -72,8 +86,7 @@ namespace Contact_Manager_Graphical
                         BirthDate = textBoxBirthDate.Text != "" ? DateOnly.Parse(textBoxBirthDate.Text) : null
                     };
                     context.People.Add(newPerson);
-                    var selectedTagName = listBoxtag.SelectedItem.ToString();
-                    var existingTag = context.Tags.FirstOrDefault(t => t.Name == selectedTagName);
+
                     Contact newContact = new Contact()
                     {
                         PhoneNum = long.Parse(textBoxPhoneNum.Text),
@@ -87,17 +100,23 @@ namespace Contact_Manager_Graphical
                     context.SaveChanges();
                 }
 
+                this.DialogResult = DialogResult.OK;
             }
             catch (NullReferenceException ex)
             {
-                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-            this.DialogResult = DialogResult.OK;
+            catch (FormatException ex)
+            {
+                MessageBox.Show($"Invalid input: {ex.Message}", "Format Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
 
+
         private void FormCreate_Load(object sender, EventArgs e)
-        { LoadTags(listBoxtag); }
+        {
+            LoadTags(listBoxtag); 
+        }
 
         private void listBoxtag_SelectedIndexChanged(object sender, EventArgs e)
         {

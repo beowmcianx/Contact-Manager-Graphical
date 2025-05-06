@@ -45,35 +45,9 @@ namespace Contact_Manager_Graphical
             }
 
         }
-        //Memory
-        public void MemorySystem()
-        {
-            Directory.CreateDirectory("export");
-            string filePath = "export/export.txt";
-            var content = "";
-
-            using (var context = new ContactmanagerContext())
-            {
-                var people = context.People
-                    .Include(p => p.Contacts)
-                    .ToList();
-
-                foreach (var person in people)
-                {
-                    string fullName = $"{person.FirstName} {person.SecondName}";
-                    foreach (var contact in person.Contacts)
-                    {
-                        content += $"{fullName} | Phone: {contact.PhoneNum}\n";
-                    }
-                }
-            }
-            File.WriteAllText(filePath, content);
-        }
-
         private void exportContactsToTxtToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MemorySystem();
-            MessageBox.Show("Successfully saved all contacts to txt. file");
+           
         }
         private void Form2_KeyDown(object sender, KeyEventArgs e)
         {
@@ -85,31 +59,41 @@ namespace Contact_Manager_Graphical
         }
         private void exitescToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Close();
+            
         }
 
 
         private void buttonUpdate_Click(object sender, EventArgs e)
         {
             FormMain form1 = new FormMain();
-            using (var context = new ContactmanagerContext())
+            try
             {
-                string[] contactname = listBox1.SelectedItem.ToString().Split(' ');
-                Person person = context.People.Include(c => c.Contacts).FirstOrDefault(p => p.FirstName == contactname[0] && p.SecondName == contactname[1]);
-
-
-                if (person != null)
+                using (var context = new ContactmanagerContext())
                 {
-                    person.FirstName = textBoxFirstName.Text;
-                    person.SecondName = textBoxSecondName.Text;
-                    person.Address = textBoxAddress.Text;
-                    person.Contacts.FirstOrDefault().PhoneNum = long.Parse(textBoxPhoneNum.Text);
-                    person.Contacts.FirstOrDefault().Email = textBoxEmail.Text;
-                    person.BirthDate = textBoxBirthDate.Text != "" ? DateOnly.Parse(textBoxBirthDate.Text) : null;
-                    context.SaveChanges();
+
+
+                    string[] contactname = listBox1.SelectedItem.ToString().Split(' ');
+                    Person person = context.People.Include(c => c.Contacts).FirstOrDefault(p => p.FirstName == contactname[0] && p.SecondName == contactname[1]);
+
+
+                    if (person != null)
+                    {
+                        person.FirstName = textBoxFirstName.Text;
+                        person.SecondName = textBoxSecondName.Text;
+                        person.Address = textBoxAddress.Text;
+                        person.Contacts.FirstOrDefault().PhoneNum = long.Parse(textBoxPhoneNum.Text);
+                        person.Contacts.FirstOrDefault().Email = textBoxEmail.Text;
+                        person.BirthDate = textBoxBirthDate.Text != "" ? DateOnly.Parse(textBoxBirthDate.Text) : null;
+                        context.SaveChanges();
+                    }
                 }
                 this.DialogResult = DialogResult.OK;
             }
+            catch (NullReferenceException)
+            {
+                MessageBox.Show($"Fill all necessary boxes!", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            
         }
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -141,6 +125,21 @@ namespace Contact_Manager_Graphical
                     }
                 }
             }
+        }
+
+        private void textBoxTag_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listBoxtag_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FormUpdate_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

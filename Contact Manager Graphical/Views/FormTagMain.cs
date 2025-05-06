@@ -63,13 +63,13 @@ namespace Contact_Manager_Graphical
                 string tagName = textBoxTag.Text.Trim();
                 if (string.IsNullOrEmpty(tagName))
                 {
-                    MessageBox.Show("Tag name cannot be empty.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Tag name cannot be empty.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
                 var existingTag = context.Tags.FirstOrDefault(t => t.Name == tagName);
                 if (existingTag != null)
                 {
-                    MessageBox.Show("This tag already exists.", "Duplicate Tag", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("This tag already exists.", "Duplicate Tag", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
 
@@ -86,7 +86,7 @@ namespace Contact_Manager_Graphical
         {
             if (listBox2.SelectedItem == null)
             {
-                MessageBox.Show("Please select a tag to rename.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please select a tag to rename.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
             using (var context = new ContactmanagerContext())
@@ -98,7 +98,7 @@ namespace Contact_Manager_Graphical
                 var tag = context.Tags.FirstOrDefault(t => t.Name == listBox2.SelectedItem.ToString());
                 if (string.IsNullOrEmpty(newTagName))
                 {
-                    MessageBox.Show("Tag name cannot be empty.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Tag name cannot be empty.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
                 tag.Name = newTagName;
@@ -113,7 +113,7 @@ namespace Contact_Manager_Graphical
         {
             if (listBox2.SelectedItem == null)
             {
-                MessageBox.Show("Please select a tag to delete.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please select a tag to delete.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
             try
@@ -134,7 +134,7 @@ namespace Contact_Manager_Graphical
             }
             catch
             {
-                MessageBox.Show("Tag should not be connected to a contact. Please remove the contact before deleting this tag.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Tag should not be connected to a contact. Please remove the contact before deleting this tag.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -142,7 +142,7 @@ namespace Contact_Manager_Graphical
         {
             if (listBox2.SelectedItem == null)
             {
-                MessageBox.Show("Please select a tag to delete.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please select a tag to delete.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
             using (var context = new ContactmanagerContext())
