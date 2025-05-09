@@ -30,7 +30,6 @@ namespace Contact_Manager_Graphical.Services
                 person.FirstName = updatedPerson.FirstName;
                 person.LastName = updatedPerson.LastName;
                 person.BirthDate = updatedPerson.BirthDate;
-                person.Gender = updatedPerson.Gender;
                 person.Email = updatedPerson.Email;
                 person.Phone = updatedPerson.Phone;
                 return true;
@@ -75,10 +74,7 @@ namespace Contact_Manager_Graphical.Services
         }
 
         // Намиране на всички мъже или жени
-        public List<Person> GetPersonsByGender(string gender)
-        {
-            return persons.Where(p => p.Gender.Equals(gender, StringComparison.OrdinalIgnoreCase)).ToList();
-        }
+       
     }
 
     // Модел на личност
@@ -88,17 +84,16 @@ namespace Contact_Manager_Graphical.Services
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public DateTime BirthDate { get; set; }
-        public string Gender { get; set; } 
+      
         public string Email { get; set; }
         public string Phone { get; set; }
 
-        public Person(int personId, string firstName, string lastName, DateTime birthDate, string gender, string email, string phone)
+        public Person(int personId, string firstName, string lastName, DateTime birthDate,  string email, string phone)
         {
             PersonId = personId;
             FirstName = firstName;
             LastName = lastName;
             BirthDate = birthDate;
-            Gender = gender;
             Email = email;
             Phone = phone;
         }

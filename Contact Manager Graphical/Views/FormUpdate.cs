@@ -109,7 +109,7 @@ namespace Contact_Manager_Graphical
                      .Include(p => p.Contacts)
                      .ThenInclude(c => c.Tags)
                     .FirstOrDefault(p => p.FirstName == firstName && p.SecondName == secondName);
-
+                
                 if (person != null)
                 {
                     textBoxFirstName.Text = person.FirstName;
