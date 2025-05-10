@@ -42,12 +42,14 @@
             listBox1 = new ListBox();
             label6 = new Label();
             textBoxBirthDate = new TextBox();
+            listBoxTags = new ListBox();
+            label7 = new Label();
             SuspendLayout();
             // 
             // buttonUpdate
             // 
             buttonUpdate.Font = new Font("Segoe UI", 15F);
-            buttonUpdate.Location = new Point(260, 232);
+            buttonUpdate.Location = new Point(260, 211);
             buttonUpdate.Margin = new Padding(5, 4, 5, 4);
             buttonUpdate.Name = "buttonUpdate";
             buttonUpdate.Size = new Size(237, 66);
@@ -63,7 +65,7 @@
             label1.Location = new Point(18, 33);
             label1.Margin = new Padding(5, 0, 5, 0);
             label1.Name = "label1";
-            label1.Size = new Size(133, 35);
+            label1.Size = new Size(105, 28);
             label1.TabIndex = 2;
             label1.Text = "FirstName:";
             // 
@@ -74,7 +76,7 @@
             label2.Location = new Point(18, 117);
             label2.Margin = new Padding(5, 0, 5, 0);
             label2.Name = "label2";
-            label2.Size = new Size(169, 35);
+            label2.Size = new Size(133, 28);
             label2.TabIndex = 3;
             label2.Text = "SecondName:";
             // 
@@ -85,7 +87,7 @@
             label3.Location = new Point(18, 195);
             label3.Margin = new Padding(5, 0, 5, 0);
             label3.Name = "label3";
-            label3.Size = new Size(110, 35);
+            label3.Size = new Size(86, 28);
             label3.TabIndex = 4;
             label3.Text = "Address:";
             // 
@@ -96,7 +98,7 @@
             label4.Location = new Point(18, 270);
             label4.Margin = new Padding(5, 0, 5, 0);
             label4.Name = "label4";
-            label4.Size = new Size(145, 35);
+            label4.Size = new Size(114, 28);
             label4.TabIndex = 5;
             label4.Text = "PhoneNum:";
             // 
@@ -107,7 +109,7 @@
             label5.Location = new Point(18, 346);
             label5.Margin = new Padding(5, 0, 5, 0);
             label5.Name = "label5";
-            label5.Size = new Size(80, 35);
+            label5.Size = new Size(63, 28);
             label5.TabIndex = 6;
             label5.Text = "Email:";
             // 
@@ -116,7 +118,7 @@
             textBoxFirstName.Location = new Point(18, 65);
             textBoxFirstName.Margin = new Padding(5, 4, 5, 4);
             textBoxFirstName.Name = "textBoxFirstName";
-            textBoxFirstName.Size = new Size(205, 41);
+            textBoxFirstName.Size = new Size(205, 34);
             textBoxFirstName.TabIndex = 9;
             // 
             // textBoxSecondName
@@ -124,7 +126,7 @@
             textBoxSecondName.Location = new Point(18, 149);
             textBoxSecondName.Margin = new Padding(5, 4, 5, 4);
             textBoxSecondName.Name = "textBoxSecondName";
-            textBoxSecondName.Size = new Size(205, 41);
+            textBoxSecondName.Size = new Size(205, 34);
             textBoxSecondName.TabIndex = 10;
             // 
             // textBoxAddress
@@ -132,7 +134,7 @@
             textBoxAddress.Location = new Point(18, 227);
             textBoxAddress.Margin = new Padding(5, 4, 5, 4);
             textBoxAddress.Name = "textBoxAddress";
-            textBoxAddress.Size = new Size(205, 41);
+            textBoxAddress.Size = new Size(205, 34);
             textBoxAddress.TabIndex = 11;
             // 
             // textBoxPhoneNum
@@ -140,7 +142,7 @@
             textBoxPhoneNum.Location = new Point(18, 302);
             textBoxPhoneNum.Margin = new Padding(5, 4, 5, 4);
             textBoxPhoneNum.Name = "textBoxPhoneNum";
-            textBoxPhoneNum.Size = new Size(205, 41);
+            textBoxPhoneNum.Size = new Size(205, 34);
             textBoxPhoneNum.TabIndex = 12;
             // 
             // textBoxEmail
@@ -148,14 +150,14 @@
             textBoxEmail.Location = new Point(18, 378);
             textBoxEmail.Margin = new Padding(5, 4, 5, 4);
             textBoxEmail.Name = "textBoxEmail";
-            textBoxEmail.Size = new Size(205, 41);
+            textBoxEmail.Size = new Size(205, 34);
             textBoxEmail.TabIndex = 13;
             // 
             // listBox1
             // 
             listBox1.Font = new Font("Segoe UI", 15F);
             listBox1.FormattingEnabled = true;
-            listBox1.ItemHeight = 35;
+            listBox1.ItemHeight = 28;
             listBox1.Location = new Point(260, 26);
             listBox1.Margin = new Padding(5, 4, 5, 4);
             listBox1.Name = "listBox1";
@@ -168,7 +170,7 @@
             label6.AutoSize = true;
             label6.Location = new Point(18, 430);
             label6.Name = "label6";
-            label6.Size = new Size(164, 35);
+            label6.Size = new Size(129, 28);
             label6.TabIndex = 19;
             label6.Text = "Date Of Birth:";
             // 
@@ -176,14 +178,35 @@
             // 
             textBoxBirthDate.Location = new Point(18, 468);
             textBoxBirthDate.Name = "textBoxBirthDate";
-            textBoxBirthDate.Size = new Size(205, 41);
+            textBoxBirthDate.Size = new Size(205, 34);
             textBoxBirthDate.TabIndex = 20;
+            // 
+            // listBoxTags
+            // 
+            listBoxTags.FormattingEnabled = true;
+            listBoxTags.ItemHeight = 28;
+            listBoxTags.Location = new Point(18, 540);
+            listBoxTags.Name = "listBoxTags";
+            listBoxTags.Size = new Size(190, 144);
+            listBoxTags.TabIndex = 21;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(18, 505);
+            label7.Name = "label7";
+            label7.Size = new Size(54, 28);
+            label7.TabIndex = 22;
+            label7.Text = "Tags:";
+            label7.Click += label7_Click;
             // 
             // FormUpdate
             // 
-            AutoScaleDimensions = new SizeF(14F, 35F);
+            AutoScaleDimensions = new SizeF(11F, 28F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(560, 541);
+            ClientSize = new Size(560, 717);
+            Controls.Add(label7);
+            Controls.Add(listBoxTags);
             Controls.Add(textBoxBirthDate);
             Controls.Add(label6);
             Controls.Add(listBox1);
@@ -223,5 +246,7 @@
         private ListBox listBox1;
         private Label label6;
         private TextBox textBoxBirthDate;
+        private ListBox listBoxTags;
+        private Label label7;
     }
 }

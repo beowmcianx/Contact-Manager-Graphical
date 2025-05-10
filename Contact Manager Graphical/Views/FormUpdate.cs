@@ -1,4 +1,5 @@
 ﻿using Contact_Manager_Graphical.Models;
+using Contact_Manager_Graphical.Services;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -21,9 +22,24 @@ namespace Contact_Manager_Graphical
             InitializeComponent();
             this.KeyPreview = true;
             AllContacts(listBox1);
+            LoadTags(listBoxTags);
         }
 
+        public void LoadTags(ListBox list)
+        {
 
+            using (var context = new ContactmanagerContext())
+            {
+                var Tag = context.Tags.ToList();
+                list.Items.Clear();
+                foreach (var tags in Tag)
+                {
+
+                    list.Items.Add(tags.Name);
+                }
+            }
+
+        }
         public void AllContacts(ListBox list)
         {
             listBox1.Items.Clear();
@@ -47,7 +63,7 @@ namespace Contact_Manager_Graphical
         }
         private void exportContactsToTxtToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           
+
         }
         private void Form2_KeyDown(object sender, KeyEventArgs e)
         {
@@ -59,42 +75,58 @@ namespace Contact_Manager_Graphical
         }
         private void exitescToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+
         }
 
 
         private void buttonUpdate_Click(object sender, EventArgs e)
         {
-            FormMain form1 = new FormMain();
             try
             {
                 using (var context = new ContactmanagerContext())
                 {
-
-
                     string[] contactname = listBox1.SelectedItem.ToString().Split(' ');
-                    Person person = context.People.Include(c => c.Contacts).FirstOrDefault(p => p.FirstName == contactname[0] && p.SecondName == contactname[1]);
+                    var person = context.People
+                        .Include(c => c.Contacts)
+                        .ThenInclude(c => c.Tags)
+                        .FirstOrDefault(p => p.FirstName == contactname[0] && p.SecondName == contactname[1]);
 
+                    var selectedTagName = listBoxTags.SelectedItem?.ToString();
+                    var existingTag = context.Tags.FirstOrDefault(t => t.Name == selectedTagName);
 
                     if (person != null)
                     {
                         person.FirstName = textBoxFirstName.Text;
                         person.SecondName = textBoxSecondName.Text;
                         person.Address = textBoxAddress.Text;
-                        person.Contacts.FirstOrDefault().PhoneNum = long.Parse(textBoxPhoneNum.Text);
-                        person.Contacts.FirstOrDefault().Email = textBoxEmail.Text;
                         person.BirthDate = textBoxBirthDate.Text != "" ? DateOnly.Parse(textBoxBirthDate.Text) : null;
+
+                        var contact = person.Contacts.FirstOrDefault();
+                        if (contact != null)
+                        {
+                            contact.PhoneNum = long.Parse(textBoxPhoneNum.Text);
+                            contact.Email = textBoxEmail.Text;
+
+                            if (existingTag != null && !contact.Tags.Contains(existingTag))
+                            {
+                                contact.Tags.Add(existingTag);
+                            }
+                        }
+
                         context.SaveChanges();
+                        this.DialogResult = DialogResult.OK;
                     }
                 }
-                this.DialogResult = DialogResult.OK;
             }
             catch (NullReferenceException)
             {
                 MessageBox.Show($"Fill all necessary boxes!", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-            
         }
+
+
+
+
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (listBox1.SelectedItem == null) return;
@@ -109,7 +141,7 @@ namespace Contact_Manager_Graphical
                      .Include(p => p.Contacts)
                      .ThenInclude(c => c.Tags)
                     .FirstOrDefault(p => p.FirstName == firstName && p.SecondName == secondName);
-                
+
                 if (person != null)
                 {
                     textBoxFirstName.Text = person.FirstName;
@@ -138,6 +170,11 @@ namespace Contact_Manager_Graphical
         }
 
         private void FormUpdate_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label7_Click(object sender, EventArgs e)
         {
 
         }
