@@ -190,22 +190,6 @@ namespace Contact_Manager_Graphical
             form3.ShowDialog();
 
         }
-        private void tabPage1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-
-
-        private void editToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void buttonDelete_Click(object sender, EventArgs e)
         {

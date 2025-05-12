@@ -136,7 +136,6 @@
             editToolStripMenuItem.Name = "editToolStripMenuItem";
             editToolStripMenuItem.Size = new Size(54, 32);
             editToolStripMenuItem.Text = "File";
-            editToolStripMenuItem.Click += editToolStripMenuItem_Click;
             // 
             // exitescToolStripMenuItem
             // 

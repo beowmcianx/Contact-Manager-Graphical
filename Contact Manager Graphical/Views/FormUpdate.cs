@@ -69,15 +69,6 @@ namespace Contact_Manager_Graphical
         {
             if (e.KeyCode == Keys.Escape) this.Close();
         }
-        private void Form_KeyDown(object sender, KeyEventArgs e)
-        {
-
-        }
-        private void exitescToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
 
         private void buttonUpdate_Click(object sender, EventArgs e)
         {
@@ -157,26 +148,6 @@ namespace Contact_Manager_Graphical
                     }
                 }
             }
-        }
-
-        private void textBoxTag_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void listBoxtag_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void FormUpdate_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
