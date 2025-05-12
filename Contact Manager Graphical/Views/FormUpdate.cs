@@ -15,14 +15,17 @@ using System.Windows.Forms.VisualStyles;
 
 namespace Contact_Manager_Graphical
 {
+    
     public partial class FormUpdate : Form
     {
+        TagService tagService;
         public FormUpdate()
         {
             InitializeComponent();
             this.KeyPreview = true;
             AllContacts(listBox1);
             LoadTags(listBoxTags);
+            tagService = new TagService();
         }
 
         public void LoadTags(ListBox list)
@@ -91,8 +94,13 @@ namespace Contact_Manager_Graphical
                         .ThenInclude(c => c.Tags)
                         .FirstOrDefault(p => p.FirstName == contactname[0] && p.SecondName == contactname[1]);
 
-                    var selectedTagName = listBoxTags.SelectedItem?.ToString();
-                    var existingTag = context.Tags.FirstOrDefault(t => t.Name == selectedTagName);
+                    var selectedTags = listBoxTags.SelectedItems;
+                    List<Tag> selectedTagNames = new List<Tag>();
+                    foreach (var tag in selectedTags)
+                    {
+                        selectedTagNames.Add(tagService.GetTagByName(tag.ToString()));
+                    }
+                    //var existingTag = context.Tags.FirstOrDefault(t => t.Name == selectedTags);
 
                     if (person != null)
                     {
@@ -107,10 +115,7 @@ namespace Contact_Manager_Graphical
                             contact.PhoneNum = long.Parse(textBoxPhoneNum.Text);
                             contact.Email = textBoxEmail.Text;
 
-                            if (existingTag != null && !contact.Tags.Contains(existingTag))
-                            {
-                                contact.Tags.Add(existingTag);
-                            }
+                            contact.Tags = selectedTagNames;
                         }
 
                         context.SaveChanges();
