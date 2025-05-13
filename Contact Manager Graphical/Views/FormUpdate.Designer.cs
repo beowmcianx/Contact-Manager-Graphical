@@ -199,7 +199,6 @@
             label7.Size = new Size(69, 35);
             label7.TabIndex = 22;
             label7.Text = "Tags:";
-            label7.Click += label7_Click;
             // 
             // FormUpdate
             // 
@@ -226,8 +225,6 @@
             Margin = new Padding(5, 4, 5, 4);
             Name = "FormUpdate";
             Text = "Update Contact";
-            Load += FormUpdate_Load;
-            KeyDown += Form_KeyDown;
             ResumeLayout(false);
             PerformLayout();
         }
