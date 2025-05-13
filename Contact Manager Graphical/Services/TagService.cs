@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Contact_Manager_Graphical.Models;
 
 namespace Contact_Manager_Graphical.Services
 {
@@ -62,7 +63,11 @@ namespace Contact_Manager_Graphical.Services
         // Намиране на таг по име
         public Tag GetTagByName(string name)
         {
-            return tags.FirstOrDefault(t => t.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
+            using(var context = new ContactmanagerContext())
+            {
+                return context.Tags.FirstOrDefault(t => t.Name == name);
+            }
+            
         }
 
         // Намиране на таг по ID
@@ -73,7 +78,7 @@ namespace Contact_Manager_Graphical.Services
     }
 
     // Модел за таг
-    public class Tag
+    /*public class Tag
     {
         public int TagId { get; set; } 
         public string Name { get; set; } 
@@ -83,5 +88,5 @@ namespace Contact_Manager_Graphical.Services
             TagId = tagId;
             Name = name;
         }
-    }
+    }*/
 }
