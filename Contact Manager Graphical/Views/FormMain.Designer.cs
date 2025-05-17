@@ -40,7 +40,8 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 15F);
-            label3.Location = new Point(353, 170);
+            label3.ForeColor = Color.Black;
+            label3.Location = new Point(385, 167);
             label3.Name = "label3";
             label3.Size = new Size(123, 28);
             label3.TabIndex = 15;
@@ -50,7 +51,8 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 15F);
-            label2.Location = new Point(26, 170);
+            label2.ForeColor = Color.Black;
+            label2.Location = new Point(21, 170);
             label2.Name = "label2";
             label2.Size = new Size(120, 28);
             label2.TabIndex = 14;
@@ -61,27 +63,31 @@
             listBox2.Font = new Font("Segoe UI", 15F);
             listBox2.FormattingEnabled = true;
             listBox2.ItemHeight = 28;
-            listBox2.Location = new Point(353, 201);
+            listBox2.Location = new Point(385, 198);
             listBox2.Name = "listBox2";
-            listBox2.Size = new Size(393, 172);
+            listBox2.Size = new Size(393, 200);
             listBox2.TabIndex = 13;
             // 
             // buttonAllContacts
             // 
+            buttonAllContacts.BackColor = Color.FromArgb(20, 40, 90);
+            buttonAllContacts.FlatStyle = FlatStyle.Flat;
             buttonAllContacts.Font = new Font("Segoe UI", 15F);
-            buttonAllContacts.Location = new Point(498, 98);
+            buttonAllContacts.ForeColor = Color.White;
+            buttonAllContacts.Location = new Point(511, 97);
             buttonAllContacts.Name = "buttonAllContacts";
-            buttonAllContacts.Size = new Size(186, 41);
+            buttonAllContacts.Size = new Size(186, 43);
             buttonAllContacts.TabIndex = 12;
             buttonAllContacts.Text = "ALL CONTACTS";
-            buttonAllContacts.UseVisualStyleBackColor = true;
+            buttonAllContacts.UseVisualStyleBackColor = false;
             buttonAllContacts.Click += buttonAllContacts_Click;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 15F);
-            label1.Location = new Point(26, 74);
+            label1.ForeColor = Color.Black;
+            label1.Location = new Point(21, 74);
             label1.Name = "label1";
             label1.Size = new Size(300, 28);
             label1.TabIndex = 11;
@@ -89,21 +95,24 @@
             // 
             // buttonSearch
             // 
+            buttonSearch.BackColor = Color.FromArgb(20, 40, 90);
+            buttonSearch.FlatStyle = FlatStyle.Flat;
             buttonSearch.Font = new Font("Segoe UI", 15F);
-            buttonSearch.Location = new Point(374, 98);
+            buttonSearch.ForeColor = Color.White;
+            buttonSearch.Location = new Point(385, 97);
             buttonSearch.Name = "buttonSearch";
-            buttonSearch.Size = new Size(104, 41);
+            buttonSearch.Size = new Size(104, 43);
             buttonSearch.TabIndex = 10;
             buttonSearch.Text = "SEARCH";
-            buttonSearch.UseVisualStyleBackColor = true;
+            buttonSearch.UseVisualStyleBackColor = false;
             buttonSearch.Click += buttonSearch_Click;
             // 
             // textBox1
             // 
             textBox1.Font = new Font("Segoe UI", 15F);
-            textBox1.Location = new Point(26, 105);
+            textBox1.Location = new Point(21, 105);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(300, 34);
+            textBox1.Size = new Size(328, 34);
             textBox1.TabIndex = 9;
             // 
             // listBox1
@@ -111,37 +120,40 @@
             listBox1.Font = new Font("Segoe UI", 15F);
             listBox1.FormattingEnabled = true;
             listBox1.ItemHeight = 28;
-            listBox1.Location = new Point(26, 199);
+            listBox1.Location = new Point(21, 198);
             listBox1.Name = "listBox1";
-            listBox1.Size = new Size(299, 340);
+            listBox1.Size = new Size(327, 340);
             listBox1.TabIndex = 8;
             listBox1.SelectedIndexChanged += listBoxContacts_SelectedIndexChanged;
             // 
             // menuStrip1
             // 
-            menuStrip1.BackColor = SystemColors.AppWorkspace;
+            menuStrip1.AutoSize = false;
+            menuStrip1.BackColor = Color.FromArgb(10, 30, 90);
             menuStrip1.Font = new Font("Segoe UI", 15F);
             menuStrip1.ImageScalingSize = new Size(20, 20);
             menuStrip1.Items.AddRange(new ToolStripItem[] { editToolStripMenuItem, tagsToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(806, 36);
+            menuStrip1.Size = new Size(806, 48);
             menuStrip1.TabIndex = 16;
             menuStrip1.Text = "menuStrip1";
             // 
             // editToolStripMenuItem
             // 
-            editToolStripMenuItem.BackColor = Color.LightGray;
+            editToolStripMenuItem.BackColor = Color.FromArgb(10, 30, 90);
             editToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { exitescToolStripMenuItem, exportContactsToTxtToolStripMenuItem });
+            editToolStripMenuItem.ForeColor = Color.White;
             editToolStripMenuItem.Name = "editToolStripMenuItem";
-            editToolStripMenuItem.Size = new Size(54, 32);
+            editToolStripMenuItem.Size = new Size(54, 44);
             editToolStripMenuItem.Text = "File";
             editToolStripMenuItem.Click += editToolStripMenuItem_Click;
             // 
             // exitescToolStripMenuItem
             // 
-            exitescToolStripMenuItem.BackColor = Color.LightGray;
+            exitescToolStripMenuItem.BackColor = Color.FromArgb(10, 30, 90);
             exitescToolStripMenuItem.Font = new Font("Segoe UI", 13F);
+            exitescToolStripMenuItem.ForeColor = Color.White;
             exitescToolStripMenuItem.Name = "exitescToolStripMenuItem";
             exitescToolStripMenuItem.Size = new Size(257, 30);
             exitescToolStripMenuItem.Text = "Exit (esc)";
@@ -149,8 +161,9 @@
             // 
             // exportContactsToTxtToolStripMenuItem
             // 
-            exportContactsToTxtToolStripMenuItem.BackColor = Color.LightGray;
+            exportContactsToTxtToolStripMenuItem.BackColor = Color.FromArgb(10, 30, 90);
             exportContactsToTxtToolStripMenuItem.Font = new Font("Segoe UI", 13F);
+            exportContactsToTxtToolStripMenuItem.ForeColor = Color.White;
             exportContactsToTxtToolStripMenuItem.Name = "exportContactsToTxtToolStripMenuItem";
             exportContactsToTxtToolStripMenuItem.Size = new Size(257, 30);
             exportContactsToTxtToolStripMenuItem.Text = "Export contacts to .txt";
@@ -158,52 +171,63 @@
             // 
             // tagsToolStripMenuItem
             // 
-            tagsToolStripMenuItem.BackColor = Color.LightGray;
+            tagsToolStripMenuItem.BackColor = Color.FromArgb(10, 30, 90);
+            tagsToolStripMenuItem.ForeColor = Color.White;
             tagsToolStripMenuItem.Name = "tagsToolStripMenuItem";
-            tagsToolStripMenuItem.Size = new Size(62, 32);
+            tagsToolStripMenuItem.Size = new Size(62, 44);
             tagsToolStripMenuItem.Text = "Tags";
             tagsToolStripMenuItem.Click += tagsToolStripMenuItem_Click;
             // 
             // button3
             // 
+            button3.BackColor = Color.FromArgb(20, 40, 90);
+            button3.FlatStyle = FlatStyle.Flat;
             button3.Font = new Font("Segoe UI", 15F);
-            button3.Location = new Point(548, 426);
+            button3.ForeColor = Color.White;
+            button3.Location = new Point(580, 423);
             button3.Margin = new Padding(3, 2, 3, 2);
             button3.Name = "button3";
             button3.Size = new Size(198, 47);
             button3.TabIndex = 17;
             button3.Text = "UPDATE CONTACT";
-            button3.UseVisualStyleBackColor = true;
+            button3.UseVisualStyleBackColor = false;
             button3.Click += button3_Click;
             // 
             // buttonDelete
             // 
+            buttonDelete.BackColor = Color.FromArgb(20, 40, 90);
+            buttonDelete.FlatStyle = FlatStyle.Flat;
             buttonDelete.Font = new Font("Segoe UI", 15F);
-            buttonDelete.Location = new Point(353, 426);
+            buttonDelete.ForeColor = Color.White;
+            buttonDelete.Location = new Point(385, 423);
             buttonDelete.Margin = new Padding(3, 2, 3, 2);
             buttonDelete.Name = "buttonDelete";
             buttonDelete.Size = new Size(189, 47);
             buttonDelete.TabIndex = 18;
             buttonDelete.Text = "DELETE CONTACT";
-            buttonDelete.UseVisualStyleBackColor = true;
+            buttonDelete.UseVisualStyleBackColor = false;
             buttonDelete.Click += buttonDelete_Click;
             // 
             // button4
             // 
+            button4.BackColor = Color.FromArgb(20, 40, 90);
+            button4.FlatStyle = FlatStyle.Flat;
             button4.Font = new Font("Segoe UI", 15F);
-            button4.Location = new Point(353, 486);
+            button4.ForeColor = Color.White;
+            button4.Location = new Point(385, 486);
             button4.Margin = new Padding(3, 2, 3, 2);
             button4.Name = "button4";
             button4.Size = new Size(393, 52);
             button4.TabIndex = 19;
             button4.Text = "CREATE A CONTACT";
-            button4.UseVisualStyleBackColor = true;
+            button4.UseVisualStyleBackColor = false;
             button4.Click += button4_Click;
             // 
             // FormMain
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.Gainsboro;
             ClientSize = new Size(806, 582);
             Controls.Add(button4);
             Controls.Add(buttonDelete);
@@ -217,6 +241,8 @@
             Controls.Add(textBox1);
             Controls.Add(listBox1);
             Controls.Add(menuStrip1);
+            Font = new Font("Segoe UI", 9F);
+            ForeColor = Color.WhiteSmoke;
             MainMenuStrip = menuStrip1;
             Margin = new Padding(3, 2, 3, 2);
             Name = "FormMain";

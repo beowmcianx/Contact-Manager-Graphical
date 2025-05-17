@@ -70,7 +70,11 @@ namespace Contact_Manager_Graphical
             {
                 using (var context = new ContactmanagerContext())
                 {
-
+                    if (listBox1.SelectedItems.Count <= 0)
+                    {
+                        MessageBox.Show("Select an item to update!", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        return;
+                    }
 
                     string[] contactname = listBox1.SelectedItem.ToString().Split(' ');
                     Person person = context.People.Include(c => c.Contacts).FirstOrDefault(p => p.FirstName == contactname[0] && p.SecondName == contactname[1]);
