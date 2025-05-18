@@ -190,35 +190,19 @@ namespace Contact_Manager_Graphical
             form3.ShowDialog();
 
         }
-        private void tabPage1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-
-
-        private void editToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void buttonDelete_Click(object sender, EventArgs e)
         {
             if (listBox1.SelectedItems.Count <= 0)
             {
-                MessageBox.Show("Select an item to delete!", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Select a contact to delete!", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
             string current = listBox1.SelectedIndex.ToString();
             int index = listBox1.FindString(current);
             if (index! > 0)
             {
-                MessageBox.Show("Select an item to delete!", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Select an contact to delete!", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
