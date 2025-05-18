@@ -29,6 +29,7 @@ namespace Contact_Manager_Graphical
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormTagMain));
             label1 = new Label();
             textBoxTag = new TextBox();
             btn_CreateTag = new Button();
@@ -61,14 +62,17 @@ namespace Contact_Manager_Graphical
             // 
             // btn_CreateTag
             // 
+            btn_CreateTag.BackColor = Color.FromArgb(10, 30, 90);
+            btn_CreateTag.FlatStyle = FlatStyle.Flat;
             btn_CreateTag.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            btn_CreateTag.ForeColor = Color.White;
             btn_CreateTag.Location = new Point(23, 363);
             btn_CreateTag.Margin = new Padding(3, 2, 3, 2);
             btn_CreateTag.Name = "btn_CreateTag";
-            btn_CreateTag.Size = new Size(114, 60);
+            btn_CreateTag.Size = new Size(114, 67);
             btn_CreateTag.TabIndex = 10;
-            btn_CreateTag.Text = "CREATE TAG";
-            btn_CreateTag.UseVisualStyleBackColor = true;
+            btn_CreateTag.Text = "CREATE";
+            btn_CreateTag.UseVisualStyleBackColor = false;
             btn_CreateTag.Click += btn_CreateTag_Click;
             // 
             // listBox2
@@ -95,26 +99,32 @@ namespace Contact_Manager_Graphical
             // 
             // btn_UpdateTag
             // 
+            btn_UpdateTag.BackColor = Color.FromArgb(10, 30, 90);
+            btn_UpdateTag.FlatStyle = FlatStyle.Flat;
             btn_UpdateTag.Font = new Font("Segoe UI", 15F);
+            btn_UpdateTag.ForeColor = Color.White;
             btn_UpdateTag.Location = new Point(153, 363);
             btn_UpdateTag.Margin = new Padding(3, 2, 3, 2);
             btn_UpdateTag.Name = "btn_UpdateTag";
-            btn_UpdateTag.Size = new Size(128, 60);
+            btn_UpdateTag.Size = new Size(128, 67);
             btn_UpdateTag.TabIndex = 13;
-            btn_UpdateTag.Text = "UPDATE TAG";
-            btn_UpdateTag.UseVisualStyleBackColor = true;
+            btn_UpdateTag.Text = "UPDATE";
+            btn_UpdateTag.UseVisualStyleBackColor = false;
             btn_UpdateTag.Click += btn_UpdateTag_Click;
             // 
             // btn_DeleteTag
             // 
+            btn_DeleteTag.BackColor = Color.FromArgb(10, 30, 90);
+            btn_DeleteTag.FlatStyle = FlatStyle.Flat;
             btn_DeleteTag.Font = new Font("Segoe UI", 15F);
+            btn_DeleteTag.ForeColor = Color.White;
             btn_DeleteTag.Location = new Point(464, 363);
             btn_DeleteTag.Margin = new Padding(3, 2, 3, 2);
             btn_DeleteTag.Name = "btn_DeleteTag";
-            btn_DeleteTag.Size = new Size(116, 60);
+            btn_DeleteTag.Size = new Size(116, 67);
             btn_DeleteTag.TabIndex = 14;
-            btn_DeleteTag.Text = "DELETE TAG";
-            btn_DeleteTag.UseVisualStyleBackColor = true;
+            btn_DeleteTag.Text = "DELETE";
+            btn_DeleteTag.UseVisualStyleBackColor = false;
             btn_DeleteTag.Click += btn_DeleteTag_Click;
             // 
             // listBox1
@@ -130,21 +140,25 @@ namespace Contact_Manager_Graphical
             // 
             // btn_DetatchContacts
             // 
+            btn_DetatchContacts.BackColor = Color.FromArgb(10, 30, 90);
+            btn_DetatchContacts.FlatStyle = FlatStyle.Flat;
             btn_DetatchContacts.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            btn_DetatchContacts.ForeColor = Color.White;
             btn_DetatchContacts.Location = new Point(314, 363);
             btn_DetatchContacts.Margin = new Padding(3, 2, 3, 2);
             btn_DetatchContacts.Name = "btn_DetatchContacts";
-            btn_DetatchContacts.Size = new Size(135, 60);
+            btn_DetatchContacts.Size = new Size(135, 67);
             btn_DetatchContacts.TabIndex = 16;
-            btn_DetatchContacts.Text = "DETATCH CONTACTS";
-            btn_DetatchContacts.UseVisualStyleBackColor = true;
+            btn_DetatchContacts.Text = "DETATCH";
+            btn_DetatchContacts.UseVisualStyleBackColor = false;
             btn_DetatchContacts.Click += btn_DetatchContacts_Click;
             // 
             // FormTagMain
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(629, 454);
+            BackColor = Color.LightGray;
+            ClientSize = new Size(616, 466);
             Controls.Add(btn_DetatchContacts);
             Controls.Add(listBox1);
             Controls.Add(btn_DeleteTag);
@@ -154,6 +168,7 @@ namespace Contact_Manager_Graphical
             Controls.Add(btn_CreateTag);
             Controls.Add(textBoxTag);
             Controls.Add(label1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 2, 3, 2);
             Name = "FormTagMain";
             Text = "Modify Tag";

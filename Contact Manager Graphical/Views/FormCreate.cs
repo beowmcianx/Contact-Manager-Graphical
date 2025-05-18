@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -20,6 +21,27 @@ namespace Contact_Manager_Graphical
             InitializeComponent();
 
         }
+        public void SoundEffectLoader(string sfx)
+        {
+            try
+            {
+                string soundPath = Path.Combine(Application.StartupPath, "Resources", sfx);
+                if (File.Exists(soundPath))
+                {
+                    SoundPlayer player = new SoundPlayer(soundPath);
+                    player.Play();
+                }
+                else
+                {
+                    MessageBox.Show("Sound file not found at:\n" + soundPath);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error playing sound: " + ex.Message);
+            }
+        }
+
         public void AllContacts(ListBox list)
         {
 
@@ -95,6 +117,7 @@ namespace Contact_Manager_Graphical
                         CreationDate = DateOnly.FromDateTime(DateTime.Now)
                     };
 
+                    SoundEffectLoader("Chicken_plop.wav");
                     newContact.Tags.Add(existingTag);
                     context.Contacts.Add(newContact);
                     context.SaveChanges();

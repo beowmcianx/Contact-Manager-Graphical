@@ -4,6 +4,9 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 using System.Collections.Generic;
+using System.Media;
+using System.IO;
+
 
 namespace Contact_Manager_Graphical
 {
@@ -37,7 +40,26 @@ namespace Contact_Manager_Graphical
             listBox1.Items.Clear();
             AllContacts(listBox1);
         }
-
+        public void SoundEffectLoader(string sfx)
+        {
+            try
+            {
+                string soundPath = Path.Combine(Application.StartupPath, "Resources", sfx);
+                if (File.Exists(soundPath))
+                {
+                    SoundPlayer player = new SoundPlayer(soundPath);
+                    player.Play();
+                }
+                else
+                {
+                    MessageBox.Show("Sound file not found at:\n" + soundPath);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error playing sound: " + ex.Message);
+            }
+        }
 
         //Memory
         public void MemorySystem()
@@ -111,6 +133,7 @@ namespace Contact_Manager_Graphical
         }
         private void buttonSearch_Click(object sender, EventArgs e)
         {
+
             if (listBox1.SelectedItem != null)
             {
                 listBox1.Items.Clear();
@@ -138,6 +161,8 @@ namespace Contact_Manager_Graphical
                 }
                 else
                 {
+                    SoundEffectLoader("Chest_open.wav");
+
                     foreach (var person in filteredPeople)
                     {
                         string fullName = $"{person.FirstName} {person.SecondName}";
@@ -152,6 +177,8 @@ namespace Contact_Manager_Graphical
         }
         private void buttonAllContacts_Click(object sender, EventArgs e)
         {
+            SoundEffectLoader("Chest_close.wav");
+            
             textBox1.Text = string.Empty;
             listBox1.Items.Clear();
             listBox2.Items.Clear();
@@ -198,8 +225,10 @@ namespace Contact_Manager_Graphical
                 MessageBox.Show("Select a contact to delete!", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
+
             string current = listBox1.SelectedIndex.ToString();
             int index = listBox1.FindString(current);
+            
             if (index! > 0)
             {
                 MessageBox.Show("Select an contact to delete!", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -221,6 +250,15 @@ namespace Contact_Manager_Graphical
             {
                 contact.Tags.Clear();
             }
+
+            if (listBox1.SelectedItems.Count <= 0)
+            {
+                MessageBox.Show("Select a contact to delete!", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            SoundEffectLoader("Tool_break.wav");
+
             context.SaveChanges();
 
             context.Contacts.RemoveRange(contacts);
@@ -230,6 +268,7 @@ namespace Contact_Manager_Graphical
 
             AllContacts(listBox1);
             listBox2.Items.Clear();
+
         }
 
         private void tagsToolStripMenuItem_Click(object sender, EventArgs e)

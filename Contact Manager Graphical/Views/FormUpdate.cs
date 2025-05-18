@@ -79,6 +79,12 @@ namespace Contact_Manager_Graphical
             {
                 using (var context = new ContactmanagerContext())
                 {
+                    if (listBox1.SelectedItems.Count < 1)
+                    {
+                        MessageBox.Show($"Fill all necessary boxes!", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        return;
+                    }
+
                     string[] contactname = listBox1.SelectedItem.ToString().Split(' ');
                     var person = context.People
                         .Include(c => c.Contacts)

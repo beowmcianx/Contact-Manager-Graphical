@@ -10,6 +10,28 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Chest_close.wav" />
+    <None Remove="Resources\Chest_open.wav" />
+    <None Remove="Resources\Chicken_plop.wav" />
+    <None Remove="Resources\Tool_break.wav" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\Chest_close.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Chest_open.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Chicken_plop.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Tool_break.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.3">
       <PrivateAssets>all</PrivateAssets>
