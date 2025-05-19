@@ -14,13 +14,19 @@ namespace Contact_Manager_Graphical.Services
         public TagService()
         {
             
-            using (var context = new ContactmanagerContext())
-            {
+            
               tags = new List<Tag>();
-            }
+            
         }
 
-        // Добавяне на нов таг
+        /// <summary>
+        /// Добавя нов етикет (таг), ако не съществува вече с такова име.
+        /// </summary>
+        /// <param name="tag">Обект от тип <c>Tag</c>, който ще бъде добавен.</param>
+        /// <exception cref="InvalidOperationException">
+        /// Хвърля се, ако вече съществува таг със същото име (без значение от главни/малки букви).
+        /// </exception>
+
         public void AddTag(Tag tag)
         {
             // Проверка дали тагът вече съществува
@@ -38,7 +44,15 @@ namespace Contact_Manager_Graphical.Services
             }
         }
 
-        // Обновяване на съществуващ таг
+        /// <summary>
+        /// Актуализира етикет (таг) с посоченото ID, използвайки предоставения обект с нови данни.
+        /// </summary>
+        /// <param name="tagId">Уникалният идентификатор на етикета, който ще бъде актуализиран.</param>
+        /// <param name="updatedTag">Обект съдържащ новите стойности за етикета.</param>
+        /// <returns>
+        /// Връща <c>true</c>, ако етикетът е намерен и успешно актуализиран;
+        /// <c>false</c>, ако не е намерен.
+        /// </returns>
         public bool UpdateTag(int tagId, Tag updatedTag)
         {
             
@@ -54,7 +68,14 @@ namespace Contact_Manager_Graphical.Services
             }
         }
 
-        // Изтриване на таг
+        /// <summary>
+        /// Изтрива етикет (таг) с дадено ID от списъка с тагове.
+        /// </summary>
+        /// <param name="tagId">Уникалният идентификатор на етикета, който ще бъде изтрит.</param>
+        /// <returns>
+        /// Връща <c>true</c>, ако етикетът е успешно намерен и изтрит; 
+        /// <c>false</c> ако не е намерен.
+        /// </returns>
         public bool DeleteTag(int tagId)
         {
            
@@ -113,7 +134,14 @@ namespace Contact_Manager_Graphical.Services
             
         }
 
-        // Намиране на таг по ID
+        /// <summary>
+        /// Намира и връща етикет (таг) по неговия уникален идентификатор.
+        /// </summary>
+        /// <param name="tagId">Идентификаторът на търсения етикет.</param>
+        /// <returns>
+        /// Връща обект от тип <c>Tag</c>, ако етикетът бъде намерен;
+        /// в противен случай връща <c>null</c>.
+        /// </returns>
         public Tag GetTagById(int tagId)
         {
             
