@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -26,6 +27,27 @@ namespace Contact_Manager_Graphical
             AllContacts(listBox1);
             LoadTags(listBoxTags);
             tagService = new TagService();
+        }
+
+        public void SoundEffectLoader(string sfx)
+        {
+            try
+            {
+                string soundPath = Path.Combine(Application.StartupPath, "Resources", sfx);
+                if (File.Exists(soundPath))
+                {
+                    SoundPlayer player = new SoundPlayer(soundPath);
+                    player.Play();
+                }
+                else
+                {
+                    MessageBox.Show("Sound file not found at:\n" + soundPath);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error playing sound: " + ex.Message);
+            }
         }
 
         public void LoadTags(ListBox list)
@@ -75,6 +97,8 @@ namespace Contact_Manager_Graphical
 
         private void buttonUpdate_Click(object sender, EventArgs e)
         {
+            SoundEffectLoader("Anvil_use.wav");
+
             try
             {
                 using (var context = new ContactmanagerContext())
