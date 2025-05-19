@@ -45,22 +45,53 @@ namespace Contact_Manager_Graphical.Services
         // Изтриване на таг
         public bool DeleteTag(int tagId)
         {
-            var tag = tags.FirstOrDefault(t => t.TagId == tagId);
-            if (tag != null)
+           
+            using (var context = new ContactmanagerContext())
             {
-                tags.Remove(tag);
-                return true;
+                 var tag = tags.FirstOrDefault(t => t.TagId == tagId);
+                if (tag != null)
+                {
+                  tags.Remove(tag);
+                  return true;
+                }
+                 return false;
             }
-            return false;
         }
 
-        // Получаване на всички тагове
+        /// <summary>
+        /// Извлича всички тагове от базата данни.
+        /// </summary>
+        /// <returns>
+        /// Списък от всички обекти от тип <see cref="Tag"/> налични в базата данни.
+        /// </returns>
+        /// <remarks>
+        /// Методът създава нова инстанция на <see cref="ContactmanagerContext"/> и използва я, за да достъпи таговете.
+        /// В текущата си реализация методът връща променлива <c>tags</c>, която не е дефинирана или инициализирана.
+        /// Вместо това трябва да се използва:
+        /// <code>return context.Tags.ToList();</code>
+        /// </remarks>
         public List<Tag> GetAllTags()
         {
-            return tags;
+           
+            using (var context = new ContactmanagerContext())
+            {
+                return tags;
+            }
         }
 
-        // Намиране на таг по име
+        /// <summary>
+        /// Намира и връща таг от базата данни по зададено име.
+        /// </summary>
+        /// <param name="name">
+        /// Името на тага, който трябва да бъде намерен.
+        /// </param>
+        /// <returns>
+        /// Обект от тип <see cref="Tag"/>, който съответства на зададеното име, или <c>null</c>, ако такъв не съществува.
+        /// </returns>
+        /// <remarks>
+        /// Методът използва LINQ заявка с <see cref="Queryable.FirstOrDefault{TSource}(System.Linq.IQueryable{TSource}, System.Linq.Expressions.Expression{System.Func{TSource,bool}})"/> 
+        /// за да върне първия таг, съвпадащ с даденото име.
+        /// </remarks>
         public Tag GetTagByName(string name)
         {
             using(var context = new ContactmanagerContext())
@@ -73,20 +104,13 @@ namespace Contact_Manager_Graphical.Services
         // Намиране на таг по ID
         public Tag GetTagById(int tagId)
         {
-            return tags.FirstOrDefault(t => t.TagId == tagId);
+            
+            using (var context = new ContactmanagerContext())
+            {
+                return tags.FirstOrDefault(t => t.TagId == tagId);
+            }
         }
     }
 
-    // Модел за таг
-    /*public class Tag
-    {
-        public int TagId { get; set; } 
-        public string Name { get; set; } 
-
-        public Tag(int tagId, string name)
-        {
-            TagId = tagId;
-            Name = name;
-        }
-    }*/
+   
 }

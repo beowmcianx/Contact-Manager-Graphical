@@ -73,7 +73,7 @@ namespace Contact_Manager_Graphical.Services
             return persons.Where(p => p.BirthDate.Year == year).ToList();
         }
 
-        // Намиране на всички мъже или жени
+        
        
     }
 
