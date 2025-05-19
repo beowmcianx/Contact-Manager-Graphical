@@ -14,62 +14,90 @@ namespace Contact_Manager_Graphical.Services
 
         public ContactService()
         {
-            contacts = new List<Contact>();
+           
+            using (var context = new ContactmanagerContext())
+            {
+              contacts = new List<Contact>();
+            }
         }
 
         // Добавяне на нов контакт
         public void AddContact(Contact contact)
         {
-            contacts.Add(contact);
+            
+            using (var context = new ContactmanagerContext())
+            {
+               contacts.Add(contact);
+            }
         }
 
         // Обновяване на съществуващ контакт
         public bool UpdateContact(int contactId, Contact updatedContact)
         {
-            var contact = contacts.FirstOrDefault(c => c.ContactId == contactId);
-            if (contact != null)
+            
+
+            using (var context = new ContactmanagerContext())
             {
-                contact.FirstName = updatedContact.FirstName;
-                contact.SecondName = updatedContact.SecondName;
-                contact.Address = updatedContact.Address;
-                contact.PhoneNum = updatedContact.PhoneNum;
+                var contact = contacts.FirstOrDefault(c => c.ContactId == contactId);
+             if (contact != null)
+             {
+                 contact.FirstName = updatedContact.FirstName;
+                 contact.SecondName = updatedContact.SecondName;
+                 contact.Address = updatedContact.Address;
+                 contact.PhoneNum = updatedContact.PhoneNum;
                 contact.Email = updatedContact.Email;
-                contact.BirthDate = updatedContact.BirthDate;
-                contact.Tag = updatedContact.Tag;
-                return true;
+                 contact.BirthDate = updatedContact.BirthDate;
+                 contact.Tag = updatedContact.Tag;
+                 return true;
+             }
+              return false;
             }
-            return false;
         }
 
         // Изтриване на контакт
         public bool DeleteContact(int contactId)
         {
-            var contact = contacts.FirstOrDefault(c => c.ContactId == contactId);
-            if (contact != null)
+            using (var context = new ContactmanagerContext())
             {
-                contacts.Remove(contact);
-                return true;
+                var contact = contacts.FirstOrDefault(c => c.ContactId == contactId);
+                if (contact != null)
+                {
+                    contacts.Remove(contact);
+                    return true;
+                }
+                return false;
             }
-            return false;
         }
 
         // Намиране на контакт по ID
         public Contact GetContactById(int contactId)
         {
-            return contacts.FirstOrDefault(c => c.ContactId == contactId);
+            
+            using (var context = new ContactmanagerContext())
+            {
+               return contacts.FirstOrDefault(c => c.ContactId == contactId);
+            }
         }
 
         // Връщане на всички контакти
         public List<Contact> GetAllContacts()
         {
-            return contacts;
+            
+            using (var context = new ContactmanagerContext())
+            {
+                return contacts;
+            }
         }
 
         // Експортиране на контактите в .txt файл
         public void ExportContactsToTxt(string filePath)
         {
-            using (var writer = new StreamWriter(filePath))
+            
+
+            using (var context = new ContactmanagerContext())
             {
+              using (var writer = new StreamWriter(filePath))
+              {
                 foreach (var contact in contacts)
                 {
                     writer.WriteLine($"ID: {contact.ContactId}");
@@ -82,13 +110,18 @@ namespace Contact_Manager_Graphical.Services
                     writer.WriteLine($"Tag: {contact.Tag}");
                     writer.WriteLine(new string('-', 50)); 
                 }
+              }
             }
         }
 
         // Намиране на контакти по таг
         public List<Contact> GetContactsByTag(string tag)
         {
-            return contacts.Where(c => c.Tag.Equals(tag, StringComparison.OrdinalIgnoreCase)).ToList();
+            using (var context = new ContactmanagerContext())
+            {
+              return contacts.Where(c => c.Tag.Equals(tag, StringComparison.OrdinalIgnoreCase)).ToList();
+           
+            }
         }
     }
 
@@ -116,6 +149,7 @@ namespace Contact_Manager_Graphical.Services
             BirthDate = birthDate;
             Tag = tag;
         }
+        
     }
 
 

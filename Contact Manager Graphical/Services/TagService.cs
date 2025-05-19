@@ -13,33 +13,45 @@ namespace Contact_Manager_Graphical.Services
 
         public TagService()
         {
-            tags = new List<Tag>();
+            
+            using (var context = new ContactmanagerContext())
+            {
+              tags = new List<Tag>();
+            }
         }
 
         // Добавяне на нов таг
         public void AddTag(Tag tag)
         {
             // Проверка дали тагът вече съществува
-            if (!tags.Any(t => t.Name.Equals(tag.Name, StringComparison.OrdinalIgnoreCase)))
+
+            using (var context = new ContactmanagerContext())
             {
-                tags.Add(tag);
-            }
-            else
-            {
+                if (!tags.Any(t => t.Name.Equals(tag.Name, StringComparison.OrdinalIgnoreCase)))
+                {
+                 tags.Add(tag);
+                }
+               else
+               {
                 throw new InvalidOperationException("Tag already exists.");
+               }
             }
         }
 
         // Обновяване на съществуващ таг
         public bool UpdateTag(int tagId, Tag updatedTag)
         {
-            var tag = tags.FirstOrDefault(t => t.TagId == tagId);
+            
+            using (var context = new ContactmanagerContext())
+            {
+               var tag = tags.FirstOrDefault(t => t.TagId == tagId);
             if (tag != null)
             {
                 tag.Name = updatedTag.Name;
                 return true;
             }
             return false;
+            }
         }
 
         // Изтриване на таг
