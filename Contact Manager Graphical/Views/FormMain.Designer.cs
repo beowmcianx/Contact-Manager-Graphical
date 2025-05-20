@@ -1,5 +1,6 @@
 ﻿namespace Contact_Manager_Graphical
 {
+
     partial class FormMain
     {
         private System.ComponentModel.IContainer components = null;
