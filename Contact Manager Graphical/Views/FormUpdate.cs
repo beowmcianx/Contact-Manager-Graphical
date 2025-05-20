@@ -16,7 +16,7 @@ using System.Windows.Forms.VisualStyles;
 
 namespace Contact_Manager_Graphical
 {
-    
+
     public partial class FormUpdate : Form
     {
         TagService tagService;
@@ -183,6 +183,11 @@ namespace Contact_Manager_Graphical
                     }
                 }
             }
+        }
+
+        private void FormUpdate_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

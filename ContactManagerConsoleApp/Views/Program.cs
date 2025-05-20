@@ -1,4 +1,5 @@
-﻿using static System.Runtime.InteropServices.JavaScript.JSType;
+﻿using ContactManagerConsoleApp.Bussiness_Layer;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace ContactManagerConsoleApp
 {
@@ -7,7 +8,7 @@ namespace ContactManagerConsoleApp
         static void Main(string[] args)
         {
         
-
+           PersonServices personServices = new PersonServices();
            
             Console.WriteLine("ContactManager\r");
             Console.WriteLine("------------------------\n");
@@ -61,8 +62,10 @@ namespace ContactManagerConsoleApp
                     Console.ReadLine();
 
                     break;
-                case "m":
-                    Console.WriteLine($"All contacts ");
+                case "s":
+                    Console.WriteLine($"All contacts: \n ");
+                    personServices.ReadPersonContacts();
+                    
                     break;
                 case "d":
                     Console.WriteLine($"Type contact name to delete" );

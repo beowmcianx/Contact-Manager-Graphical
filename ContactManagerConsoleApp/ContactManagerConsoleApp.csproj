@@ -11,8 +11,4 @@
     <ProjectReference Include="..\Contact Manager Graphical\Contact Manager Graphical.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="DataAccess\" />
-  </ItemGroup>
-
 </Project>
