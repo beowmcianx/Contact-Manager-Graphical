@@ -21,7 +21,14 @@ namespace Contact_Manager_Graphical.Services
             }
         }
 
-        // Добавяне на нов контакт
+        /// <summary>
+        /// Добавя нов обект <see cref="Contact"/> към базата данни.
+        /// </summary>
+        /// <param name="contact">Обект от тип <see cref="Contact"/>, съдържащ информацията за контакт.</param>
+        /// <remarks>
+        /// Методът използва <see cref="ContactmanagerContext"/> за създаване на нов запис в базата данни.
+        /// След добавянето, промените се записват чрез <c>context.SaveChanges()</c>.
+        /// </remarks>
         public void AddContact(Contact contact)
         {
             
@@ -31,7 +38,19 @@ namespace Contact_Manager_Graphical.Services
             }
         }
 
-        // Обновяване на съществуващ контакт
+        /// <summary>
+        /// Актуализира съществуващ обект <see cref="Contact"/> в базата данни по неговото ID.
+        /// </summary>
+        /// <param name="contactId">Уникалният идентификатор на контакта за актуализация.</param>
+        /// <param name="updatedContact">Обект с новите данни, които трябва да се приложат.</param>
+        /// <returns>
+        /// Връща <c>true</c>, ако контактът е намерен и успешно актуализиран; 
+        /// в противен случай връща <c>false</c>.
+        /// </returns>
+        /// <remarks>
+        /// Методът използва <see cref="ContactmanagerContext"/> за достъп до базата данни.
+        /// Промените се записват чрез <c>context.SaveChanges()</c>.
+        /// </remarks>
         public bool UpdateContact(int contactId, Contact updatedContact)
         {
             
@@ -54,7 +73,17 @@ namespace Contact_Manager_Graphical.Services
             }
         }
 
-        // Изтриване на контакт
+        /// <summary>
+        /// Изтрива обект <see cref="Contact"/> от базата данни по зададено ID.
+        /// </summary>
+        /// <param name="contactId">Уникалният идентификатор на контакта за изтриване.</param>
+        /// <returns>
+        /// Връща <c>true</c>, ако контактът е намерен и успешно изтрит; в противен случай <c>false</c>.
+        /// </returns>
+        /// <remarks>
+        /// Методът използва <see cref="ContactmanagerContext"/> за достъп до базата данни.
+        /// Промените се записват чрез <c>context.SaveChanges()</c>.
+        /// </remarks>
         public bool DeleteContact(int contactId)
         {
             using (var context = new ContactmanagerContext())
@@ -69,7 +98,14 @@ namespace Contact_Manager_Graphical.Services
             }
         }
 
-        // Намиране на контакт по ID
+        /// <summary>
+        /// Връща обект <see cref="Contact"/> от базата данни по зададено ID.
+        /// </summary>
+        /// <param name="contactId">Уникалният идентификатор на контакта.</param>
+        /// <returns>
+        /// Обект <see cref="Contact"/>, ако е намерен; в противен случай <c>null</c>.
+        /// </returns>
+        /// <remarks>Използва <see cref="ContactmanagerContext"/> за достъп до данните.</remarks>
         public Contact GetContactById(int contactId)
         {
             
@@ -79,7 +115,13 @@ namespace Contact_Manager_Graphical.Services
             }
         }
 
-        // Връщане на всички контакти
+        /// <summary>
+        /// Връща списък с всички контакти от базата данни.
+        /// </summary>
+        /// <returns>Списък от обекти <see cref="Contact"/>.</returns>
+        /// <remarks>
+        /// Използва <see cref="ContactmanagerContext"/> за достъп до данните.
+        /// </remarks>
         public List<Contact> GetAllContacts()
         {
             
@@ -89,7 +131,14 @@ namespace Contact_Manager_Graphical.Services
             }
         }
 
-        // Експортиране на контактите в .txt файл
+        /// <summary>
+        /// Експортира всички контакти от базата данни в текстов файл на указан път.
+        /// </summary>
+        /// <param name="filePath">Пътят към текстовия файл, в който ще се запишат данните.</param>
+        /// <remarks>
+        /// Методът използва <see cref="ContactmanagerContext"/> за достъп до базата данни.
+        /// Контактите се записват във файл с детайлна информация за всеки контакт.
+        /// </remarks>
         public void ExportContactsToTxt(string filePath)
         {
             
@@ -114,7 +163,11 @@ namespace Contact_Manager_Graphical.Services
             }
         }
 
-        // Намиране на контакти по таг
+        /// <summary>
+        /// Връща списък с контакти, чиито таг съвпада със зададения (без значение от главни/малки букви).
+        /// </summary>
+        /// <param name="tag">Тагът за търсене.</param>
+        /// <returns>Списък с контакти, които имат зададения таг.</returns>
         public List<Contact> GetContactsByTag(string tag)
         {
             using (var context = new ContactmanagerContext())
