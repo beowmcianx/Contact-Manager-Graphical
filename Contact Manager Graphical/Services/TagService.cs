@@ -11,12 +11,20 @@ namespace Contact_Manager_Graphical.Services
     {
         private List<Tag> tags;
 
+        /// <summary>
+        /// Инициализира нов екземпляр на класа <see cref="TagService"/>.
+        /// </summary>
+        /// <remarks>
+        /// Конструкторът създава празен списък <see cref="tags"/>, 
+        /// който може да се използва за локално съхранение на тагове.
+        /// </remarks>
         public TagService()
-        {
-            
-            
-              tags = new List<Tag>();
-            
+        {    
+            using (var context = new ContactmanagerContext())
+            {
+                tags = new List<Tag>();
+            }
+
         }
 
         /// <summary>

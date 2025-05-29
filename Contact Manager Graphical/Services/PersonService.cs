@@ -11,6 +11,12 @@ namespace Contact_Manager_Graphical.Services
     {
         private List<Person> persons;
 
+        /// <summary>
+        /// Инициализира нов екземпляр на класа <see cref="PersonService"/>.
+        /// </summary>
+        /// <remarks>
+        /// В момента конструкторът създава празен списък <see cref="persons"/>.
+        /// </remarks>
         public PersonService()
         {
             

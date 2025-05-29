@@ -12,6 +12,12 @@ namespace Contact_Manager_Graphical.Services
     {
         private List<Contact> contacts;
 
+        /// <summary>
+        /// Инициализира нов екземпляр на класа <see cref="ContactService"/>.
+        /// </summary>
+        /// <remarks>
+        /// Конструкторът създава празен списък <see cref="contacts"/>, 
+        /// който може да се използва за локално съхранение на контакти.
         public ContactService()
         {
            
