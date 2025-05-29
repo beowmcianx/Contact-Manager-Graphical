@@ -1,7 +1,10 @@
 ﻿using Contact_Manager_Graphical.Models;
 using Contact_Manager_Graphical.Services;
-using ContactManagerConsoleApp.Bussiness_Layer;
+using ContactManagerConsoleApp.Service;
+using ContactManagerConsoleApp.Views;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.IO;
 using System.Windows.Forms;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
@@ -13,9 +16,9 @@ namespace ContactManagerConsoleApp
 
         static void Main(string[] args)
         {
-        
-           Services services = new Services();
-           
+
+            Services services = new Services();
+            PersonView personView = new PersonView();
             Console.WriteLine("ContactManager\r");
             Console.WriteLine("------------------------\n");
 
@@ -27,19 +30,19 @@ namespace ContactManagerConsoleApp
             Console.Write("Your option? ");
 
 
-           
 
-          
-           
 
-          
+
+
+
+
             switch (Console.ReadLine())
             {
                 case "a":
-                    CreateNewContact(services);
+                    PersonView.CreateNewContact(services);
                     break;
                 case "u":
-                   
+
 
                     break;
                 case "s":
@@ -49,10 +52,10 @@ namespace ContactManagerConsoleApp
 
                     break;
                 case "d":
-                  
+
                     break;
             }
-     
+
             Console.Write("Press any key to close the app...");
             Console.ReadKey();
         }
@@ -79,69 +82,11 @@ namespace ContactManagerConsoleApp
             Console.ReadKey();
         }
 
-        static void CreateNewContact(Services service)
-        {
-
-            Console.Write("First Name: ");
-            var firstName = Console.ReadLine();
-
-            Console.Write("Second Name: ");
-            var secondName = Console.ReadLine();
-            using (var context = new ContactmanagerContext())
-            {
-                var person = context.People
-                      .Include(c => c.Contacts)
-                      .ThenInclude(c => c.Tags)
-                      .FirstOrDefault(p => p.FirstName == firstName && p.SecondName == secondName);
-
-
-                Console.Write("Address: ");
-                var address = Console.ReadLine();
-
-                Console.Write("BirthDate (yyyy-MM-dd): ");
-                var birthDate = Console.ReadLine();
-               
-
-
-                Console.Write("Phone Number: ");
-                var phoneNum = Console.ReadLine();
-                
-
-                Console.Write("Email: ");
-                var email = Console.ReadLine();
-
-                Console.Write("Tags ( ,): ");
-                var tagsInput = Console.ReadLine();
-                var selectedTags = tagsInput;
-                List<Tag> selectedTagNames = new List<Tag>();
-                foreach (var tag in selectedTags)
-                {
-                    selectedTagNames.Add(service.GetTagByName(tag.ToString()));
-                }
-
-
-
-                person.FirstName = firstName;
-                person.SecondName = secondName;
-                person.Address = address;
-                person.BirthDate = birthDate != "" ? DateOnly.Parse(birthDate) : null;
-
-
-
-                var contact = person.Contacts.FirstOrDefault();
-
-                contact.PhoneNum = long.Parse(phoneNum);
-                contact.Email = email;
-                context.SaveChanges();
-
-                Console.WriteLine("Contact created. Press any key to continue...");
-                Console.ReadKey();
-                
-            }
-        }
-
-
-       
+     
     }
+
+
 }
+
+
 

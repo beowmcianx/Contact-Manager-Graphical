@@ -7,9 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ContactManagerConsoleApp.Bussiness_Layer
+namespace ContactManagerConsoleApp.Service
 {
-    internal class Services
+    public class Services
     {
         private readonly ContactmanagerContext context;
 
@@ -42,10 +42,35 @@ namespace ContactManagerConsoleApp.Bussiness_Layer
         }
 
 
-        public void CreateContact(Person person, Contact contact, List<string> tagNames)
+        public bool CreateContact(string firstName, string secondName, string address, DateOnly birthDate, long phoneNum, string email, List<string> tagNames)
         {
             using (var context = new ContactmanagerContext())
             {
+                var existingPerson = context.People
+                    .Include(c => c.Contacts)
+                    .ThenInclude(c => c.Tags)
+                    .FirstOrDefault(p => p.FirstName == firstName && p.SecondName == secondName);
+
+                if (existingPerson != null)
+                {
+                    return false;
+                }
+
+                var newPerson = new Person
+                {
+                    FirstName = firstName,
+                    SecondName = secondName,
+                    Address = address,
+                    BirthDate = birthDate
+                };
+
+                var newContact = new Contact
+                {
+                    PhoneNum = phoneNum,
+                    Email = email,
+                    CreationDate = DateOnly.FromDateTime(DateTime.Now),
+                    Tags = new List<Tag>()
+                };
 
                 foreach (var tagName in tagNames)
                 {
@@ -55,69 +80,23 @@ namespace ContactManagerConsoleApp.Bussiness_Layer
                         existingTag = new Tag { Name = tagName };
                         context.Tags.Add(existingTag);
                     }
-                    contact.Tags.Add(existingTag);
+                    newContact.Tags.Add(existingTag);
                 }
 
-                person.Contacts.Add(contact);
-                context.People.Add(person);
+                newPerson.Contacts.Add(newContact);
+                context.People.Add(newPerson);
                 context.SaveChanges();
+
+                return true;
             }
+
 
         }
-     
-
-
-        public void UpdateContact(string firstName, string lastName,
-           string? newAddress, DateOnly? newBirthDate,
-           long? newPhoneNum, string? newEmail,
-           List<string> tagsToAdd, List<string> tagsToRemove)
-        {
-            var person = context.People
-                .Include(p => p.Contacts)
-                .ThenInclude(c => c.Tags)
-                .FirstOrDefault(p => p.FirstName == firstName && p.SecondName == lastName);
-
-            if (person == null)
-                throw new Exception("Person not found");
-
-            
-            if (newAddress != null)
-                person.Address = newAddress;
-
-            if (newBirthDate.HasValue)
-                person.BirthDate = newBirthDate;
-
-            var contact = person.Contacts.FirstOrDefault();
-            if (contact != null)
-            {
-                if (newPhoneNum.HasValue)
-                    contact.PhoneNum = newPhoneNum.Value;
-
-                if (newEmail != null)
-                    contact.Email = newEmail;
-            }
-
-          
-            foreach (var tagName in tagsToAdd)
-            {
-                var tag = context.Tags.FirstOrDefault(t => t.Name == tagName);
-                if (tag != null && !contact.Tags.Any(t => t.Name == tagName))
-                {
-                    contact.Tags.Add(tag);
-                }
-            }
-
-    
-            foreach (var tag in contact.Tags.ToList())
-            {
-                if (tagsToRemove.Contains(tag.Name))
-                {
-                    contact.Tags.Remove(tag);
-                }
-            }
-
-            context.SaveChanges();
-        }
-
     }
 }
+
+
+
+
+        
+
