@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using Contact_Manager_Graphical.Models;
 using ContactManagerConsoleApp.Service;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 namespace ContactManagerConsoleApp.Views
 {
     public class PersonView
@@ -75,6 +77,69 @@ namespace ContactManagerConsoleApp.Views
 
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
+        }
+
+        public static void deletePerson(Services service)
+        {
+            Console.WriteLine("Write the name of the contact you want to delte");
+            Console.Write("First name: ");
+            var firstName = Console.ReadLine();
+            Console.Write("Second name: ");
+            var secondName = Console.ReadLine();
+            if (service.DeletePerson(firstName, secondName) == true)
+            {
+                Console.WriteLine("Successfully deleted!");
+            }
+        }
+
+        public static void UpdatePerson(Services service)
+        {
+            var people = service.GetAllPeople();
+            Console.WriteLine("Write the name of the contact you want to update");
+            Console.WriteLine( "All the people");
+            foreach (var person in people)
+            {
+                Console.WriteLine($"{person.FirstName} {person.SecondName}");
+            }
+                Console.Write("First name: ");
+            var firstName = Console.ReadLine();
+
+            Console.Write("Second name: ");
+            var secondName = Console.ReadLine();
+
+            Console.Write("Address: ");
+            var address = Console.ReadLine();
+
+            Console.Write("BirthDate (yyyy-MM-dd): ");
+            var birthDate = DateOnly.Parse(Console.ReadLine());
+
+
+
+            Console.Write("Phone Number: ");
+            var phoneNumInput = Console.ReadLine();
+            var phonenum = int.Parse(phoneNumInput);
+
+
+            Console.Write("Email: ");
+            var email = Console.ReadLine();
+
+            Console.Write("Tags ( ,): ");
+            var tagsInput = Console.ReadLine();
+            var tagNames = tagsInput.Split(',').Select(t => t.Trim()).ToList();
+
+            if (service.UpdateContact(firstName, secondName, address, birthDate, phonenum, email, tagNames))
+            {
+                Console.WriteLine("Successfully updated!");
+            }
+            else
+            {
+                Console.WriteLine("Update failed. Contact not found.");
+            }
+
+            Console.WriteLine("Successfully deleted!");
+
+
+
         }
     }
 }

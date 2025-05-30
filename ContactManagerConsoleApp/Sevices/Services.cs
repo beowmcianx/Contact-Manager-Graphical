@@ -1,5 +1,6 @@
 ﻿using Contact_Manager_Graphical.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Client;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,12 +27,14 @@ namespace ContactManagerConsoleApp.Service
             }
 
         }
-        public List<Person> GetAllPeople()
+        public  List<Person> GetAllPeople()
         {
-            return context.People
+           return context.People
                 .Include(p => p.Contacts)
                 .ThenInclude(c => c.Tags)
                 .ToList();
+           
+
         }
         public Person? GetPersonByName(string firstName, string lastName)
         {
@@ -88,10 +91,79 @@ namespace ContactManagerConsoleApp.Service
                 context.SaveChanges();
 
                 return true;
+            } 
+        }
+        public bool DeletePerson(string firstName,string secondName)
+        {
+            using var context = new ContactmanagerContext();
+
+           
+            var person = context.People.FirstOrDefault(p => p.FirstName == firstName && p.SecondName == secondName);
+            if (person == null) return false;
+
+            var contacts = context.Contacts
+                 .Where(c => c.PersonId == person.PersonId)
+                 .Include(c => c.Tags)
+                 .ToList();
+
+            foreach (var contact in contacts)
+            {
+                contact.Tags.Clear();
             }
 
+            context.SaveChanges();
+
+            context.Contacts.RemoveRange(contacts);
+            context.SaveChanges();
+            context.People.Remove(person);
+            context.SaveChanges();
+            return true;
+       
 
         }
+        public bool UpdateContact(string firstName, string secondName, string address, DateOnly birthDate, long phoneNum, string email, List<string> tagNames)
+        {
+            var existingPerson = context.People
+                   .Include(c => c.Contacts)
+                   .ThenInclude(c => c.Tags)
+                   .FirstOrDefault(p => p.FirstName == firstName && p.SecondName == secondName);
+
+            if (existingPerson == null)
+            {
+                return false;
+            }
+
+            existingPerson.FirstName = firstName;
+            existingPerson.SecondName = secondName;
+            existingPerson.Address = address;
+            existingPerson.BirthDate = birthDate;
+            var contact = existingPerson.Contacts.FirstOrDefault();
+            if (contact != null)
+            {
+                contact.PhoneNum = phoneNum;
+                contact.Email = email;
+
+
+                contact.Tags.Clear();
+
+
+                foreach (var tagName in tagNames)
+                {
+                    var existingTag = context.Tags.FirstOrDefault(t => t.Name == tagName);
+                    if (existingTag == null)
+                    {
+                        existingTag = new Tag { Name = tagName };
+                        context.Tags.Add(existingTag);
+                    }
+
+                    contact.Tags.Add(existingTag);
+                }
+                
+            }
+            context.SaveChanges();
+            return true;
+        }
+    
     }
 }
 
