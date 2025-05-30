@@ -46,7 +46,7 @@ namespace ContactManagerConsoleApp
 
                     break;
                 case "s":
-                    ListAllPeople(services);
+                    PersonView.ListAllPeople(services);
 
 
 
@@ -59,29 +59,7 @@ namespace ContactManagerConsoleApp
             Console.Write("Press any key to close the app...");
             Console.ReadKey();
         }
-        static void ListAllPeople(Services service)
-        {
-            var people = service.GetAllPeople();
-
-            foreach (var person in people)
-            {
-                Console.WriteLine($"{person.FirstName} {person.SecondName}");
-                Console.WriteLine($"  Address: {person.Address}");
-                Console.WriteLine($"  BirthDate: {person.BirthDate?.ToString() ?? "N/A"}");
-
-                foreach (var contact in person.Contacts)
-                {
-                    Console.WriteLine($"  Phone: {contact.PhoneNum}");
-                    Console.WriteLine($"  Email: {contact.Email}");
-                    Console.WriteLine("  Tags: " + string.Join(", ", contact.Tags.Select(t => t.Name)));
-                }
-                Console.WriteLine();
-            }
-
-            Console.WriteLine("Press any key to continue...");
-            Console.ReadKey();
-        }
-
+        
      
     }
 
