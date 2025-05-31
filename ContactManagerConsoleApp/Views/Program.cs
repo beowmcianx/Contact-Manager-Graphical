@@ -19,54 +19,50 @@ namespace ContactManagerConsoleApp
 
             Services services = new Services();
             PersonView personView = new PersonView();
+
             while (true)
             {
-                Console.WriteLine("ContactManager\r");
-                Console.WriteLine("------------------------\n");
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.WriteLine("C O N T A C T   M A N A G E R\r");
+                Console.ResetColor();
+                Console.WriteLine("-----------------------------\n");
 
                 Console.WriteLine("Choose an option from the following list:");
-                Console.WriteLine("\ts - see contacts");
-                Console.WriteLine("\ta - Add Contact");
-                Console.WriteLine("\tu - Update Contact");
-                Console.WriteLine("\td - Delete");
+                Console.WriteLine("\tV - View contacts");
+                Console.WriteLine("\tA - Add Contact");
+                Console.WriteLine("\tU - Update Contact");
+                Console.WriteLine("\tD - Delete");
+                Console.WriteLine("\tS - Search by name or num");
                 Console.Write("Your option? ");
 
-
-
-
-
-
-
-
-                switch (Console.ReadLine())
+                switch (Console.ReadLine().ToLower())
                 {
+                    case "v":
+                        Console.WriteLine();
+                        PersonView.ListAllPeople(services);
+                        break;
                     case "a":
+                        Console.WriteLine();
                         PersonView.CreateNewContact(services);
                         break;
                     case "u":
+                        Console.WriteLine();
                         PersonView.UpdatePerson(services);
-
-                        break;
-                    case "s":
-                        PersonView.ListAllPeople(services);
-
-
-
                         break;
                     case "d":
+                        Console.WriteLine();
                         PersonView.deletePerson(services);
                         break;
+                    case "s":
+                        Console.WriteLine();
+                        //PersonView.SearchPerson(services);
+                        break;
                 }
-
                 Console.Write("Press any key to close the app...");
                 Console.Clear();
             }
         }
-        
-     
     }
-
-
 }
 
 

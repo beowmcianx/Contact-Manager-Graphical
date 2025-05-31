@@ -12,49 +12,6 @@ namespace ContactManagerConsoleApp.Views
     public class PersonView
     {
         private static Services personService = new Services();
-        
-
-        public static void CreateNewContact(Services service)
-        {
-
-            Console.Write("First Name: ");
-            var firstName = Console.ReadLine();
-
-            Console.Write("Second Name: ");
-            var secondName = Console.ReadLine();
-
-
-
-            Console.Write("Address: ");
-            var address = Console.ReadLine();
-
-            Console.Write("BirthDate (yyyy-MM-dd): ");
-            var birthDate = DateOnly.Parse(Console.ReadLine());
-
-
-
-            Console.Write("Phone Number: ");
-            var phoneNumInput = Console.ReadLine();
-            var phonenum = int.Parse(phoneNumInput);
-
-
-            Console.Write("Email: ");
-            var email = Console.ReadLine();
-
-            Console.Write("Tags ( ,): ");
-            var tagsInput = Console.ReadLine();
-            var tagNames = tagsInput.Split(',').Select(t => t.Trim()).ToList();
-
-            if (service.CreateContact(firstName, secondName, address, birthDate, phonenum, email, tagNames) == true)
-            {
-                Console.WriteLine("Successfully added!");
-            }
-
-
-            Console.WriteLine("Contact created. Press any key to continue...");
-            Console.ReadKey();
-
-        }
 
         public static void ListAllPeople(Services service)
         {
@@ -74,72 +31,190 @@ namespace ContactManagerConsoleApp.Views
                 }
                 Console.WriteLine();
             }
-
-            Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
         }
-
-        public static void deletePerson(Services service)
+        public static void CreateNewContact(Services service)
         {
-            Console.WriteLine("Write the name of the contact you want to delte");
-            Console.Write("First name: ");
+            Console.Write(" First name: ");
             var firstName = Console.ReadLine();
-            Console.Write("Second name: ");
-            var secondName = Console.ReadLine();
-            if (service.DeletePerson(firstName, secondName) == true)
-            {
-                Console.WriteLine("Successfully deleted!");
-            }
-        }
 
+            Console.Write(" Second name: ");
+            var secondName = Console.ReadLine();
+
+            Console.Write(" Address: ");
+            var address = Console.ReadLine();
+
+            DateOnly birthDate;
+            while (true)
+            {
+                Console.Write(" BirthDate (yyyy-MM-dd): ");
+                var birthInput = Console.ReadLine();
+
+                if (DateOnly.TryParse(birthInput, out birthDate))
+                {
+                    break;
+                }
+                Console.WriteLine(" Invalid date format. Please use yyyy-MM-dd.");
+            }
+
+            int phonenum;
+            while (true)
+            {
+                Console.Write(" Phone Number: ");
+                var phoneNumInput = Console.ReadLine();
+
+                if (int.TryParse(phoneNumInput, out phonenum))
+                {
+                    break;
+                }
+                Console.WriteLine(" Invalid number. Please enter digits only.");
+            }
+
+            Console.Write(" Email: ");
+            var email = Console.ReadLine();
+
+            Console.Write(" Tags ( ,): ");
+            var tagsInput = Console.ReadLine();
+            var tagNames = tagsInput.Split(',').Select(t => t.Trim()).ToList();
+
+            Console.WriteLine();
+
+            if (firstName == string.Empty || secondName == string.Empty)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Invalid name!");
+                Console.ResetColor();
+                Console.ReadKey();
+                return;
+            }
+            if (service.CreateContact(firstName, secondName, address, birthDate, phonenum, email, tagNames))
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Successfully created!");
+                Console.ResetColor();
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Create failed.");
+                Console.ResetColor();
+            }
+            Console.ReadKey();
+        }
         public static void UpdatePerson(Services service)
         {
             var people = service.GetAllPeople();
-            Console.WriteLine("Write the name of the contact you want to update");
-            Console.WriteLine( "All the people");
+            Console.WriteLine("Write the name of the contact you want to update.");
+
             foreach (var person in people)
             {
                 Console.WriteLine($"{person.FirstName} {person.SecondName}");
             }
-                Console.Write("First name: ");
+
+            Console.Write(" First name: ");
             var firstName = Console.ReadLine();
 
-            Console.Write("Second name: ");
+            Console.Write(" Second name: ");
             var secondName = Console.ReadLine();
 
-            Console.Write("Address: ");
+            Console.Write(" Address: ");
             var address = Console.ReadLine();
 
-            Console.Write("BirthDate (yyyy-MM-dd): ");
-            var birthDate = DateOnly.Parse(Console.ReadLine());
+            DateOnly birthDate;
+            while (true)
+            {
+                Console.Write(" BirthDate (yyyy-MM-dd): ");
+                var birthInput = Console.ReadLine();
 
+                if (DateOnly.TryParse(birthInput, out birthDate))
+                {
+                    break;
+                }
+                Console.WriteLine(" Invalid date format. Please use yyyy-MM-dd.");
+            }
 
+            int phonenum;
+            while (true)
+            {
+                Console.Write(" Phone Number: ");
+                var phoneNumInput = Console.ReadLine();
 
-            Console.Write("Phone Number: ");
-            var phoneNumInput = Console.ReadLine();
-            var phonenum = int.Parse(phoneNumInput);
+                if (int.TryParse(phoneNumInput, out phonenum))
+                {
+                    break;
+                }
+                Console.WriteLine(" Invalid number. Please enter digits only.");
+            }
 
-
-            Console.Write("Email: ");
+            Console.Write(" Email: ");
             var email = Console.ReadLine();
 
-            Console.Write("Tags ( ,): ");
+            Console.Write(" Tags ( ,): ");
             var tagsInput = Console.ReadLine();
             var tagNames = tagsInput.Split(',').Select(t => t.Trim()).ToList();
 
+            Console.WriteLine();
+
             if (service.UpdateContact(firstName, secondName, address, birthDate, phonenum, email, tagNames))
             {
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("Successfully updated!");
+                Console.ResetColor();
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Update failed. Contact not found.");
+                Console.ResetColor();
+            }
+            Console.ReadKey();
+        }
+        public static void deletePerson(Services service)
+        {
+            var people = service.GetAllPeople();
+            Console.WriteLine("Write the name of the contact you want to delete.");
+            
+            foreach (var person in people)
+            {
+                Console.WriteLine($"{person.FirstName} {person.SecondName}");
             }
 
-            Console.WriteLine("Successfully deleted!");
+            Console.Write(" First name: ");
+            var firstName = Console.ReadLine();
 
+            Console.Write(" Second name: ");
+            var secondName = Console.ReadLine();
 
-
+            if (service.DeletePerson(firstName, secondName) == true)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Successfully deleted!");
+                Console.ResetColor();
+            }
+            if (service.DeletePerson(firstName, secondName) == false)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("No such person!");
+                Console.ResetColor();
+            }
+            Console.ReadKey();
         }
+
+        /*public static void SearchPerson(Services service)
+        {
+            Console.WriteLine("Search by name, number or tags:");
+            var input = Console.ReadLine();
+
+            if (input != string.Empty)
+            {
+                service.GetPersonByName(input);
+            }
+            long number = long.Parse(input);
+            if (input == number.ToString())
+            {
+                service.GetPersonByNum(number);
+            }
+        }*/
+        
     }
 }

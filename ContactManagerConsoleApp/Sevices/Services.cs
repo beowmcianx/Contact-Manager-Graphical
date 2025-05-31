@@ -27,23 +27,32 @@ namespace ContactManagerConsoleApp.Service
             }
 
         }
+
         public  List<Person> GetAllPeople()
         {
            return context.People
                 .Include(p => p.Contacts)
                 .ThenInclude(c => c.Tags)
                 .ToList();
-           
-
         }
-        public Person? GetPersonByName(string firstName, string lastName)
+
+        /*public Person? GetPersonByName(string name)
         {
             return context.People
                 .Include(p => p.Contacts)
                 .ThenInclude(c => c.Tags)
-                .FirstOrDefault(p => p.FirstName == firstName && p.SecondName == lastName);
+                .FirstOrDefault(p => p.FirstName.Contains(name) || p.SecondName.Contains(name));
+        }*/
+        public Person? GetPersonByNum(long num)
+        {
+            return context.Contacts
+                .Include(c => c.Person)
+                .ThenInclude(p => p.Contacts)
+                .ThenInclude(c => c.Tags)
+                .Where(c => c.PhoneNum == num)
+                .Select(c => c.Person)
+                .FirstOrDefault();
         }
-
 
         public bool CreateContact(string firstName, string secondName, string address, DateOnly birthDate, long phoneNum, string email, List<string> tagNames)
         {
@@ -93,6 +102,7 @@ namespace ContactManagerConsoleApp.Service
                 return true;
             } 
         }
+
         public bool DeletePerson(string firstName,string secondName)
         {
             using var context = new ContactmanagerContext();
