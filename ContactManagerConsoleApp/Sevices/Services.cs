@@ -40,31 +40,7 @@ namespace ContactManagerConsoleApp.Service
                 .ThenInclude(c => c.Tags)
                 .FirstOrDefault(p => p.FirstName == firstName && p.SecondName == lastName);
         }
-        public bool Delete(string FirstName, string LastName)
-        {
-            using var context = new ContactmanagerContext();
 
-            
-            var person = context.People.FirstOrDefault(p => p.FirstName == FirstName && p.SecondName == LastName);
-            if (person == null) return false;
-
-            var contacts = context.Contacts
-                 .Where(c => c.PersonId == person.PersonId)
-                 .Include(c => c.Tags)
-                 .ToList();
-
-            foreach (var contact in contacts)
-            {
-                contact.Tags.Clear();
-            }
-            context.SaveChanges();
-            context.Contacts.RemoveRange(contacts);
-            context.SaveChanges();
-            context.People.Remove(person);
-            context.SaveChanges();
-
-            return true;
-        }
 
         public bool CreateContact(string firstName, string secondName, string address, DateOnly birthDate, long phoneNum, string email, List<string> tagNames)
         {

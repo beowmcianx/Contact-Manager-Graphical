@@ -251,9 +251,16 @@ namespace Contact_Manager_Graphical
                 contact.Tags.Clear();
             }
 
+            if (listBox1.SelectedItems.Count <= 0)
+            {
+                MessageBox.Show("Select a contact to delete!", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
             SoundEffectLoader("Tool_break.wav");
 
             context.SaveChanges();
+
             context.Contacts.RemoveRange(contacts);
             context.SaveChanges();
             context.People.Remove(person);
@@ -261,6 +268,7 @@ namespace Contact_Manager_Graphical
 
             AllContacts(listBox1);
             listBox2.Items.Clear();
+
         }
 
         private void tagsToolStripMenuItem_Click(object sender, EventArgs e)
