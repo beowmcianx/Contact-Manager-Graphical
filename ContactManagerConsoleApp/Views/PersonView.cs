@@ -264,65 +264,12 @@ namespace ContactManagerConsoleApp.Views
 
         public static void SearchPerson(Services service)
         {
-            Console.WriteLine("Search by");
-            Console.WriteLine("\t[1] - Name    [2] - Number");
-            Console.Write("Your option? ");
+            Console.Write("Search by Name, Number or Tag: ");
+            var term = Console.ReadLine();
+            
+            service.GetPersonByName(term);
 
-            var input = Console.ReadLine();
-
-            Console.WriteLine();
-            if (input == "1")
-            {   
-                /*
-                Console.Write(" Enter name: ");
-                var full = Console.ReadLine();
-
-                var result = full.Split(" ");
-                var first = result[0];
-                var last = result[1];
-
-                var person = service.GetPersonByName(first, last);
-                */
-
-                Console.Write(" Enter first name: ");
-                var first = Console.ReadLine();
-
-                Console.Write(" Enter last name: ");
-                var last = Console.ReadLine();
-
-                var person = service.GetPersonByName(first, last);
-
-                if (person != null)
-                {
-                    Console.WriteLine();
-                    if (person == null || first == " " || last == " " || person.ToString() == string.Empty || first == string.Empty || last == string.Empty)
-                    {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine(" No person found.");
-                        Console.ResetColor();
-                        Console.ReadKey();
-                    }
-                    else
-                    {   
-                        Console.WriteLine($" {person.FirstName} {person.SecondName}");
-                        Console.WriteLine($"  Address: {person.Address}");
-                        Console.WriteLine($"  BirthDate: {person.BirthDate?.ToString() ?? "N/A"}");
-
-                        foreach (var contact in person.Contacts)
-                        {
-                            Console.WriteLine($"  Phone: {contact.PhoneNum}");
-                            Console.WriteLine($"  Email: {contact.Email}");
-                            Console.WriteLine("  Tags: " + string.Join(", ", contact.Tags.Select(t => t.Name)));
-                        }
-                        Console.ReadKey();
-                    }
-                }
-                return;
-            }
-            else if (input == "2")
-            {
-                Console.WriteLine("Not implemented!");
-            }
+            Console.ReadKey();
         }
 
     }

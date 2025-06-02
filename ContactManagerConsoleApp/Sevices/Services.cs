@@ -51,10 +51,10 @@ namespace ContactManagerConsoleApp.Service
         /// </remarks>
         public List<Person> GetAllPeople()
         {
-           return context.People
-                .Include(p => p.Contacts)
-                .ThenInclude(c => c.Tags)
-                .ToList();
+            return context.People
+                 .Include(p => p.Contacts)
+                 .ThenInclude(c => c.Tags)
+                 .ToList();
         }
 
         public void ExportSystem()
@@ -81,13 +81,26 @@ namespace ContactManagerConsoleApp.Service
             File.WriteAllText(filePath, content);
         }
 
-        public Person? GetPersonByName(string first, string last)
+        public void GetPersonByName(string searchTerm)
         {
-            return context.People
+            if (string.IsNullOrWhiteSpace(searchTerm)) return;
+            searchTerm = searchTerm.ToLower();
+
+            var filtered = context.People
                 .Include(p => p.Contacts)
                 .ThenInclude(c => c.Tags)
-                .FirstOrDefault(p => p.FirstName.Contains(first) || p.SecondName.Contains(last));
+                .Where(p => (p.FirstName + " " + p.SecondName).ToLower().Contains(searchTerm) ||
+                    p.Contacts.Any(c =>
+                        c.PhoneNum.ToString().Contains(searchTerm) ||
+                        c.Tags.Any(t => t.Name.ToLower().Contains(searchTerm))))
+                .ToList();
+
+            foreach (var person in filtered)
+            {
+                Console.WriteLine($"  {person.FirstName} {person.SecondName}");
+            }
         }
+
 
         /// <summary>
         /// Намира и връща обект <see cref="Person"/>, свързан с контакт, който има зададения телефонен номер.
@@ -175,7 +188,7 @@ namespace ContactManagerConsoleApp.Service
                 context.SaveChanges();
 
                 return true;
-            } 
+            }
         }
         /// <summary>
         /// Изтрива лице (Person) от базата данни заедно с неговите контакти и връзки с тагове.
@@ -191,11 +204,11 @@ namespace ContactManagerConsoleApp.Service
         /// Извършва се поетапно записване на промените с <see cref="DbContext.SaveChanges"/>.
         /// </remarks>
 
-        public bool DeletePerson(string firstName,string secondName)
+        public bool DeletePerson(string firstName, string secondName)
         {
             using var context = new ContactmanagerContext();
 
-           
+
             var person = context.People.FirstOrDefault(p => p.FirstName == firstName && p.SecondName == secondName);
             if (person == null) return false;
 
@@ -216,7 +229,7 @@ namespace ContactManagerConsoleApp.Service
             context.People.Remove(person);
             context.SaveChanges();
             return true;
-       
+
 
         }
 
@@ -276,17 +289,17 @@ namespace ContactManagerConsoleApp.Service
 
                     contact.Tags.Add(existingTag);
                 }
-                
+
             }
             context.SaveChanges();
             return true;
         }
-    
+
     }
 }
 
 
 
 
-        
+
 

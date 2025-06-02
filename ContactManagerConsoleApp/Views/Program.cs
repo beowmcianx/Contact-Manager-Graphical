@@ -28,10 +28,10 @@ namespace ContactManagerConsoleApp
                 Console.WriteLine("-----------------------------\n");
 
                 Console.WriteLine("Choose an option from the following list:");
-                Console.WriteLine("\tV - View contacts");
+                Console.WriteLine("\tV - View Contact");
                 Console.WriteLine("\tA - Add Contact");
                 Console.WriteLine("\tU - Update Contact");
-                Console.WriteLine("\tD - Delete");
+                Console.WriteLine("\tD - Delete Contact");
                 Console.WriteLine("\tS - Search by name or num"); 
                 Console.WriteLine("\tE - Export people to .txt");
                 Console.Write("Your option? ");
