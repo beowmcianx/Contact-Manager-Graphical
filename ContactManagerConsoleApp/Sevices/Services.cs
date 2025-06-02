@@ -57,13 +57,37 @@ namespace ContactManagerConsoleApp.Service
                 .ToList();
         }
 
-        /*public Person? GetPersonByName(string name)
+        public void ExportSystem()
+        {
+            Directory.CreateDirectory("export");
+            string filePath = "export/exportConsole.txt";
+            var content = "";
+
+            using (var context = new ContactmanagerContext())
+            {
+                var people = context.People
+                    .Include(p => p.Contacts)
+                    .ToList();
+
+                foreach (var person in people)
+                {
+                    string fullName = $"{person.FirstName} {person.SecondName}";
+                    foreach (var contact in person.Contacts)
+                    {
+                        content += $"{fullName} | Phone: {contact.PhoneNum}\n";
+                    }
+                }
+            }
+            File.WriteAllText(filePath, content);
+        }
+
+        public Person? GetPersonByName(string first, string last)
         {
             return context.People
                 .Include(p => p.Contacts)
                 .ThenInclude(c => c.Tags)
-                .FirstOrDefault(p => p.FirstName.Contains(name) || p.SecondName.Contains(name));
-        }*/
+                .FirstOrDefault(p => p.FirstName.Contains(first) || p.SecondName.Contains(last));
+        }
 
         /// <summary>
         /// Намира и връща обект <see cref="Person"/>, свързан с контакт, който има зададения телефонен номер.
@@ -75,6 +99,7 @@ namespace ContactManagerConsoleApp.Service
         /// <remarks>
         /// Извлича свързаните контакти и техните тагове чрез <see cref="Include"/> и <see cref="ThenInclude"/>.
         /// </remarks>
+
         public Person? GetPersonByNum(long num)
         {
             return context.Contacts

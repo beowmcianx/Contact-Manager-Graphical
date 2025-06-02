@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Contact_Manager_Graphical.Models;
 using ContactManagerConsoleApp.Service;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 namespace ContactManagerConsoleApp.Views
 {
@@ -56,6 +57,15 @@ namespace ContactManagerConsoleApp.Views
         /// Изчаква натискане на клавиш преди да приключи.
         /// </remarks>
 
+        public static void ExportToTxt(Services service)
+        {
+            service.ExportSystem();
+            
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Succesfully exported to .txt!");
+            Console.ResetColor();
+            Console.ReadKey();
+        }
         public static void CreateNewContact(Services service)
         {
             Console.Write(" First name: ");
@@ -239,31 +249,81 @@ namespace ContactManagerConsoleApp.Views
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("Successfully deleted!");
                 Console.ResetColor();
+                Console.ReadKey();
+                return;
             }
             if (service.DeletePerson(firstName, secondName) == false)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("No such person!");
                 Console.ResetColor();
+                Console.ReadKey();
+                return;
             }
-            Console.ReadKey();
         }
 
-        /*public static void SearchPerson(Services service)
+        public static void SearchPerson(Services service)
         {
-            Console.WriteLine("Search by name, number or tags:");
+            Console.WriteLine("Search by");
+            Console.WriteLine("\t[1] - Name    [2] - Number");
+            Console.Write("Your option? ");
+
             var input = Console.ReadLine();
 
-            if (input != string.Empty)
-            {
-                service.GetPersonByName(input);
+            Console.WriteLine();
+            if (input == "1")
+            {   
+                /*
+                Console.Write(" Enter name: ");
+                var full = Console.ReadLine();
+
+                var result = full.Split(" ");
+                var first = result[0];
+                var last = result[1];
+
+                var person = service.GetPersonByName(first, last);
+                */
+
+                Console.Write(" Enter first name: ");
+                var first = Console.ReadLine();
+
+                Console.Write(" Enter last name: ");
+                var last = Console.ReadLine();
+
+                var person = service.GetPersonByName(first, last);
+
+                if (person != null)
+                {
+                    Console.WriteLine();
+                    if (person == null || first == " " || last == " " || person.ToString() == string.Empty || first == string.Empty || last == string.Empty)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine(" No person found.");
+                        Console.ResetColor();
+                        Console.ReadKey();
+                    }
+                    else
+                    {   
+                        Console.WriteLine($" {person.FirstName} {person.SecondName}");
+                        Console.WriteLine($"  Address: {person.Address}");
+                        Console.WriteLine($"  BirthDate: {person.BirthDate?.ToString() ?? "N/A"}");
+
+                        foreach (var contact in person.Contacts)
+                        {
+                            Console.WriteLine($"  Phone: {contact.PhoneNum}");
+                            Console.WriteLine($"  Email: {contact.Email}");
+                            Console.WriteLine("  Tags: " + string.Join(", ", contact.Tags.Select(t => t.Name)));
+                        }
+                        Console.ReadKey();
+                    }
+                }
+                return;
             }
-            long number = long.Parse(input);
-            if (input == number.ToString())
+            else if (input == "2")
             {
-                service.GetPersonByNum(number);
+                Console.WriteLine("Not implemented!");
             }
-        }*/
-        
+        }
+
     }
 }

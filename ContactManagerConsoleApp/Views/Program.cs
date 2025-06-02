@@ -32,7 +32,8 @@ namespace ContactManagerConsoleApp
                 Console.WriteLine("\tA - Add Contact");
                 Console.WriteLine("\tU - Update Contact");
                 Console.WriteLine("\tD - Delete");
-                Console.WriteLine("\tS - Search by name or num");
+                Console.WriteLine("\tS - Search by name or num"); 
+                Console.WriteLine("\tE - Export people to .txt");
                 Console.Write("Your option? ");
 
                 switch (Console.ReadLine().ToLower())
@@ -55,7 +56,11 @@ namespace ContactManagerConsoleApp
                         break;
                     case "s":
                         Console.WriteLine();
-                        //PersonView.SearchPerson(services);
+                        PersonView.SearchPerson(services);
+                        break;
+                    case "e":
+                        Console.WriteLine();
+                        PersonView.ExportToTxt(services);
                         break;
                 }
                 Console.Write("Press any key to close the app...");
