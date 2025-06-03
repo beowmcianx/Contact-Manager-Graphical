@@ -152,19 +152,19 @@ namespace ContactManagerConsoleApp.Views
         {
             var people = service.GetAllPeople();
             Console.WriteLine("Write the name of the contact you want to update.");
-
+           
             foreach (var person in people)
             {
-                Console.WriteLine($"{person.FirstName} {person.SecondName}");
+                Console.WriteLine($" [{person.PersonId}] {person.FirstName} {person.SecondName}");
             }
 
-            Console.Write(" First name: ");
-            var firstName = Console.ReadLine();
+            Console.Write(" Your choice ");
+            var  id = Console.ReadLine();
 
-            Console.Write(" Second name: ");
-            var secondName = Console.ReadLine();
 
+            Console.WriteLine("leave empty the rows you dont want to change ");
             Console.Write(" Address: ");
+            
             var address = Console.ReadLine();
 
             DateOnly birthDate;

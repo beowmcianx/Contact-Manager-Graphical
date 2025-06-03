@@ -252,22 +252,30 @@ namespace ContactManagerConsoleApp.Service
         /// като липсващите тагове се създават в базата.
         /// </remarks>
 
-        public bool UpdateContact(string firstName, string secondName, string address, DateOnly birthDate, long phoneNum, string email, List<string> tagNames)
+        public bool UpdateContact( string address, DateOnly birthDate, long phoneNum, string email, List<string> tagNames)
         {
             var existingPerson = context.People
                    .Include(c => c.Contacts)
                    .ThenInclude(c => c.Tags)
-                   .FirstOrDefault(p => p.FirstName == firstName && p.SecondName == secondName);
+                   .FirstOrDefault(p => p.FirstName == p.FirstName && p.SecondName == p.SecondName);
 
             if (existingPerson == null)
             {
                 return false;
             }
 
-            existingPerson.FirstName = firstName;
-            existingPerson.SecondName = secondName;
+         
             existingPerson.Address = address;
+            if (address == string.Empty)
+            {
+                address = existingPerson.Address;
+            }
             existingPerson.BirthDate = birthDate;
+             
+            if (birthDate <= 0)
+            {
+                birthDate = DateOnly.Parse(existingPerson.BirthDate);
+            }
             var contact = existingPerson.Contacts.FirstOrDefault();
             if (contact != null)
             {
