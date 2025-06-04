@@ -202,7 +202,7 @@ namespace ContactManagerConsoleApp.Views
 
             Console.WriteLine();
 
-            if (service.UpdateContact(firstName, secondName, address, birthDate, phonenum, email, tagNames))
+            if (service.UpdateContact(id, address, birthDate, phonenum, email, tagNames))
             {
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("Successfully updated!");

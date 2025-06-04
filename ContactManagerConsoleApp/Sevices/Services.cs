@@ -1,4 +1,5 @@
 ﻿using Contact_Manager_Graphical.Models;
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
 using System;
@@ -252,7 +253,7 @@ namespace ContactManagerConsoleApp.Service
         /// като липсващите тагове се създават в базата.
         /// </remarks>
 
-        public bool UpdateContact( string address, DateOnly birthDate, long phoneNum, string email, List<string> tagNames)
+        public bool UpdateContact( int id,string address, DateOnly birthDate, long phoneNum, string email, List<string> tagNames)
         {
             var existingPerson = context.People
                    .Include(c => c.Contacts)
@@ -264,6 +265,7 @@ namespace ContactManagerConsoleApp.Service
                 return false;
             }
 
+            existingPerson.PersonId = id;
          
             existingPerson.Address = address;
             if (address == string.Empty)
@@ -274,12 +276,18 @@ namespace ContactManagerConsoleApp.Service
              
             if (birthDate <= 0)
             {
-                birthDate = DateOnly.Parse(existingPerson.BirthDate);
+                birthDate = person.BirthDate?.ToString() ?? "";
             }
             var contact = existingPerson.Contacts.FirstOrDefault();
             if (contact != null)
             {
-                contact.PhoneNum = phoneNum;
+
+                if (long.TryParse(ReadOnlySpan.Parse(phoneNum), out var newPhoneNum))
+                    contact.PhoneNum = newPhoneNum;
+                if (email == string.Empty)
+                {
+                    email = contact.Email;
+                }
                 contact.Email = email;
 
 
