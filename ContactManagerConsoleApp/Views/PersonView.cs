@@ -148,31 +148,38 @@ namespace ContactManagerConsoleApp.Views
         /// Изчаква натискане на клавиш преди да приключи.
         /// </remarks>
 
-        public static void UpdatePerson(Services service)
+       /* public static void UpdatePerson(Services service)
         {
             var people = service.GetAllPeople();
-            Console.WriteLine("Write the name of the contact you want to update.");
            
             foreach (var person in people)
             {
                 Console.WriteLine($" [{person.PersonId}] {person.FirstName} {person.SecondName}");
             }
+            Console.WriteLine("Write the id of the contact you want to update.");
 
-            Console.Write(" Your choice ");
-            var  id = Console.ReadLine();
-
+            Console.Write(" Your choice: ");
+            var  id = int.Parse(Console.ReadLine());
+           
 
             Console.WriteLine("leave empty the rows you dont want to change ");
             Console.Write(" Address: ");
             
             var address = Console.ReadLine();
-
+            if (address != string.Empty)
+            {
+                selectedPerson.Address = address;
+            }
             DateOnly birthDate;
             while (true)
             {
                 Console.Write(" BirthDate (yyyy-MM-dd): ");
                 var birthInput = Console.ReadLine();
-
+                if (birthInput == null)
+                {
+                    birthDate = service.GetPersonByName;
+                    break;
+                }
                 if (DateOnly.TryParse(birthInput, out birthDate))
                 {
                     break;
@@ -215,7 +222,7 @@ namespace ContactManagerConsoleApp.Views
                 Console.ResetColor();
             }
             Console.ReadKey();
-        }
+        }*/
 
         /// <summary>
         /// Позволява на потребителя интерактивно да изтрие съществуващ човек от списъка чрез въвеждане на собствено и фамилно име.

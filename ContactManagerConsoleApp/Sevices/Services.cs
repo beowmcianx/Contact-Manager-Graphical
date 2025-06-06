@@ -5,6 +5,7 @@ using Microsoft.Identity.Client;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Loader;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -252,63 +253,58 @@ namespace ContactManagerConsoleApp.Service
         /// както и първия свързан контакт. Предишните тагове на контакта се изчистват и заменят с нови,
         /// като липсващите тагове се създават в базата.
         /// </remarks>
-
-        public bool UpdateContact( int id,string address, DateOnly birthDate, long phoneNum, string email, List<string> tagNames)
+        public Person GetPersonById(int id)
         {
-            var existingPerson = context.People
-                   .Include(c => c.Contacts)
-                   .ThenInclude(c => c.Tags)
-                   .FirstOrDefault(p => p.FirstName == p.FirstName && p.SecondName == p.SecondName);
+            Person person = context.People.Include(p => p.Contacts).ThenInclude(c => c.Tags).First(p => p.PersonId == id);
+            return person;
+        }
+        public void UpdateContact(int id, string address, string birthDate, string phoneNum, string email, List<string> tagNames)
+        {
+            var existingPerson = GetPersonById(id);
 
-            if (existingPerson == null)
+
+            if (address != string.Empty)
             {
-                return false;
+                existingPerson.Address = address;
             }
 
-            existingPerson.PersonId = id;
-         
-            existingPerson.Address = address;
-            if (address == string.Empty)
+
+            if (birthDate != string.Empty)
             {
-                address = existingPerson.Address;
-            }
-            existingPerson.BirthDate = birthDate;
-             
-            if (birthDate <= 0)
-            {
-                birthDate = person.BirthDate?.ToString() ?? "";
+                existingPerson.BirthDate = DateOnly.Parse(birthDate);
             }
             var contact = existingPerson.Contacts.FirstOrDefault();
-            if (contact != null)
+            if (phoneNum != string.Empty)
             {
-
-                if (long.TryParse(ReadOnlySpan.Parse(phoneNum), out var newPhoneNum))
-                    contact.PhoneNum = newPhoneNum;
-                if (email == string.Empty)
-                {
-                    email = contact.Email;
-                }
-                contact.Email = email;
-
-
-                contact.Tags.Clear();
-
-
-                foreach (var tagName in tagNames)
-                {
-                    var existingTag = context.Tags.FirstOrDefault(t => t.Name == tagName);
-                    if (existingTag == null)
-                    {
-                        existingTag = new Tag { Name = tagName };
-                        context.Tags.Add(existingTag);
-                    }
-
-                    contact.Tags.Add(existingTag);
-                }
-
+                contact.PhoneNum = long.Parse(phoneNum);
             }
+
+
+            if (email != string.Empty)
+            {
+                contact.Email = email;
+            }
+
+
+
+            contact.Tags.Clear();
+
+
+            foreach (var tagName in tagNames)
+            {
+                var existingTag = context.Tags.FirstOrDefault(t => t.Name == tagName);
+                if (existingTag == null)
+                {
+                    existingTag = new Tag { Name = tagName };
+                    context.Tags.Add(existingTag);
+                }
+
+                contact.Tags.Add(existingTag);
+            }
+
+
             context.SaveChanges();
-            return true;
+
         }
 
     }
