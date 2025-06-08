@@ -24,6 +24,39 @@ namespace ContactManagerConsoleApp.Views
         /// След показването на информацията, методът изчаква натискане на клавиш чрез <see cref="Console.ReadKey"/>.
         /// </remarks>
 
+        public static void PressAnyKey()
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine();
+            Console.WriteLine("┌──────────────────────────────┐");
+            Console.WriteLine("│ Press any key to continue... │");
+            Console.WriteLine("└──────────────────────────────┘");
+            Console.ResetColor();
+            Console.ReadKey();
+        }
+        public static void Box(string i, ConsoleColor u)
+        {
+            Console.ForegroundColor = u;
+            Console.WriteLine();
+            Console.Write("┌");
+            for (int j = 0; j < i.Length + 2; j++)
+            {
+                Console.Write("─");
+            }
+            Console.WriteLine("┐");
+
+            Console.WriteLine($"│ {i} │");
+
+            Console.Write("└");
+            for (int j = 0; j < i.Length + 2; j++)
+            {
+                Console.Write("─");
+            }
+            Console.WriteLine("┘");
+
+            Console.ResetColor();
+            Console.ReadKey();
+        }
         public static void ListAllPeople(Services service)
         {
             var people = service.GetAllPeople();
@@ -42,8 +75,8 @@ namespace ContactManagerConsoleApp.Views
                 }
                 Console.WriteLine();
             }
-            Console.WriteLine("press any key to continue");
-            Console.ReadKey();
+
+            PressAnyKey();
         }
 
         /// <summary>
@@ -61,11 +94,9 @@ namespace ContactManagerConsoleApp.Views
         public static void ExportToTxt(Services service)
         {
             service.ExportSystem();
-            
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("Succesfully exported to .txt!");
-            Console.ResetColor();
-            Console.ReadKey();
+
+            Box("Succesfully exported to .txt!", ConsoleColor.Green);
+            PressAnyKey();
         }
         public static void CreateNewContact(Services service)
         {
@@ -88,7 +119,9 @@ namespace ContactManagerConsoleApp.Views
                 {
                     break;
                 }
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(" Invalid date format. Please use yyyy-MM-dd.");
+                Console.ResetColor();
             }
 
             int phonenum;
@@ -101,7 +134,9 @@ namespace ContactManagerConsoleApp.Views
                 {
                     break;
                 }
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(" Invalid number. Please enter digits only.");
+                Console.ResetColor();
             }
 
             Console.Write(" Email: ");
@@ -115,26 +150,19 @@ namespace ContactManagerConsoleApp.Views
 
             if (firstName == string.Empty || secondName == string.Empty)
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Invalid name!");
-                Console.ResetColor();
-                Console.ReadKey();
+                Box("Invalid Name! Creation failed.", ConsoleColor.Red); 
+                PressAnyKey();
                 return;
             }
             if (service.CreateContact(firstName, secondName, address, birthDate, phonenum, email, tagNames))
             {
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("Successfully created!");
-                Console.ResetColor();
+                Box("Successfully created!", ConsoleColor.Green);
             }
             else
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Create failed.");
-                Console.ResetColor();
+                Box("Creation failed.", ConsoleColor.Red);
             }
-            Console.WriteLine("press any key to continue");
-            Console.ReadKey();
+            PressAnyKey();
         }
 
 
@@ -152,55 +180,52 @@ namespace ContactManagerConsoleApp.Views
 
         public static void UpdatePerson(Services service)
         {
+            Console.WriteLine("Enter the ID of the contact you want to update.");
             var people = service.GetAllPeople();
-           
+
             foreach (var person in people)
             {
                 Console.WriteLine($" [{person.PersonId}] {person.FirstName} {person.SecondName}");
             }
-            Console.WriteLine("Write the id of the contact you want to update.");
 
-           
-                Console.Write(" Your choice: ");
+            Console.WriteLine();
+
             while (true)
             {
+                Console.Write(" Your choice: ");
                 if (!int.TryParse(Console.ReadLine(), out var id))
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Invalid ID format. Please enter a number.");
+                    Console.WriteLine(" Invalid ID format. Please enter a number.");
                     Console.ResetColor();
-                    Console.ReadKey();
+                    continue;
+                }
+
+                var selectedPerson = people.FirstOrDefault(p => p.PersonId == id);
+                if (selectedPerson == null)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine(" No contact with such ID found.");
+                    Console.ResetColor();
                     continue;
                 }
 
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("leave empty the rows you dont want to change ");
+                Console.WriteLine(" Leave the fields you don't want to change empty.");
                 Console.ResetColor();
+
                 Console.Write(" Address: ");
-
                 var address = Console.ReadLine();
-
-
 
                 Console.Write(" BirthDate (yyyy-MM-dd): ");
                 var birthInput = Console.ReadLine();
-
                 if (DateOnly.TryParse(birthInput, out var parsedDate))
                     birthInput = parsedDate.ToString("yyyy-MM-dd");
 
-
-
-
-
                 Console.Write(" Phone Number: ");
                 var phoneNumInput = Console.ReadLine();
-
-
                 if (long.TryParse(phoneNumInput, out var parsedPhone))
                     phoneNumInput = parsedPhone.ToString();
-
-
-
 
                 Console.Write(" Email: ");
                 var email = Console.ReadLine();
@@ -209,25 +234,15 @@ namespace ContactManagerConsoleApp.Views
                 var tagsInput = Console.ReadLine();
                 var tagNames = tagsInput.Split(',').Select(t => t.Trim()).ToList();
 
-                Console.WriteLine();
+                
                 service.UpdateContact(id, address, birthInput, phoneNumInput, email, tagNames);
-                /*  if (service.UpdateContact(id, address, birthDate, phoneNum, email, tagNames))
-                  {
-                      Console.ForegroundColor = ConsoleColor.Green;
-                      Console.WriteLine("Successfully updated!");
-                      Console.ResetColor();
-                  }
-                  else
-                  {
-                      Console.ForegroundColor = ConsoleColor.Red;
-                      Console.WriteLine("Update failed. Contact not found.");
-                      Console.ResetColor();
-                  }*/
-                Console.WriteLine("press any key to continue");
-                  
+
+                Box("Contact updated (if changes were provided).", ConsoleColor.Green);
+                PressAnyKey();
                 break;
             }
         }
+
 
         /// <summary>
         /// Позволява на потребителя интерактивно да изтрие съществуващ човек от списъка чрез въвеждане на собствено и фамилно име.
@@ -243,48 +258,57 @@ namespace ContactManagerConsoleApp.Views
         public static void deletePerson(Services service)
         {
             var people = service.GetAllPeople();
-            Console.WriteLine("Write the name of the contact you want to delete.");
-            
+            Console.WriteLine("Write the ID of the contact you want to delete.");
+            Console.WriteLine(" [0] Exit menu");
+
             foreach (var person in people)
             {
-                Console.WriteLine($"{person.FirstName} {person.SecondName}");
+                Console.WriteLine($" [{person.PersonId}] {person.FirstName} {person.SecondName}");
             }
 
-            Console.Write(" First name: ");
-            var firstName = Console.ReadLine();
+            Console.WriteLine();
 
-            Console.Write(" Second name: ");
-            var secondName = Console.ReadLine();
-
-            if (service.DeletePerson(firstName, secondName) == true)
+            while (true)
             {
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("Successfully deleted!");
-                Console.ResetColor();
-                Console.WriteLine("press any key to continue");
-                Console.ReadKey();
+                Console.Write(" Your choice: ");
+                string input = Console.ReadLine();
+
+                if (!int.TryParse(input, out var id))
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine(" Invalid ID format. Please enter a number.");
+                    Console.ResetColor();
+                    continue;
+                }
+
+                if (id == 0)
+                {
+                    PressAnyKey();
+                    return;
+                }
+
+                if (service.DeletePerson(id))
+                {
+                    Box("Successfully deleted!", ConsoleColor.Green);;
+                }
+                else
+                {
+                    Box("No such person!", ConsoleColor.Red); ;
+                }
+                PressAnyKey();
                 return;
             }
-            if (service.DeletePerson(firstName, secondName) == false)
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("No such person!");
-                Console.ResetColor();
-                Console.WriteLine("press any key to continue");
-                Console.ReadKey();
-                return;
-            }
-            
         }
+
 
         public static void SearchPerson(Services service)
         {
             Console.Write("Search by Name, Number or Tag: ");
             var term = Console.ReadLine();
-            
+
             service.GetPersonByName(term);
-            Console.WriteLine("press any key to continue");
-            Console.ReadKey();
+
+            PressAnyKey();
         }
 
     }

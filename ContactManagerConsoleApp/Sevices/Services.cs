@@ -206,12 +206,11 @@ namespace ContactManagerConsoleApp.Service
         /// Извършва се поетапно записване на промените с <see cref="DbContext.SaveChanges"/>.
         /// </remarks>
 
-        public bool DeletePerson(string firstName, string secondName)
+        public bool DeletePerson(int id)
         {
             using var context = new ContactmanagerContext();
 
-
-            var person = context.People.FirstOrDefault(p => p.FirstName == firstName && p.SecondName == secondName);
+            var person = context.People.FirstOrDefault(p => p.PersonId == id);
             if (person == null) return false;
 
             var contacts = context.Contacts
