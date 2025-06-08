@@ -273,11 +273,23 @@ namespace ContactManagerConsoleApp.Service
             {
                 existingPerson.BirthDate = DateOnly.Parse(birthDate);
             }
+            else
+            {
+                Console.WriteLine("Invalid date format.");
+                return;
+            }
             var contact = existingPerson.Contacts.FirstOrDefault();
             if (phoneNum != string.Empty)
             {
                 contact.PhoneNum = long.Parse(phoneNum);
             }
+            else
+            {
+                Console.WriteLine(" Invalid number. Please enter digits only.");
+                return;
+            }
+
+
 
 
             if (email != string.Empty)
